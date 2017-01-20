@@ -34,13 +34,13 @@ export default class GraphPage extends Component {
     this._shuffle = this._shuffle.bind(this);
   }
 
-  _onPieItemSelected(newIndex){
-    this.setState({...this.state, activeIndex: newIndex, spendingsPerYear: this._shuffle(data.spendingsPerYear)});
+  _onPieItemSelected(newIndex) {
+    this.setState({ ...this.state, activeIndex: newIndex, spendingsPerYear: this._shuffle(data.spendingsPerYear) });
   }
 
   _shuffle(a) {
       for (let i = a.length; i; i--) {
-          let j = Math.floor(Math.random() * i);
+          const j = Math.floor(Math.random() * i);
           [a[i - 1], a[j]] = [a[j], a[i - 1]];
       }
       return a;
@@ -61,13 +61,15 @@ export default class GraphPage extends Component {
             colors={Theme.colors}
             width={width}
             height={height}
-            data={data.spendingsLastMonth} />
+            data={data.spendingsLastMonth}
+          />
           <Text style={styles.chart_title}>Spending per year in {data.spendingsLastMonth[this.state.activeIndex].name}</Text>
           <AreaSpline
             width={width}
             height={height}
             data={this.state.spendingsPerYear}
-            color={Theme.colors[this.state.activeIndex]} />
+            color={Theme.colors[this.state.activeIndex]}
+          />
         </View>
       </ScrollView>
     );
@@ -76,17 +78,17 @@ export default class GraphPage extends Component {
 
 const styles = {
   container: {
-    backgroundColor:'whitesmoke',
+    backgroundColor: 'whitesmoke',
     marginTop: 21,
   },
-  chart_title : {
+  chart_title: {
     paddingTop: 15,
     textAlign: 'center',
     paddingBottom: 5,
     paddingLeft: 5,
     fontSize: 18,
-    backgroundColor:'white',
+    backgroundColor: 'white',
     color: 'grey',
-    fontWeight:'bold',
+    fontWeight: 'bold',
   }
-}
+};
