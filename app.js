@@ -7,6 +7,7 @@ import Swiper from 'react-native-swiper';
 import DataList from './layout/feed/feed.js';
 import Navigation from './layout/navigation/navigation.js';
 import SettingsPage from './layout/settings/settingsPage.js';
+import GraphPage from './layout/graphs/graph.js';
 import styles from './layout/app_styles.js';
 
 let ourSwiper: Swiper;
@@ -74,11 +75,7 @@ class App extends Component {
             <SettingsPage />
           </View>
           <View style={styles.slide2}>
-            <Image
-                source={require('./layout/img/charts_without_nav.jpg')}
-                resizeMode="stretch"
-                style={{ flexShrink: 1, height: 430, }}
-            />
+            <GraphPage />
           </View>
           <View style={styles.slide3}>
             <DataList />
