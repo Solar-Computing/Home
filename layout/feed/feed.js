@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import {
   View,
   Text,
@@ -24,11 +24,11 @@ class DataList extends Component {
   }
 
   searchApi() {
-      const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+      const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
       fetch('http://jarvis.jarvisnet.ga:8165/test_leonie.php').then((loadedData) => {
           this.setState({ resultsData: ds.cloneWithRows(JSON.parse(loadedData._bodyInit)) });
       }).catch((error) => {
-        console.log('Error when fetching update data: ' + error);
+        console.log(`Error when fetching update data: ${  error}`);
       });
   }
 
@@ -39,7 +39,7 @@ class DataList extends Component {
   ) {
       return (
           <View
-            key={'SEP_' + sectionID + '_' + rowID}
+            key={`SEP_${  sectionID  }_${  rowID}`}
             style={[styles.rowSeparator, adjacentRowHighlighted && styles.rowSeparatorHighlighted]}
           />
       );
@@ -51,13 +51,13 @@ class DataList extends Component {
       rowID: number | string,
       highlightRowFunction: (sectionID: ?number | string, rowID: ?number | string) => void
   ) {
-    var imgGoal = require('../img/goal.png');
-    var imgLogo = require('../img/logo.png');
-    var imgLightBulb = require('../img/light-bulb.png');
-    var imgMegaphone = require('../img/megaphone.png');
-    var imgTarget = require('../img/target.png');
-    var imgTrophy = require('../img/trophy.png');
-    var showImage = imgLogo;
+    let imgGoal = require('../img/goal.png');
+    let imgLogo = require('../img/logo.png');
+    let imgLightBulb = require('../img/light-bulb.png');
+    let imgMegaphone = require('../img/megaphone.png');
+    let imgTarget = require('../img/target.png');
+    let imgTrophy = require('../img/trophy.png');
+    let showImage = imgLogo;
     if (data.category == 'logo') {
         showImage = imgLogo;
     }

@@ -12,7 +12,7 @@ export default StyleSheet.create({
     },
     slide2: {
       flex: 1,
-      backgroundColor: "#b4bec0",
+      backgroundColor: '#b4bec0',
       flexDirection: 'row'
     },
     slide3: {

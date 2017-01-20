@@ -3,7 +3,7 @@ import {
   StyleSheet
 } from 'react-native';
 
-import { BarChart } from 'react-native-charts'
+import { BarChart } from 'react-native-charts';
 
 import Chart from 'react-native-chart';
 
@@ -99,4 +99,4 @@ export default StyleSheet.create({
         width: 200,
         height: 200,
     }
-})
+});

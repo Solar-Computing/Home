@@ -73,7 +73,7 @@ class ListOfRooms extends Component {
     fetch('http://jarvis.jarvisnet.ga:8165/test.php').then((loadedData) => {
         this.setState({ dataSource: ds.cloneWithRows(JSON.parse(loadedData._bodyInit)) });
     }).catch((error) => {
-      console.log('Error... ' + error);
+      console.log(`Error... ${  error}`);
     });
   } 
   renderCollapsibleRow(rowData) {
@@ -88,7 +88,7 @@ class ListOfRooms extends Component {
       <ListView
         dataSource={this.state.dataSource}
         renderRow={this.renderCollapsibleRow}
-        enableEmptySections={true}
+        enableEmptySections
       />
     );
   }
