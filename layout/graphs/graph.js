@@ -32,7 +32,7 @@ export default class GraphPage extends Component {
     this.shuffle = this.shuffle.bind(this);
   }
 
-  onPieItemSelected(newIndex){
+  onPieItemSelected(newIndex) {
     this.setState({ ...this.state,
         activeIndex: newIndex,
         spendingsPerYear: this.shuffle(data.spendingsPerYear) });
@@ -40,7 +40,7 @@ export default class GraphPage extends Component {
 
   shuffle(a) {
       for (let i = a.length; i; i--) {
-          let j = Math.floor(Math.random() * i);
+          const j = Math.floor(Math.random() * i);
           [a[i - 1], a[j]] = [a[j], a[i - 1]];
       }
       return a;
