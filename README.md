@@ -13,9 +13,7 @@
 
 #### Semester Goals
 The mobile team was newly formed for Fall 2016, so our goal was to get every new member acquainted with the general computing goals. For our mobile sub-team, the goal was to finish screens for the mobile interface and have it as a first prototype. We want to find a way to show the collected data in an easy to understand and palatable way. It should show figures that motivate the resident to live more sustainably and give personalized tips on how to do that. We want to design all screens needed and implement them for both Android and iOS using the React Native JavaScript framework. Below are the mock ups of the design ideas we came up with.
-       
-       
-*Figure 6. Mockups for mobile application running on Android*
+
 
 #### Progress Made
 We iterated through different designs and decided on having three main screens that can be reached with an easy swiping navigation similar to the Snapchat navigation. We have all mock-up screens ready and two of the three main screens implemented. Charts were more difficult to add than expected because React Native is a very young framework and the support found online, although the community around it is growing, is still scarce.
