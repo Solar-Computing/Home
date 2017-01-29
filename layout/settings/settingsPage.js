@@ -120,17 +120,12 @@ class MyAccordion extends Component {
       <RoomOptions data={this.state} />
     );
     return (
-      <View
-          ref="AccordionContentWrapper"
-          style={{
+      <Accordion style={{
             overflow: 'scroll'
           }}
-      >
-      <Accordion
         header={header}
         content={content}
       />
-      </View>
     );
   }
 }
