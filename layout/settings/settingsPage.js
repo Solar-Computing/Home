@@ -4,7 +4,7 @@ import {
   View,
   ListView
 } from 'react-native';
-import Accordion from 'react-native-accordion';
+import Accordion from './index.js';
 import styles from './settings_style.js';
 import { MySlider, SubSwitch, RoomSwitch } from './settingsOptionsComponents.js';
 
@@ -120,9 +120,7 @@ class MyAccordion extends Component {
       <RoomOptions data={this.state} />
     );
     return (
-      <Accordion style={{
-            overflow: 'scroll'
-          }}
+      <Accordion
         header={header}
         content={content}
       />
