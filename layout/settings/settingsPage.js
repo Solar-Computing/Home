@@ -76,7 +76,7 @@ class ListOfRooms extends Component {
     }).catch((error) => {
       console.log(`Error... ${  error}`);
     });
-  } 
+  }
   renderCollapsibleRow(rowData) {
     return (
       <MyAccordion
@@ -144,8 +144,8 @@ class RoomOptions extends Component {
         <View>
           <Text style={styles.contentText}>{rowData.name}</Text>
         </View>
-        <SpecificType 
-          state={rowData.state} 
+        <SpecificType
+          state={rowData.state}
           ref={(mswitch) => { mySwitch = mswitch; allSwitches.push(mySwitch); }}
         />
       </View>
