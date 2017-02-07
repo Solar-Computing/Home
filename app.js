@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import {
   View,
-  Image
+  Image,
+  StyleSheet,
+  Text
 } from 'react-native';
 import Swiper from 'react-native-swiper';
 import DataList from './layout/feed/feed.js';
@@ -53,7 +55,6 @@ class App extends Component {
     }
   }
 
-
   render() {
     return (
       <View>
@@ -63,14 +64,16 @@ class App extends Component {
         toData={() => this.toData()}
         toSettings={() => this.toSettings()}
         />
+
         <Swiper
         ref={(swiper) => { ourSwiper = swiper; }}
         style={styles.wrapper}
         onMomentumScrollEnd={() => this.updateIndex()}
         loop={false}
         index={this.state.index}
+        removeClippedSubviews={false}
         >
-          <View style={styles.slide1}>
+          <View style={styles.slide2}>
             <SettingsPage />
           </View>
           <View style={styles.slide2}>
@@ -80,7 +83,7 @@ class App extends Component {
                 style={{ flexShrink: 1, height: 430, }}
             />
           </View>
-          <View style={styles.slide3}>
+          <View style={styles.slide2}>
             <DataList />
           </View>
         </Swiper>
