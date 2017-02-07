@@ -4,19 +4,20 @@ import {
 
 export default StyleSheet.create({
     wrapper: {
-      flex: 1,
     },
     slide1: {
       flex: 1,
+      backgroundColor: '#ffffff',
       paddingBottom: 130
     },
     slide2: {
       flex: 1,
-      backgroundColor: '#b4bec0',
+      backgroundColor: '#ffffff',
       flexDirection: 'row'
     },
     slide3: {
       flex: 1,
+      backgroundColor: '#ffffff',
       paddingBottom: 130
     },
     text: {
