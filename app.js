@@ -71,8 +71,6 @@ class App extends Component {
         onMomentumScrollEnd={() => this.updateIndex()}
         loop={false}
         index={this.state.index}
-        scrollEnabled={true}
-        showsButtons={true}
         removeClippedSubviews={false}
         >
           <View style={styles.slide2}>
