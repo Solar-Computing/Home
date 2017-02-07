@@ -4,8 +4,7 @@ import {
 
 export default StyleSheet.create({
     headerText: {
-        fontSize: 25,
-        fontWeight: 'bold',
+        fontSize: 23,
         color: '#2c3239'
     },
     headerView: {
