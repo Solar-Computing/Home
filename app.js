@@ -58,17 +58,18 @@ class App extends Component {
     return (
       <View>
         <Navigation
-        ref="navigation"
-        toFeed={() => this.toFeed()}
-        toData={() => this.toData()}
-        toSettings={() => this.toSettings()}
+          ref="navigation"
+          toFeed={() => this.toFeed()}
+          toData={() => this.toData()}
+          toSettings={() => this.toSettings()}
         />
         <Swiper
-        ref={(swiper) => { ourSwiper = swiper; }}
-        style={styles.wrapper}
-        onMomentumScrollEnd={() => this.updateIndex()}
-        loop={false}
-        index={this.state.index}
+          ref={(swiper) => { ourSwiper = swiper; }}
+          style={styles.wrapper}
+          onMomentumScrollEnd={() => this.updateIndex()}
+          loop={false}
+          index={this.state.index}
+          removeClippedSubviews={false}
         >
           <View style={styles.slide1}>
             <SettingsPage />
