@@ -51,12 +51,13 @@ class DataList extends Component {
       rowID: number | string,
       highlightRowFunction: (sectionID: ?number | string, rowID: ?number | string) => void
   ) {
-    let imgGoal = require('../img/goal.png');
-    let imgLogo = require('../img/logo.png');
-    let imgLightBulb = require('../img/light-bulb.png');
-    let imgMegaphone = require('../img/megaphone.png');
-    let imgTarget = require('../img/target.png');
-    let imgTrophy = require('../img/trophy.png');
+    const imgGoal = require('../img/goal.png');
+    const imgLogo = require('../img/logo.png');
+    const imgLightBulb = require('../img/light-bulb.png');
+    const imgMegaphone = require('../img/megaphone.png');
+    const imgTarget = require('../img/target.png');
+    const imgTrophy = require('../img/trophy.png');
+    
     let showImage = imgLogo;
     if (data.category == 'logo') {
         showImage = imgLogo;

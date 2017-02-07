@@ -4,14 +4,13 @@ import {
 
 export default StyleSheet.create({
     headerText: {
-        fontSize: 25,
-        fontWeight: 'bold',
-        color: '#59bbda'
+        fontSize: 23,
+        color: '#2c3239'
     },
     headerView: {
         flexDirection: 'row',
         padding: 25,
-        backgroundColor: '#e5e5ff',
+        backgroundColor: '#f1f1ef',
         borderStyle: 'solid',
         borderWidth: 1,
         borderColor: '#FFFFFF',

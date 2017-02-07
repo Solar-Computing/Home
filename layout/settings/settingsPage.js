@@ -4,7 +4,7 @@ import {
   View,
   ListView
 } from 'react-native';
-import Accordion from 'react-native-accordion';
+import Accordion from './index.js';
 import styles from './settings_style.js';
 import { MySlider, SubSwitch, RoomSwitch } from './settingsOptionsComponents.js';
 
@@ -76,7 +76,7 @@ class ListOfRooms extends Component {
     }).catch((error) => {
       console.log(`Error... ${  error}`);
     });
-  } 
+  }
   renderCollapsibleRow(rowData) {
     return (
       <MyAccordion
@@ -144,8 +144,8 @@ class RoomOptions extends Component {
         <View>
           <Text style={styles.contentText}>{rowData.name}</Text>
         </View>
-        <SpecificType 
-          state={rowData.state} 
+        <SpecificType
+          state={rowData.state}
           ref={(mswitch) => { mySwitch = mswitch; allSwitches.push(mySwitch); }}
         />
       </View>
