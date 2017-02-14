@@ -1,6 +1,7 @@
 package com.home;
 
 import com.facebook.react.ReactActivity;
+import com.devfd.RNGeocoder.RNGeocoderPackage;
 
 public class MainActivity extends ReactActivity {
 

@@ -10,6 +10,7 @@ import DataList from './layout/feed/feed.js';
 import Navigation from './layout/navigation/navigation.js';
 import SettingsPage from './layout/settings/settingsPage.js';
 import styles from './layout/app_styles.js';
+import Compare from './layout/app/index.js';
 
 let ourSwiper: Swiper;
 
@@ -77,11 +78,7 @@ class App extends Component {
             <SettingsPage />
           </View>
           <View style={styles.slide2}>
-            <Image
-                source={require('./layout/img/charts_without_nav.jpg')}
-                resizeMode="stretch"
-                style={{ flexShrink: 1, height: 430, }}
-            />
+            <Compare />
           </View>
           <View style={styles.slide2}>
             <DataList />
