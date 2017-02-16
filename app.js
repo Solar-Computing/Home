@@ -9,6 +9,7 @@ import Navigation from './layout/navigation/navigation.js';
 import SettingsPage from './layout/settings/settingsPage.js';
 import GraphPage from './layout/graphs/graph.js';
 import styles from './layout/app_styles.js';
+import 'babel-polyfill'
 
 let ourSwiper: Swiper;
 
