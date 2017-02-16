@@ -36,6 +36,8 @@
 		5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		AD176E4EFBEB47F7833DB04C /* libRNSVG.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 48441A39B14744FBAC0BA693 /* libRNSVG.a */; };
+		8A064478B22944CEB25D6A29 /* libBugsnagReactNative.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D8F9ECA9A7AF4064A4C131BB /* libBugsnagReactNative.a */; };
+		CAF90E095A244249B10A0697 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = CDF59D5F821F42BEAB7C2B59 /* libz.tbd */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -257,6 +259,9 @@
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 		5535CEE72FD94C82A1FFE1F9 /* RNSVG.xcodeproj */ = {isa = PBXFileReference; name = "RNSVG.xcodeproj"; path = "../node_modules/react-native-svg/ios/RNSVG.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
 		48441A39B14744FBAC0BA693 /* libRNSVG.a */ = {isa = PBXFileReference; name = "libRNSVG.a"; path = "libRNSVG.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		40CC92BE5F8A4BE9AF2B2112 /* BugsnagReactNative.xcodeproj */ = {isa = PBXFileReference; name = "BugsnagReactNative.xcodeproj"; path = "../node_modules/bugsnag-react-native/cocoa/BugsnagReactNative.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		D8F9ECA9A7AF4064A4C131BB /* libBugsnagReactNative.a */ = {isa = PBXFileReference; name = "libBugsnagReactNative.a"; path = "libBugsnagReactNative.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		CDF59D5F821F42BEAB7C2B59 /* libz.tbd */ = {isa = PBXFileReference; name = "libz.tbd"; path = "usr/lib/libz.tbd"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = sourcecode.text-based-dylib-definition; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -284,6 +289,8 @@
 				00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */,
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
 				AD176E4EFBEB47F7833DB04C /* libRNSVG.a in Frameworks */,
+				8A064478B22944CEB25D6A29 /* libBugsnagReactNative.a in Frameworks */,
+				CAF90E095A244249B10A0697 /* libz.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -451,6 +458,7 @@
 				00C302DF1ABCB9EE00DB3ED1 /* RCTVibration.xcodeproj */,
 				139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */,
 				5535CEE72FD94C82A1FFE1F9 /* RNSVG.xcodeproj */,
+				40CC92BE5F8A4BE9AF2B2112 /* BugsnagReactNative.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -471,6 +479,7 @@
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* HomeTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
+				2CEDDAA5A5BB4A94A54097DB /* Frameworks */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -485,6 +494,15 @@
 				2D02E4901E0B4A5D006451C7 /* Home-tvOSTests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		2CEDDAA5A5BB4A94A54097DB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CDF59D5F821F42BEAB7C2B59 /* libz.tbd */,
+			);
+			name = Frameworks;
+			path = "";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -979,6 +997,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 			};
 			name = Debug;
@@ -999,6 +1018,7 @@
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Home.app/Home";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 			};
@@ -1062,6 +1082,10 @@
 				SDKROOT = appletvos;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 9.2;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+				);
 			};
 			name = Debug;
 		};
@@ -1088,6 +1112,10 @@
 				SDKROOT = appletvos;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 9.2;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+				);
 			};
 			name = Release;
 		};
@@ -1109,6 +1137,10 @@
 				SDKROOT = appletvos;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Home-tvOS.app/Home-tvOS";
 				TVOS_DEPLOYMENT_TARGET = 10.1;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+				);
 			};
 			name = Debug;
 		};
@@ -1130,6 +1162,10 @@
 				SDKROOT = appletvos;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Home-tvOS.app/Home-tvOS";
 				TVOS_DEPLOYMENT_TARGET = 10.1;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+				);
 			};
 			name = Release;
 		};
