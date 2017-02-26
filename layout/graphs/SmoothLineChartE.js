@@ -154,7 +154,7 @@ class SmoothLineChartBasic extends Component {
 
     return (
       <View style={{flexDirection:'column'}}>
-        <Text>Energy consumption vs production</Text>
+        <Text>Energy consumption vs production (kW/h)</Text>
         <SmoothLine data={data} options={options} xKey='x' yKey='y' />
       </View>
     )

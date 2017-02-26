@@ -114,7 +114,7 @@ class SmoothLineChartBasic extends Component {
 
     return (
       <View style={{flexDirection:'column'}}>
-        <Text>Cash Flow</Text>
+        <Text>Cash Flow (Dollars)</Text>
         <SmoothLine data={data} options={options} xKey='x' yKey='y' />
       </View>
     )

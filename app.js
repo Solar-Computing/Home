@@ -10,14 +10,14 @@ import SettingsPage from './layout/settings/settingsPage.js';
 import GraphPage from './layout/graphs/graph.js';
 import styles from './layout/app_styles.js';
 import 'babel-polyfill'
-import { Client } from 'bugsnag-react-native';
+//import { Client } from 'bugsnag-react-native';
 
 let ourSwiper: Swiper;
 
 class App extends Component {
   constructor(props) {
     super(props);
-    this.client = new Client('b23af9fb9b2e3d5c144b1772a44c68ab');
+    //this.client = new Client('b23af9fb9b2e3d5c144b1772a44c68ab');
     this.state = {
       index: 0
     };

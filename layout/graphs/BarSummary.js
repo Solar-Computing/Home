@@ -197,15 +197,15 @@ class BarChartColumnBasic extends Component {
     return (
       <View style={{flexDirection: 'column'}}>
         <View style={{flexDirection: 'row'}}>
-          <Text>Energy:</Text>
+          <Text>Energy (kW/h):</Text>
           <Bar data={dataE} options={optionsE} accessorKey='e'/>
         </View>
         <View style={{flexDirection: 'row'}}>
-          <Text>Water:</Text>
+          <Text>Water (gal):</Text>
           <Bar data={dataW} options={optionsW} accessorKey='e'/>
         </View>
         <View style={{flexDirection: 'row'}}>
-          <Text>Profit:</Text>
+          <Text>Profit (dollars):</Text>
           <Bar data={data$} options={options$} accessorKey='e'/>
         </View>
       </View>

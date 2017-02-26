@@ -154,7 +154,7 @@ class SmoothLineChartBasic extends Component {
 
     return (
       <View style={{flexDirection:'column'}}>
-        <Text>Water Use vs Filtration</Text>
+        <Text>Water Use vs Filtration (gal)</Text>
         <SmoothLine data={data} options={options} xKey='x' yKey='y' />
       </View>
     )
