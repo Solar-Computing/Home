@@ -7,7 +7,7 @@ import Swiper from 'react-native-swiper';
 import DataList from './layout/feed/feed.js';
 import Navigation from './layout/navigation/navigation.js';
 import SettingsPage from './layout/settings/settingsPage.js';
-import GraphPage from './layout/graphs/graph.js';
+import GraphPage from './layout/graphs/graph_test.js';
 import styles from './layout/app_styles.js';
 import 'babel-polyfill'
 //import { Client } from 'bugsnag-react-native';
@@ -16,6 +16,7 @@ let ourSwiper: Swiper;
 
 class App extends Component {
   constructor(props) {
+    console.log('APP');
     super(props);
     //this.client = new Client('b23af9fb9b2e3d5c144b1772a44c68ab');
     this.state = {
