@@ -7,7 +7,7 @@ import Swiper from 'react-native-swiper';
 import DataList from './layout/feed/feed.js';
 import Navigation from './layout/navigation/navigation.js';
 import SettingsPage from './layout/settings/settingsPage.js';
-import GraphPage from './layout/graphs/graph_test.js';
+import GraphPage from './layout/graphs/graph.js';
 import styles from './layout/app_styles.js';
 import 'babel-polyfill'
 //import { Client } from 'bugsnag-react-native';
