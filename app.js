@@ -11,6 +11,7 @@ import Navigation from './layout/navigation/navigation.js';
 import SettingsPage from './layout/settings/settingsPage.js';
 import styles from './layout/app_styles.js';
 import Compare from './layout/app/index.js';
+import Graph from 'react-native-dynamic-graph';
 
 let ourSwiper: Swiper;
 
@@ -78,7 +79,8 @@ class App extends Component {
             <SettingsPage />
           </View>
           <View style={styles.slide2}>
-            <Compare />
+            <Graph customConfig={{height: 250, width: 200, heights: [12,200,31,61,25, 120, 213, 123, 65], color: '#ff0000'}}>
+            </Graph>
           </View>
           <View style={styles.slide2}>
             <DataList />
