@@ -29,8 +29,12 @@ export default class GraphPage extends Component {
         aggregate: "hourly"
       })
     }).then((loadedData) => {
-        this.setState({ data: loadedData });
-        console.log(loadedData)
+        this.setState({ data: JSON.parse(loadedData._bodyInit) });
+        this.state.dailyData = []
+        this.state.data.contents.forEach(function(entry) {
+          
+        })
+
     }).catch((error) => {
       console.log('Error... ' + error);
     });
