@@ -8,92 +8,7 @@ import Chart from './SmoothLineChart.js';
 import Summary from './BarSummary.js';
 import styles from './GraphStyles.js';
 
-
-export default class GraphPage extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      data: {},
-    };
-  }
-  componentDidMount() {
-    fetch('http://lowcost-env.kwjgjsvk34.us-east-1.elasticbeanstalk.com/api/simulations', {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        start: '20160101T00:00:00Z',
-        end: '20170101T00:00:00Z',
-        aggregate: 'hourly'
-      })
-    }).then((loadedData) => {
-        this.setState({ data: JSON.parse(loadedData._bodyInit) });
-        this.state.dayData = []
-        this.state.data.contents.forEach(function(entry) {
-          date = new Date(entry.timestamp)
-          today = new Date()
-          today.setYear(2016)
-          //date.setYear(2017)
-          //console.log(date + " " + (new Date()))
-          //console.log(date.toString() + " " + today.toString())
-          if (date.getDay() === today.getDay() && date.getMonth() === today.getMonth() && date.getDate() === today.getDate()) {
-            console.log("\n"+today)
-            console.log("NEW")
-            console.log(date)
-            console.log(entry)
-          }
-        })
-    }).catch((error) => {
-      console.log(`Error... ${error}`);
-    });
-  }
-  render() {
-    const profitData = [
-      [{
-        x: 0,
-        y: -5
-      }, {
-        x: 2,
-        y: -20
-      }, {
-        x: 4,
-        y: -25
-      }, {
-        x: 6,
-        y: -20
-      }, {
-        x: 8,
-        y: -10
-      }, {
-        x: 10,
-        y: -5
-      }, {
-        x: 12,
-        y: -10
-      }, {
-        x: 14,
-        y: 20
-      }, {
-        x: 16,
-        y: 15
-      }, {
-        x: 18,
-        y: 10
-      }, {
-        x: 20,
-        y: -8
-      }, {
-        x: 22,
-        y: -15
-      }, {
-        x: 24,
-        y: -5
-      }]
-    ];
-
-    const energyData = [
+let energyData = [
       [{
         x: 0,
         y: 1.2
@@ -175,6 +90,177 @@ export default class GraphPage extends Component {
         y: 0
       }]
     ];
+
+export default class GraphPage extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      data: {}
+    };
+  }
+  componentDidMount() {
+    fetch('http://lowcost-env.kwjgjsvk34.us-east-1.elasticbeanstalk.com/api/simulations', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        start: '20160101T00:00:00Z',
+        end: '20170101T00:00:00Z',
+        aggregate: 'hourly'
+      })
+    }).then((loadedData) => {
+        this.setState({ data: JSON.parse(loadedData._bodyInit) });
+        //this.state.dayData = []
+        energyData = [[], []]
+        this.state.data.contents.forEach(function(entry) {
+          date = new Date(entry.timestamp)
+          today = new Date()
+          today.setYear(2016)
+          //date.setYear(2017)
+          //console.log(date + " " + (new Date()))
+          //console.log(date.toString() + " " + today.toString())
+          if (date.getDay() === today.getDay() && date.getMonth() === today.getMonth() && date.getDate() === today.getDate()) {
+            // console.log("\n"+today)
+            // console.log("NEW")
+            // console.log(date)
+            // console.log(entry)
+            energyData[0].push({x: date.getHours(), y: entry.ACPrimaryLoad})
+            energyData[1].push({x: date.getHours(), y: entry.PVPowerOutput})
+          }
+        })
+        console.log(energyData)
+    }).catch((error) => {
+      console.log(`Error... ${error}`);
+    });
+  }
+  render() {
+    const profitData = [
+      [{
+        x: 0,
+        y: -5
+      }, {
+        x: 2,
+        y: -20
+      }, {
+        x: 4,
+        y: -25
+      }, {
+        x: 6,
+        y: -20
+      }, {
+        x: 8,
+        y: -10
+      }, {
+        x: 10,
+        y: -5
+      }, {
+        x: 12,
+        y: -10
+      }, {
+        x: 14,
+        y: 20
+      }, {
+        x: 16,
+        y: 15
+      }, {
+        x: 18,
+        y: 10
+      }, {
+        x: 20,
+        y: -8
+      }, {
+        x: 22,
+        y: -15
+      }, {
+        x: 24,
+        y: -5
+      }]
+    ];
+
+    // const energyData = [
+    //   [{
+    //     x: 0,
+    //     y: 1.2
+    //   }, {
+    //     x: 2,
+    //     y: 1
+    //   }, {
+    //     x: 4,
+    //     y: 1.1
+    //   }, {
+    //     x: 6,
+    //     y: 1
+    //   }, {
+    //     x: 8,
+    //     y: 1.5
+    //   }, {
+    //     x: 10,
+    //     y: 2
+    //   }, {
+    //     x: 12,
+    //     y: 3
+    //   }, {
+    //     x: 14,
+    //     y: 3.2
+    //   }, {
+    //     x: 16,
+    //     y: 3.5
+    //   }, {
+    //     x: 18,
+    //     y: 4
+    //   }, {
+    //     x: 20,
+    //     y: 5
+    //   }, {
+    //     x: 22,
+    //     y: 2.5
+    //   }, {
+    //     x: 24,
+    //     y: 1
+    //   }],
+    //   [{
+    //     x: 0,
+    //     y: 0
+    //   }, {
+    //     x: 2,
+    //     y: 0
+    //   }, {
+    //     x: 4,
+    //     y: 0
+    //   }, {
+    //     x: 6,
+    //     y: 0.5
+    //   }, {
+    //     x: 8,
+    //     y: 1
+    //   }, {
+    //     x: 10,
+    //     y: 3
+    //   }, {
+    //     x: 12,
+    //     y: 4
+    //   }, {
+    //     x: 14,
+    //     y: 3.5
+    //   }, {
+    //     x: 16,
+    //     y: 2
+    //   }, {
+    //     x: 18,
+    //     y: 0.6
+    //   }, {
+    //     x: 20,
+    //     y: 0.2
+    //   }, {
+    //     x: 22,
+    //     y: 0
+    //   }, {
+    //     x: 24,
+    //     y: 0
+    //   }]
+    // ];
 
     const waterData = [
       [{
