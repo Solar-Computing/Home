@@ -4,7 +4,7 @@ import {
 
 export default StyleSheet.create({
     scrubButtons: {
-        backgroundColor: '#228B22',
+        backgroundColor: '#59bbda',
         justifyContent: 'center',
         width: 60
     },
@@ -13,7 +13,7 @@ export default StyleSheet.create({
         justifyContent: 'center',
         textAlign: 'center'
     },
-    statusbar: {
+    scrubBar: {
         // backgroundColor: '#191f28',
         // paddingTop: 10,
         // paddingBottom: 10,
@@ -25,10 +25,16 @@ export default StyleSheet.create({
         width: 60
     },
     graphTitle: {
-        color: '#228B22',
+        color: '#2c3239',
         textAlign: 'center',
         fontFamily: 'Arial',
         fontWeight: 'bold',
         fontSize: 18
+    },
+    graphUnits: {
+        textAlign: 'center'
+    },
+    divider: {
+        height: 20
     }
 });

@@ -27,98 +27,12 @@ import styles from './GraphStyles.js';
 
 class SmoothLineChartBasic extends Component {
   render() {
-    const data = [
-      [{
-        x: 0,
-        y: -15
-      }, {
-        x: 2,
-        y: -20
-      }, {
-        x: 4,
-        y: -25
-      }, {
-        x: 6,
-        y: -20
-      }, {
-        x: 8,
-        y: -10
-      }, {
-        x: 10,
-        y: -5
-      }, {
-        x: 12,
-        y: -10
-      }, {
-        x: 14,
-        y: 20
-      }, {
-        x: 16,
-        y: 15
-      }, {
-        x: 18,
-        y: 10
-      }, {
-        x: 20,
-        y: -8
-      }, {
-        x: 22,
-        y: -15
-      }, {
-        x: 24,
-        y: -5
-      }]
-    ];
-
-    const options = {
-      width: 300,
-      height: 150,
-      color: '#228B22',
-      margin: {
-        top: 40,
-        left: 40,
-        bottom: 40,
-        right: 40
-      },
-      animate: {
-        type: 'delayed',
-        duration: 200
-      },
-      axisX: {
-        showAxis: true,
-        showLines: false,
-        showLabels: true,
-        showTicks: true,
-        zeroAxis: false,
-        orient: 'bottom',
-        label: {
-          fontFamily: 'Arial',
-          fontSize: 14,
-          fontWeight: true,
-          fill: '#34495E'
-        }
-      },
-      axisY: {
-        showAxis: true,
-        showLines: true,
-        showLabels: true,
-        showTicks: true,
-        zeroAxis: false,
-        orient: 'left',
-        label: {
-          fontFamily: 'Arial',
-          fontSize: 14,
-          fontWeight: true,
-          fill: '#34495E'
-        }
-      }
-    };
-
     return (
       <View style={{ flexDirection: 'column' }}>
-        <Text style={styles.graphTitle}>Cash Flow (Dollars)</Text>
-        <SmoothLine data={data} options={options} xKey='x' yKey='y' />
-        <View style={styles.statusbar}>
+        <Text style={styles.graphTitle}>{this.props.title}</Text>
+        <Text style={styles.graphUnits}>({this.props.units})</Text>
+        <SmoothLine data={this.props.data} options={this.props.options} xKey='x' yKey='y' />
+        <View style={styles.scrubBar}>
           <Button
             containerStyle={styles.scrubButtons}
             onPress={() => this.handleBack()}
