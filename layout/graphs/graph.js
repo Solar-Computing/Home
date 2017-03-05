@@ -20,19 +20,19 @@ export default class GraphPage extends Component {
     fetch('http://lowcost-env.kwjgjsvk34.us-east-1.elasticbeanstalk.com/api/simulations', {
       method: 'POST',
       headers: {
-        'Accept': 'application/json',
+        Accept: 'application/json',
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        start:"20160101T00:00:00Z",
-        end: "20170101T00:00:00Z",
-        aggregate: "hourly"
+        start: '20160101T00:00:00Z',
+        end: '20170101T00:00:00Z',
+        aggregate: 'hourly'
       })
     }).then((loadedData) => {
         this.setState({ data: loadedData });
-        console.log(loadedData)
+        console.log(loadedData);
     }).catch((error) => {
-      console.log('Error... ' + error);
+      console.log(`Error... ${error}`);
     });
   }
   render() {
