@@ -32,7 +32,15 @@ export default class GraphPage extends Component {
         this.setState({ data: JSON.parse(loadedData._bodyInit) });
         this.state.dailyData = []
         this.state.data.contents.forEach(function(entry) {
-          
+          date = new Date(entry.timestamp)
+          today = new Date()
+          today.setYear(2016)
+          //date.setYear(2017)
+          //console.log(date + " " + (new Date()))
+          //console.log(date.toString() + " " + today.toString())
+          if (date.getDay() === today.getDay() && date.getMonth() === today.getMonth()) {
+            console.log(entry)
+          }
         })
 
     }).catch((error) => {
