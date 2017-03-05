@@ -110,13 +110,13 @@ class SmoothLineChartBasic extends Component {
 
     let options = {
       width: 300,
-      height: 300,
+      height: 150,
       color: '#cccc00',
       margin: {
-        top: 20,
-        left: 20,
-        bottom: 20,
-        right: 20
+        top: 40,
+        left: 40,
+        bottom: 40,
+        right: 40
       },
       animate: {
         type: 'delayed',
