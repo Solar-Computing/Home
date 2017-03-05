@@ -16,67 +16,69 @@ SPDX-Copyright: Copyright (c) Capital One Services, LLC
 SPDX-License-Identifier: Apache-2.0
 */
 
-'use strict'
+'use strict';
 
 import React, { Component } from 'react';
-import { View, Text, Navigator } from 'react-native';
+import { View, Text, Navigator, Alert } from 'react-native';
 
-import { SmoothLine } from 'react-native-pathjs-charts'
+import { SmoothLine } from 'react-native-pathjs-charts';
+import Button from 'react-native-button';
+import styles from './GraphStyles.js';
 
 class SmoothLineChartBasic extends Component {
   render() {
-    let data = [
+    const data = [
       [{
-        "x": 0,
-        "y": -15
+        x: 0,
+        y: -15
       }, {
-        "x": 2,
-        "y": -20
+        x: 2,
+        y: -20
       }, {
-        "x": 4,
-        "y": -25
+        x: 4,
+        y: -25
       }, {
-        "x": 6,
-        "y": -20
+        x: 6,
+        y: -20
       }, {
-        "x": 8,
-        "y": -10
+        x: 8,
+        y: -10
       }, {
-        "x": 10,
-        "y": -5
+        x: 10,
+        y: -5
       }, {
-        "x": 12,
-        "y": -10
+        x: 12,
+        y: -10
       }, {
-        "x": 14,
-        "y": 20
+        x: 14,
+        y: 20
       }, {
-        "x": 16,
-        "y": 15
+        x: 16,
+        y: 15
       }, {
-        "x": 18,
-        "y": 10
+        x: 18,
+        y: 10
       }, {
-        "x": 20,
-        "y": -8
+        x: 20,
+        y: -8
       }, {
-        "x": 22,
-        "y": -15
+        x: 22,
+        y: -15
       }, {
-        "x": 24,
-        "y": -5
+        x: 24,
+        y: -5
       }]
-    ]
+    ];
 
-    let options = {
+    const options = {
       width: 300,
-      height: 300,
+      height: 150,
       color: '#228B22',
       margin: {
-        top: 20,
-        left: 20,
-        bottom: 20,
-        right: 20
+        top: 40,
+        left: 40,
+        bottom: 40,
+        right: 40
       },
       animate: {
         type: 'delayed',
@@ -110,14 +112,53 @@ class SmoothLineChartBasic extends Component {
           fill: '#34495E'
         }
       }
-    }
+    };
 
     return (
-      <View style={{flexDirection:'column'}}>
-        <Text>Cash Flow (Dollars)</Text>
+      <View style={{ flexDirection: 'column' }}>
+        <Text style={styles.graphTitle}>Cash Flow (Dollars)</Text>
         <SmoothLine data={data} options={options} xKey='x' yKey='y' />
+        <View style={styles.statusbar}>
+          <Button
+            containerStyle={styles.scrubButtons}
+            onPress={() => this.handleBack()}
+          >
+            <Text style={styles.scrubTitles}>
+              Back
+            </Text>
+          </Button>
+          <View style={styles.spacer} />
+          <Button
+            containerStyle={styles.scrubButtons}
+            onPress={() => this.handleNext()}
+          >
+            <Text style={styles.scrubTitles}>
+              Next
+            </Text>
+          </Button>
+        </View>
       </View>
-    )
+    );
+  }
+
+  handleBack() {
+    Alert.alert(
+      'Alert Title',
+      'Reload with data one step back',
+      [
+        { text: 'OK', onPress: () => console.log('OK Pressed!') },
+      ]
+    );
+  }
+
+  handleNext() {
+    Alert.alert(
+      'Alert Title',
+      'Reload with data one step forward',
+      [
+        { text: 'OK', onPress: () => console.log('OK Pressed!') },
+      ]
+    );
   }
 }
 
