@@ -5,10 +5,178 @@ import {
 } from 'react-native';
 
 import Chart from './SmoothLineChart.js';
-import Summary from './BarSummary.js';
+//import Summary from './BarSummary.js';
 import styles from './GraphStyles.js';
 
-let energyData = [
+const dayEnergyData = [
+      [{
+        x: 0,
+        y: 1.2
+      }, {
+        x: 2,
+        y: 1
+      }, {
+        x: 4,
+        y: 1.1
+      }, {
+        x: 6,
+        y: 1
+      }, {
+        x: 8,
+        y: 1.5
+      }, {
+        x: 10,
+        y: 2
+      }, {
+        x: 12,
+        y: 3
+      }, {
+        x: 14,
+        y: 3.2
+      }, {
+        x: 16,
+        y: 3.5
+      }, {
+        x: 18,
+        y: 4
+      }, {
+        x: 20,
+        y: 5
+      }, {
+        x: 22,
+        y: 2.5
+      }, {
+        x: 24,
+        y: 1
+      }],
+      [{
+        x: 0,
+        y: 0
+      }, {
+        x: 2,
+        y: 0
+      }, {
+        x: 4,
+        y: 0
+      }, {
+        x: 6,
+        y: 0.5
+      }, {
+        x: 8,
+        y: 1
+      }, {
+        x: 10,
+        y: 3
+      }, {
+        x: 12,
+        y: 4
+      }, {
+        x: 14,
+        y: 3.5
+      }, {
+        x: 16,
+        y: 2
+      }, {
+        x: 18,
+        y: 0.6
+      }, {
+        x: 20,
+        y: 0.2
+      }, {
+        x: 22,
+        y: 0
+      }, {
+        x: 24,
+        y: 0
+      }]
+    ];
+
+
+let weekEnergyData = [
+      [{
+        x: 0,
+        y: 1.2
+      }, {
+        x: 2,
+        y: 1
+      }, {
+        x: 4,
+        y: 1.1
+      }, {
+        x: 6,
+        y: 1
+      }, {
+        x: 8,
+        y: 1.5
+      }, {
+        x: 10,
+        y: 2
+      }, {
+        x: 12,
+        y: 3
+      }, {
+        x: 14,
+        y: 3.2
+      }, {
+        x: 16,
+        y: 3.5
+      }, {
+        x: 18,
+        y: 4
+      }, {
+        x: 20,
+        y: 5
+      }, {
+        x: 22,
+        y: 2.5
+      }, {
+        x: 24,
+        y: 1
+      }],
+      [{
+        x: 0,
+        y: 0
+      }, {
+        x: 2,
+        y: 0
+      }, {
+        x: 4,
+        y: 0
+      }, {
+        x: 6,
+        y: 0.5
+      }, {
+        x: 8,
+        y: 1
+      }, {
+        x: 10,
+        y: 3
+      }, {
+        x: 12,
+        y: 4
+      }, {
+        x: 14,
+        y: 3.5
+      }, {
+        x: 16,
+        y: 2
+      }, {
+        x: 18,
+        y: 0.6
+      }, {
+        x: 20,
+        y: 0.2
+      }, {
+        x: 22,
+        y: 0
+      }, {
+        x: 24,
+        y: 0
+      }]
+    ];
+
+
+const yearEnergyData = [
       [{
         x: 0,
         y: 1.2
@@ -99,6 +267,45 @@ export default class GraphPage extends Component {
     };
   }
   componentDidMount() {
+    // fetch('http://lowcost-env.kwjgjsvk34.us-east-1.elasticbeanstalk.com/api/simulations', {
+    //   method: 'POST',
+    //   headers: {
+    //     Accept: 'application/json',
+    //     'Content-Type': 'application/json',
+    //   },
+    //   body: JSON.stringify({
+    //     start: '20160101T00:00:00Z',
+    //     end: '20170101T00:00:00Z',
+    //     aggregate: 'hourly'
+    //   })
+    // }).then((loadedData) => {
+    //     this.setState({ data: JSON.parse(loadedData._bodyInit) });
+    //     //this.state.dayData = []
+    //     dayEnergyData = [[], []]
+    //     this.state.data.contents.forEach(function(entry) {
+    //       date = new Date(entry.timestamp)
+    //       today = new Date()
+    //       today.setYear(2016)
+    //       //date.setYear(2017)
+    //       //console.log(date + " " + (new Date()))
+    //       //console.log(date.toString() + " " + today.toString())
+    //       if (date.getDay() === today.getDay() && date.getMonth() === today.getMonth() && date.getDate() === today.getDate()) {
+    //         // console.log("\n"+today)
+    //         // console.log("NEW")
+    //         // console.log(date)
+    //         // console.log(entry)
+    //         dayEnergyData[0].push({x: date.getHours(), y: entry.ACPrimaryLoad})
+    //         dayEnergyData[1].push({x: date.getHours(), y: entry.PVPowerOutput})
+    //       }
+    //     })
+    //     console.log(dayEnergyData)
+    // }).catch((error) => {
+    //   console.log(`Error... ${error}`);
+    // });
+
+
+//Get date for today (ms) --> subtract ms in a week and then put in graph
+
     fetch('http://lowcost-env.kwjgjsvk34.us-east-1.elasticbeanstalk.com/api/simulations', {
       method: 'POST',
       headers: {
@@ -108,35 +315,73 @@ export default class GraphPage extends Component {
       body: JSON.stringify({
         start: '20160101T00:00:00Z',
         end: '20170101T00:00:00Z',
-        aggregate: 'hourly'
+        aggregate: 'daily'
       })
     }).then((loadedData) => {
         this.setState({ data: JSON.parse(loadedData._bodyInit) });
         //this.state.dayData = []
-        energyData = [[], []];
-        this.state.data.contents.forEach((entry) => {
-          date = new Date(entry.timestamp);
-          today = new Date();
-          today.setYear(2016);
+        weekEnergyData = [[], []]
+        this.state.data.contents.forEach(function(entry) {
+          date = new Date(entry.timestamp)
+          today = new Date()
+          today.setYear(2016)
+          //console.log(today.getFullYear(), today.getMonth(), today.getDay())
+          weekBefore = new Date(today.getFullYear(), today.getMonth(), today.getDate() - 7);
           //date.setYear(2017)
-          //console.log(date + " " + (new Date()))
+          //console.log(date + " " + today)
           //console.log(date.toString() + " " + today.toString())
-          if (date.getDay() === today.getDay() && date.getMonth() === today.getMonth() && date.getDate() === today.getDate()) {
+          if (date.getMonth() === today.getMonth()) {
             // console.log("\n"+today)
             // console.log("NEW")
             // console.log(date)
             // console.log(entry)
-            energyData[0].push({ x: date.getHours(), y: entry.ACPrimaryLoad });
-            energyData[1].push({ x: date.getHours(), y: entry.PVPowerOutput });
+            weekEnergyData[0].push({x: date.getMonth(), y: entry.ACPrimaryLoad})
+            weekEnergyData[1].push({x: date.getMonth(), y: entry.PVPowerOutput})
           }
-        });
-        console.log(energyData);
+        })
+        console.log(weekEnergyData)
     }).catch((error) => {
       console.log(`Error... ${error}`);
     });
+
+    // fetch('http://lowcost-env.kwjgjsvk34.us-east-1.elasticbeanstalk.com/api/simulations', {
+    //   method: 'POST',
+    //   headers: {
+    //     Accept: 'application/json',
+    //     'Content-Type': 'application/json',
+    //   },
+    //   body: JSON.stringify({
+    //     start: '20160101T00:00:00Z',
+    //     end: '20170101T00:00:00Z',
+    //     aggregate: 'monthly'
+    //   })
+    // }).then((loadedData) => {
+    //     this.setState({ data: JSON.parse(loadedData._bodyInit) });
+    //     //this.state.dayData = []
+    //     yearEnergyData = [[], []]
+    //     this.state.data.contents.forEach(function(entry) {
+    //       date = new Date(entry.timestamp)
+    //       today = new Date()
+    //       today.setYear(2016)
+    //       //date.setYear(2017)
+    //       //console.log(date + " " + (new Date()))
+    //       //console.log(date.toString() + " " + today.toString())
+    //       if (date.getDay() === today.getDay() && date.getMonth() === today.getMonth() && date.getDate() === today.getDate()) {
+    //         // console.log("\n"+today)
+    //         // console.log("NEW")
+    //         // console.log(date)
+    //         // console.log(entry)
+    //         yearEnergyData[0].push({x: date.getHours(), y: entry.ACPrimaryLoad})
+    //         yearEnergyData[1].push({x: date.getHours(), y: entry.PVPowerOutput})
+    //       }
+    //     })
+    //     console.log(yearEnergyData)
+    // }).catch((error) => {
+    //   console.log(`Error... ${error}`);
+    // });
   }
   render() {
-    const profitData = [
+    /*const profitData = [
       [{
         x: 0,
         y: -5
@@ -305,7 +550,7 @@ export default class GraphPage extends Component {
           fill: '#647282'
         }
       }
-    };
+    };*/
 
     const energyOptions = {
       width: 300,
@@ -397,7 +642,7 @@ export default class GraphPage extends Component {
       }
     };
 
-    return (
+    /*return (
       <ScrollView style={styles.graphPage}>
         <Chart
           title={'Energy Consumption vs Production'}
@@ -419,6 +664,31 @@ export default class GraphPage extends Component {
           data={waterData}
           options={waterOptions}
         />        
+      </ScrollView>
+    );*/
+
+    return (
+      <ScrollView>
+        <Chart
+          title={'Week Energy Consumption vs Production'}
+          units={'kW/h'}
+          data={weekEnergyData}
+          options={energyOptions}
+        />
+        <View style={styles.divider} />
+        <Chart
+          title={'Day Energy Consumption vs Production'}
+          units={'kW/h'}
+          data={dayEnergyData}
+          options={energyOptions}
+        />
+        <View style={styles.divider} />
+        <Chart
+          title={'Year Energy Consumption vs Production'}
+          units={'kW/h'}
+          data={yearEnergyData}
+          options={energyOptions}
+        />  
       </ScrollView>
     );
   }
