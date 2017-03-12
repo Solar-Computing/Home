@@ -61,7 +61,7 @@ class App extends Component {
 
   render() {
     return (
-      <View>
+      <View style={styles.layout}>
         <Navigation
         ref="navigation"
         toFeed={() => this.toFeed()}

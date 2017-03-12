@@ -14,7 +14,7 @@ export default StyleSheet.create({
     cellContainer: {
         flexDirection: 'row',
         alignItems: 'center',
-        backgroundColor: '#FFF',
+        backgroundColor: '#91a2ba',
         margin: 0.5,
     },
     cellImage: {

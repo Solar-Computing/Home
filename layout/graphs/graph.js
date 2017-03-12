@@ -113,11 +113,11 @@ export default class GraphPage extends Component {
     }).then((loadedData) => {
         this.setState({ data: JSON.parse(loadedData._bodyInit) });
         //this.state.dayData = []
-        energyData = [[], []]
-        this.state.data.contents.forEach(function(entry) {
-          date = new Date(entry.timestamp)
-          today = new Date()
-          today.setYear(2016)
+        energyData = [[], []];
+        this.state.data.contents.forEach((entry) => {
+          date = new Date(entry.timestamp);
+          today = new Date();
+          today.setYear(2016);
           //date.setYear(2017)
           //console.log(date + " " + (new Date()))
           //console.log(date.toString() + " " + today.toString())
@@ -126,11 +126,11 @@ export default class GraphPage extends Component {
             // console.log("NEW")
             // console.log(date)
             // console.log(entry)
-            energyData[0].push({x: date.getHours(), y: entry.ACPrimaryLoad})
-            energyData[1].push({x: date.getHours(), y: entry.PVPowerOutput})
+            energyData[0].push({ x: date.getHours(), y: entry.ACPrimaryLoad });
+            energyData[1].push({ x: date.getHours(), y: entry.PVPowerOutput });
           }
-        })
-        console.log(energyData)
+        });
+        console.log(energyData);
     }).catch((error) => {
       console.log(`Error... ${error}`);
     });
@@ -178,89 +178,6 @@ export default class GraphPage extends Component {
         y: -5
       }]
     ];
-
-    // const energyData = [
-    //   [{
-    //     x: 0,
-    //     y: 1.2
-    //   }, {
-    //     x: 2,
-    //     y: 1
-    //   }, {
-    //     x: 4,
-    //     y: 1.1
-    //   }, {
-    //     x: 6,
-    //     y: 1
-    //   }, {
-    //     x: 8,
-    //     y: 1.5
-    //   }, {
-    //     x: 10,
-    //     y: 2
-    //   }, {
-    //     x: 12,
-    //     y: 3
-    //   }, {
-    //     x: 14,
-    //     y: 3.2
-    //   }, {
-    //     x: 16,
-    //     y: 3.5
-    //   }, {
-    //     x: 18,
-    //     y: 4
-    //   }, {
-    //     x: 20,
-    //     y: 5
-    //   }, {
-    //     x: 22,
-    //     y: 2.5
-    //   }, {
-    //     x: 24,
-    //     y: 1
-    //   }],
-    //   [{
-    //     x: 0,
-    //     y: 0
-    //   }, {
-    //     x: 2,
-    //     y: 0
-    //   }, {
-    //     x: 4,
-    //     y: 0
-    //   }, {
-    //     x: 6,
-    //     y: 0.5
-    //   }, {
-    //     x: 8,
-    //     y: 1
-    //   }, {
-    //     x: 10,
-    //     y: 3
-    //   }, {
-    //     x: 12,
-    //     y: 4
-    //   }, {
-    //     x: 14,
-    //     y: 3.5
-    //   }, {
-    //     x: 16,
-    //     y: 2
-    //   }, {
-    //     x: 18,
-    //     y: 0.6
-    //   }, {
-    //     x: 20,
-    //     y: 0.2
-    //   }, {
-    //     x: 22,
-    //     y: 0
-    //   }, {
-    //     x: 24,
-    //     y: 0
-    //   }]
-    // ];
 
     const waterData = [
       [{
@@ -345,7 +262,7 @@ export default class GraphPage extends Component {
       }]
     ];
 
-    const profitOptions = {
+    const profitOptions = { // 228B22
       width: 300,
       height: 150,
       color: '#228B22',
@@ -370,21 +287,22 @@ export default class GraphPage extends Component {
           fontFamily: 'Arial',
           fontSize: 14,
           fontWeight: true,
-          fill: '#34495E'
+          fill: '#647282'
         }
       },
       axisY: {
         showAxis: true,
         showLines: true,
+        // color: '#4e5865',
         showLabels: true,
         showTicks: true,
         zeroAxis: false,
         orient: 'left',
         label: {
           fontFamily: 'Arial',
-          fontSize: 14,
+          fontSize: 13,
           fontWeight: true,
-          fill: '#34495E'
+          fill: '#647282'
         }
       }
     };
@@ -414,26 +332,27 @@ export default class GraphPage extends Component {
           fontFamily: 'Arial',
           fontSize: 14,
           fontWeight: true,
-          fill: '#34495E'
+          fill: '#647282'
         }
       },
       axisY: {
         showAxis: true,
         showLines: true,
+        // color: '#4e5865',
         showLabels: true,
         showTicks: true,
         zeroAxis: false,
         orient: 'left',
         label: {
           fontFamily: 'Arial',
-          fontSize: 14,
+          fontSize: 13,
           fontWeight: true,
-          fill: '#34495E'
+          fill: '#647282'
         }
       }
     };
 
-    const waterOptions = {
+    const waterOptions = { //59bbda
       width: 300,
       height: 150,
       color: '#59bbda',
@@ -458,39 +377,40 @@ export default class GraphPage extends Component {
           fontFamily: 'Arial',
           fontSize: 14,
           fontWeight: true,
-          fill: '#34495E'
+          fill: '#647282'
         }
       },
       axisY: {
         showAxis: true,
         showLines: true,
+        // color: '#4e5865',
         showLabels: true,
         showTicks: true,
         zeroAxis: false,
         orient: 'left',
         label: {
           fontFamily: 'Arial',
-          fontSize: 14,
+          fontSize: 13,
           fontWeight: true,
-          fill: '#34495E'
+          fill: '#647282'
         }
       }
     };
 
     return (
-      <ScrollView>
-        <Chart
-          title={'Cash Flow'}
-          units={'Dollars'}
-          data={profitData}
-          options={profitOptions}
-        />
-        <View style={styles.divider} />
+      <ScrollView style={styles.graphPage}>
         <Chart
           title={'Energy Consumption vs Production'}
           units={'kW/h'}
           data={energyData}
           options={energyOptions}
+        />
+        <View style={styles.divider} />
+        <Chart
+          title={'Cash Flow'}
+          units={'Dollars'}
+          data={profitData}
+          options={profitOptions}
         />
         <View style={styles.divider} />
         <Chart

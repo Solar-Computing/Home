@@ -74,14 +74,14 @@ export class MySlider extends Component {
       <View style={styles.MySlider}>
         <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
           <Button
-                  style={{ fontSize: 55, color: 'red' }}
+                  style={styles.decrease}
                   styleDisabled={{ color: 'red' }}
                   onPress={() => this.handlePress(-1)}
           > - </Button>
-          <Text style={{ paddingLeft: 10, paddingRight: 10, fontSize: 40 }}>
+          <Text style={styles.contentText}>
           {this.state.value || '000'}</Text>
           <Button 
-                  style={{ fontSize: 55, color: 'green' }}
+                  style={styles.increase}
                   styleDisabled={{ color: 'red' }}
                   onPress={() => this.handlePress(1)}
           > + </Button>
