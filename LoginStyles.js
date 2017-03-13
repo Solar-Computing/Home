@@ -4,34 +4,44 @@ import {
 
 export default StyleSheet.create({
     scroll: {
-        backgroundColor: '#191f28',
-        padding: 30,
-        flexDirection: 'column',
-        height: 700
+        // backgroundColor: '#191f28',
+        // padding: 30,
+        // flexDirection: 'column',
+        // height: 700
     },
     displayText: {
         color: '#FFFFFF',
-        marginTop: 25
+        marginLeft: 10,
+        marginTop: 5
     },
     button: {
-        backgroundColor: '#91a2ba',
+        backgroundColor: '#4dd2ff',
         height: 40,
+        width: 80,
+        alignSelf: 'center',
         alignItems: 'center'
     },
     buttonText: {
-        marginTop: 10
+        marginTop: 10,
+        color: '#191f28'
     },
     textInput: {
-        color: '#59bbda'
+        color: '#59bbda',
+        // col: '#4dd2ff'
     },
     Logo: {
-        width: 175,
-        height: 175,
-        justifyContent: 'center',
-        alignItems: 'center'
+        width: 415,
+        height: 700,
+        // // justifyContent: 'center',
+        // // alignItems: 'center'
+        // flex: 1,
+        // // resizeMode: 'stretch'
+        flex: 1,
+        alignSelf: 'stretch',
+        width: null,
     },
     LogoView: {
-        marginTop: 120,
+        // marginTop: 120,
         alignItems: 'center'
     }
 });

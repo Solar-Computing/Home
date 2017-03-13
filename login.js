@@ -30,28 +30,30 @@ export default class Login extends Component {
       );
     }      
       return (
-        <ScrollView style={styles.scroll}>
-          <Text style={styles.displayText}>Username or Email</Text>
-          <TextInput
-              style={styles.textInput}
-          />
-          <Text style={styles.displayText}>Password</Text>
-          <TextInput
-              style={styles.textInput}
-          />
-          <Button
-              onPress={() => this.handlePress()}
-              containerStyle={styles.button}
-          >
-            <Text style={styles.buttonText}>
-              Login
-            </Text>
-          </Button>
+        <ScrollView>
           <View style={styles.LogoView}>
             <Image
               style={styles.Logo}
-              source={require('./layout/img/logo.png')}
-            />
+              source={require('./layout/img/homeSplash1.png')}>
+              <View>
+                <Text style={styles.displayText}>Username or Email</Text>
+                <TextInput
+                    style={styles.textInput}
+                />
+                <Text style={styles.displayText}>Password</Text>
+                <TextInput
+                    style={styles.textInput}
+                />
+                <Button
+                    onPress={() => this.handlePress()}
+                    containerStyle={styles.button}
+                >
+                  <Text style={styles.buttonText}>
+                    Login
+                  </Text>
+                </Button>
+              </View>
+              </Image>
           </View>
         </ScrollView>
       );
