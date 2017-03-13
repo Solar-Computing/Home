@@ -674,18 +674,18 @@ export default class GraphPage extends Component {
     return (
       <ScrollView>
         <Chart
+          title={'Day Energy Consumption vs Production'}
+          units={'kW/h'}
+          data={dayEnergyData}
+          options={energyOptions}
+        />
+        <Chart
           title={'Week Energy Consumption vs Production'}
           units={'kW/h'}
           data={weekEnergyData}
           options={energyOptions}
         />
         <View style={styles.divider} />
-        <Chart
-          title={'Day Energy Consumption vs Production'}
-          units={'kW/h'}
-          data={dayEnergyData}
-          options={energyOptions}
-        />
         <View style={styles.divider} />
         <Chart
           title={'Year Energy Consumption vs Production'}

@@ -3,13 +3,13 @@ import {
   AppRegistry,
   View
 } from 'react-native';
-import App from './app.js';
+import Login from './login.js';
 
 class Home extends Component {
   render() {
     return (
       <View>
-        <App />
+        <Login />
       </View>
     );
   }
