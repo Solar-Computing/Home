@@ -34,8 +34,9 @@ export default class Login extends Component {
           <View style={styles.LogoView}>
             <Image
               style={styles.Logo}
-              source={require('./layout/img/homeSplash1.png')}>
-              <View>
+              source={require('./layout/img/homeSplash1.png')}
+            >
+              <View accessible>
                 <Text style={styles.displayText}>Username or Email</Text>
                 <TextInput
                     style={styles.textInput}
@@ -57,7 +58,6 @@ export default class Login extends Component {
           </View>
         </ScrollView>
       );
-    
   }
 }
 

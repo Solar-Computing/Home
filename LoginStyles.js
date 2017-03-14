@@ -12,7 +12,8 @@ export default StyleSheet.create({
     displayText: {
         color: '#FFFFFF',
         marginLeft: 10,
-        marginTop: 5
+        marginTop: 5,
+        fontSize: 18
     },
     button: {
         backgroundColor: '#4dd2ff',
@@ -23,7 +24,9 @@ export default StyleSheet.create({
     },
     buttonText: {
         marginTop: 10,
-        color: '#191f28'
+        color: '#191f28',
+        fontWeight: 'bold',
+        fontSize: 15
     },
     textInput: {
         color: '#59bbda',
