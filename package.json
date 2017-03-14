@@ -17,6 +17,7 @@
     "react-native-accordion": "^1.0.1",
     "react-native-button": "^1.7.1",
     "react-native-chart": "^1.0.8-beta",
+    "react-native-drawer": "^2.3.0",
     "react-native-pathjs-charts": "0.0.26",
     "react-native-slider": "^0.9.1",
     "react-native-svg": "4.5.0",

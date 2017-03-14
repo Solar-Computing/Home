@@ -3,18 +3,18 @@ import {
 } from 'react-native';
 
 export default StyleSheet.create({
-    navbar: {
+    headerBar: {
         backgroundColor: '#2c3239',
         paddingTop: 10,
         paddingBottom: 0,
         justifyContent: 'center',
         flexDirection: 'row'
     },
-    navBarImage: {
+    headerLogo: {
         width: 50,
         height: 50,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignSelf: 'center'
     },
     statusbar: {
         backgroundColor: '#191f28',
@@ -52,5 +52,29 @@ export default StyleSheet.create({
         color: '#59bbda',
         justifyContent: 'center',
         textAlign: 'center'
+    },
+    drawerStyles: {
+        shadowColor: '#FFFFFF',
+        shadowOpacity: 0.8,
+        shadowRadius: 3,
+        // paddingLeft: 3,
+        alignSelf: 'center'
+    },
+    controlPanel: {
+        // backgroundColor: '#000000'
+        flex: 1,
+        backgroundColor: '#326945'
+    },
+    ctrlPanelTitle: {
+        color: '#FFFFFF',
+        justifyContent: 'center',
+        // paddingTop: 10,
+        paddingRight: 10,
+        textAlign: 'center',
+        flex: 1,
+        fontSize: 40
+    },
+    controlPanelBtn: {
+        backgroundColor: '#FFFFFF'
     }
 });
