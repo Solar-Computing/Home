@@ -267,6 +267,12 @@ export default class GraphPage extends Component {
     };
   }
   componentDidMount() {
+    today = new Date()
+    today.setYear(2016)
+    console.log(today.getFullYear(), today.getMonth(), today.getDay())
+    dayBefore = new Date(Date.UTC(today.getFullYear(), today.getMonth(), today.getDay()) - 86400000)
+
+    console.log(dayBefore)
     fetch('http://lowcost-env.kwjgjsvk34.us-east-1.elasticbeanstalk.com/api/simulations', {
       method: 'POST',
       headers: {
@@ -274,8 +280,8 @@ export default class GraphPage extends Component {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        start: '20160101T00:00:00Z',
-        end: '20170101T00:00:00Z',
+        start: dayBefore.toUTCString(),
+        end: today.toUTCString(),
         aggregate: 'hourly'
       })
     }).then((loadedData) => {
@@ -283,8 +289,9 @@ export default class GraphPage extends Component {
         //this.state.dayData = []
         dayEnergyData = [[], []]
         this.state.data.contents.forEach(function(entry) {
+          console.log(entry)
           date = new Date(entry.timestamp)
-          today = new Date()
+          /*today = new Date()
           today.setYear(2016)
           //date.setYear(2017)
           //console.log(date + " " + (new Date()))
@@ -296,14 +303,22 @@ export default class GraphPage extends Component {
             // console.log(entry)
             dayEnergyData[0].push({x: date.getHours(), y: entry.ACPrimaryLoad})
             dayEnergyData[1].push({x: date.getHours(), y: entry.PVPowerOutput})
-          }
+          }*/
+
+          dayEnergyData[0].push({x: date.getHours(), y: entry.ACPrimaryLoad})
+          dayEnergyData[1].push({x: date.getHours(), y: entry.PVPowerOutput})
         })
-        console.log(dayEnergyData)
+        //console.log(dayEnergyData)
+        console.log(today)
+        console.log(dayBefore)
+        console.log(Date.UTC(today.getFullYear(), today.getMonth(), today.getDay()))
+        console.log(Date.UTC(dayBefore.getFullYear(), dayBefore.getMonth(), dayBefore.getDay()))
+        console.log(new Date(5000))
     }).catch((error) => {
       console.log(`Error... ${error}`);
     });
 
-    fetch('http://lowcost-env.kwjgjsvk34.us-east-1.elasticbeanstalk.com/api/simulations', {
+    /*fetch('http://lowcost-env.kwjgjsvk34.us-east-1.elasticbeanstalk.com/api/simulations', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -373,7 +388,7 @@ export default class GraphPage extends Component {
         console.log(yearEnergyData)
     }).catch((error) => {
       console.log(`Error... ${error}`);
-    });
+    });*/
   }
   render() {
     /*const profitData = [
@@ -667,7 +682,7 @@ export default class GraphPage extends Component {
           units={'kW/h'}
           data={dayEnergyData}
           options={energyOptions}
-        />
+        />{/*
         <View style={styles.divider} />
         <Chart
           title={'Week Energy Consumption vs Production'}
@@ -681,7 +696,7 @@ export default class GraphPage extends Component {
           units={'kW/h'}
           data={yearEnergyData}
           options={energyOptions}
-        />  
+        />  */}
       </ScrollView>
     );
   }
