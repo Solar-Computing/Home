@@ -12,7 +12,8 @@ class DataList extends Component {
   constructor() {
     super();
     this.state = {
-        resultsData: new ListView.DataSource({ rowHasChanged: (row1, row2) => row1 !== row2 })
+        resultsData: new ListView.DataSource({ rowHasChanged: (row1, row2) => row1 !== row2 }),
+        connected: false
     };
   }
   componentDidMount() {
@@ -26,9 +27,15 @@ class DataList extends Component {
   searchApi() {
       const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
       fetch('http://jarvis.jarvisnet.ga:8165/test_leonie.php').then((loadedData) => {
-          this.setState({ resultsData: ds.cloneWithRows(JSON.parse(loadedData._bodyInit)) });
+          this.setState({
+              resultsData: ds.cloneWithRows(JSON.parse(loadedData._bodyInit)),
+              connected: true
+          });
       }).catch((error) => {
-        console.log('Error when fetching update data: ' + error);
+          console.log('Error when fetching update data: ' + error);
+            this.setState({
+                connected: false
+            });  
       });
   }
 
@@ -88,16 +95,24 @@ class DataList extends Component {
   }
 
   render() {
-    return (
-    <ScrollView>
-      <ListView
-        dataSource={this.state.resultsData}
-        renderRow={this.renderRow}
-        renderSeperator={this.renderSeperator}
-        automaticallyAdjustContentInsets={false}
-      />
-      </ScrollView>
-    );
+      if (this.state.connected) {
+          return (
+              <ScrollView>
+                  <ListView
+                      dataSource={this.state.resultsData}
+                      renderRow={this.renderRow}
+                      renderSeperator={this.renderSeperator}
+                      automaticallyAdjustContentInsets={false}
+                  />
+              </ScrollView>
+          );
+      } else {
+          return (
+              <View>
+                  <Text style={styles.offlineMessage}>Unable to retrieve Feed from Internet</Text>
+              </View>
+          );
+      }
   }
 }
 

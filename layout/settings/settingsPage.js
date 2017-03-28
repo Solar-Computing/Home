@@ -66,14 +66,22 @@ class ListOfRooms extends Component {
     const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
     this.state = {
       dataSource: ds.cloneWithRows(this.props.data),
+      connected: false,
     };
   }
   componentDidMount() {
     const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
     fetch('http://jarvis.jarvisnet.ga:8165/test.php').then((loadedData) => {
-        this.setState({ dataSource: ds.cloneWithRows(JSON.parse(loadedData._bodyInit)) });
+      this.setState({
+        dataSource: ds.cloneWithRows(JSON.parse(loadedData._bodyInit)),
+        connected: true
+      });
     }).catch((error) => {
       console.log('Error... ' + error);
+      this.setState({
+        connected: false
+      });
+      
     });
   } 
   renderCollapsibleRow(rowData) {
@@ -84,14 +92,22 @@ class ListOfRooms extends Component {
     );
   }
   render() {
-    return (
-      <ListView
-        dataSource={this.state.dataSource}
-        renderRow={this.renderCollapsibleRow}
-        enableEmptySections={true}
-        style={styles.pageOptions}
-      />
-    );
+    if (this.state.connected) {
+      return (
+        <ListView
+          dataSource={this.state.dataSource}
+          renderRow={this.renderCollapsibleRow}
+          enableEmptySections={true}
+          style={styles.pageOptions}
+        />
+      );
+    } else {
+      return (
+        <View>
+          <Text style={styles.offlineMessage}>Unable to retrieve Settings from Internet</Text>
+        </View>
+      );
+    }
   }
 }
 

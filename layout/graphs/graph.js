@@ -322,11 +322,11 @@ export default class GraphPage extends Component {
     }).then((loadedData) => {
         this.setState({ data: JSON.parse(loadedData._bodyInit) });
         //this.state.dayData = []
-        weekEnergyData = [[], []]
-        this.state.data.contents.forEach(function(entry) {
-          date = new Date(entry.timestamp)
-          today = new Date()
-          today.setYear(2016)
+        weekEnergyData = [[], []];
+        this.state.data.contents.forEach((entry) => {
+          date = new Date(entry.timestamp);
+          today = new Date();
+          today.setYear(2016);
           //console.log(today.getFullYear(), today.getMonth(), today.getDay())
           weekBefore = new Date(today.getFullYear(), today.getMonth(), today.getDate() - 7);
           //date.setYear(2017)
@@ -337,11 +337,11 @@ export default class GraphPage extends Component {
             // console.log("NEW")
             // console.log(date)
             // console.log(entry)
-            weekEnergyData[0].push({x: date.getMonth(), y: entry.ACPrimaryLoad})
-            weekEnergyData[1].push({x: date.getMonth(), y: entry.PVPowerOutput})
+            weekEnergyData[0].push({ x: date.getMonth(), y: entry.ACPrimaryLoad });
+            weekEnergyData[1].push({ x: date.getMonth(), y: entry.PVPowerOutput });
           }
-        })
-        console.log(weekEnergyData)
+        });
+        console.log(weekEnergyData);
     }).catch((error) => {
       console.log(`Error... ${error}`);
     });

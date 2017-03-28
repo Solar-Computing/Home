@@ -3,7 +3,7 @@ import {
   AppRegistry,
   View
 } from 'react-native';
-import Login from './login.js';
+import Login from './layout/login/login.js';
 
 class Home extends Component {
   render() {

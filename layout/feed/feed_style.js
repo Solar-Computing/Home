@@ -26,5 +26,12 @@ export default StyleSheet.create({
     },
     cellText: {
         flex: 1
+    },
+    offlineMessage: {
+        alignSelf: 'center',
+        color: '#FFFFFF',
+        paddingTop: 50,
+        fontSize: 20,
+        // fontWeight: 'bold'
     }
 });

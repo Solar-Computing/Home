@@ -54,5 +54,12 @@ export default StyleSheet.create({
     increase: {
         fontSize: 55,
         color: 'green'
+    },
+    offlineMessage: {
+        alignSelf: 'center',
+        color: '#FFFFFF',
+        paddingTop: 50,
+        fontSize: 20,
+        // fontWeight: 'bold'
     }
 });

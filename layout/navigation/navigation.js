@@ -5,9 +5,7 @@ import {
   Image
 } from 'react-native';
 import Button from 'react-native-button';
-import Drawer from 'react-native-drawer';
 import styles from './navigation_style.js';
-import ControlPanel from './controlpanel.js';
 
 
 class Navigation extends Component {
@@ -36,12 +34,6 @@ class Navigation extends Component {
       this.setState({ index: 2 });
     }
   }
-  closeControlPanel = () => {
-    this.navDrawer.close();
-  };
-  openControlPanel = () => {
-    this.navDrawer.open();
-  };
 
   render() {
     return (
@@ -51,19 +43,7 @@ class Navigation extends Component {
             style={styles.headerLogo}
             source={require('../img/logo.png')}
           />
-          <Drawer
-              ref={(ref) => this.navDrawer = ref}
-              content={<ControlPanel />}
-              styles={styles.drawerStyles}
-              type="overlay"
-              tapToClose
-              openDrawerOffset={0.2} // 20% gap on the right side of drawer
-              panCloseMask={0.2}
-              closedDrawerOffset={-3}
-              tweenHandler={(ratio) => ({
-                main: { opacity: (2 - ratio) / 2 }
-              })}
-          />
+          
           
           <Button
             onPress={() => this.openControlPanel()}
