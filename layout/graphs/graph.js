@@ -8,7 +8,7 @@ import Chart from './SmoothLineChart.js';
 //import Summary from './BarSummary.js';
 import styles from './GraphStyles.js';
 
-let dayEnergyData = [
+const dayEnergyData = [
       [{
         x: 0,
         y: 1.2
@@ -176,7 +176,7 @@ let weekEnergyData = [
     ];
 
 
-let yearEnergyData = [
+const yearEnergyData = [
       [{
         x: 0,
         y: 1.2
@@ -267,41 +267,43 @@ export default class GraphPage extends Component {
     };
   }
   componentDidMount() {
-    // fetch('http://lowcost-env.kwjgjsvk34.us-east-1.elasticbeanstalk.com/api/simulations', {
-    //   method: 'POST',
-    //   headers: {
-    //     Accept: 'application/json',
-    //     'Content-Type': 'application/json',
-    //   },
-    //   body: JSON.stringify({
-    //     start: '20160101T00:00:00Z',
-    //     end: '20170101T00:00:00Z',
-    //     aggregate: 'hourly'
-    //   })
-    // }).then((loadedData) => {
-    //     this.setState({ data: JSON.parse(loadedData._bodyInit) });
-    //     //this.state.dayData = []
-    //     dayEnergyData = [[], []]
-    //     this.state.data.contents.forEach(function(entry) {
-    //       date = new Date(entry.timestamp)
-    //       today = new Date()
-    //       today.setYear(2016)
-    //       //date.setYear(2017)
-    //       //console.log(date + " " + (new Date()))
-    //       //console.log(date.toString() + " " + today.toString())
-    //       if (date.getDay() === today.getDay() && date.getMonth() === today.getMonth() && date.getDate() === today.getDate()) {
-    //         // console.log("\n"+today)
-    //         // console.log("NEW")
-    //         // console.log(date)
-    //         // console.log(entry)
-    //         dayEnergyData[0].push({x: date.getHours(), y: entry.ACPrimaryLoad})
-    //         dayEnergyData[1].push({x: date.getHours(), y: entry.PVPowerOutput})
-    //       }
-    //     })
-    //     console.log(dayEnergyData)
-    // }).catch((error) => {
-    //   console.log(`Error... ${error}`);
-    // });
+    /*
+    fetch('http://lowcost-env.kwjgjsvk34.us-east-1.elasticbeanstalk.com/api/simulations', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        start: '20160101T00:00:00Z',
+        end: '20170101T00:00:00Z',
+        aggregate: 'hourly'
+      })
+    }).then((loadedData) => {
+        this.setState({ data: JSON.parse(loadedData._bodyInit) });
+        //this.state.dayData = []
+        dayEnergyData = [[], []]
+        this.state.data.contents.forEach(function(entry) {
+          date = new Date(entry.timestamp)
+          today = new Date()
+          today.setYear(2016)
+          //date.setYear(2017)
+          //console.log(date + " " + (new Date()))
+          //console.log(date.toString() + " " + today.toString())
+          if (date.getDay() === today.getDay() && date.getMonth() === today.getMonth() && date.getDate() === today.getDate()) {
+            // console.log("\n"+today)
+            // console.log("NEW")
+            // console.log(date)
+            // console.log(entry)
+            dayEnergyData[0].push({x: date.getHours(), y: entry.ACPrimaryLoad})
+            dayEnergyData[1].push({x: date.getHours(), y: entry.PVPowerOutput})
+          }
+        })
+        console.log(dayEnergyData)
+    }).catch((error) => {
+      console.log(`Error... ${error}`);
+    });
+    */
 
 //Get date for today (ms) --> subtract ms in a week and then put in graph
 
@@ -337,42 +339,44 @@ export default class GraphPage extends Component {
     }).catch((error) => {
       console.log(`Error... ${error}`);
     });
-
-    // fetch('http://lowcost-env.kwjgjsvk34.us-east-1.elasticbeanstalk.com/api/simulations', {
-    //   method: 'POST',
-    //   headers: {
-    //     Accept: 'application/json',
-    //     'Content-Type': 'application/json',
-    //   },
-    //   body: JSON.stringify({
-    //     start: '20160101T00:00:00Z',
-    //     end: '20170101T00:00:00Z',
-    //     aggregate: 'monthly'
-    //   })
-    // }).then((loadedData) => {
-    //     this.setState({ data: JSON.parse(loadedData._bodyInit) });
-    //     //this.state.dayData = []
-    //     yearEnergyData = [[], []]
-    //     this.state.data.contents.forEach(function(entry) {
-    //       date = new Date(entry.timestamp)
-    //       today = new Date()
-    //       today.setYear(2016)
-    //       //date.setYear(2017)
-    //       //console.log(date + " " + (new Date()))
-    //       //console.log(date.toString() + " " + today.toString())
-    //       if (date.getDay() === today.getDay() && date.getMonth() === today.getMonth() && date.getDate() === today.getDate()) {
-    //         // console.log("\n"+today)
-    //         // console.log("NEW")
-    //         // console.log(date)
-    //         // console.log(entry)
-    //         yearEnergyData[0].push({x: date.getHours(), y: entry.ACPrimaryLoad})
-    //         yearEnergyData[1].push({x: date.getHours(), y: entry.PVPowerOutput})
-    //       }
-    //     })
-    //     console.log(yearEnergyData)
-    // }).catch((error) => {
-    //   console.log(`Error... ${error}`);
-    // });
+    
+    /*
+    fetch('http://lowcost-env.kwjgjsvk34.us-east-1.elasticbeanstalk.com/api/simulations', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        start: '20160101T00:00:00Z',
+        end: '20170101T00:00:00Z',
+        aggregate: 'monthly'
+      })
+    }).then((loadedData) => {
+        this.setState({ data: JSON.parse(loadedData._bodyInit) });
+        //this.state.dayData = []
+        yearEnergyData = [[], []]
+        this.state.data.contents.forEach(function(entry) {
+          date = new Date(entry.timestamp)
+          today = new Date()
+          today.setYear(2016)
+          //date.setYear(2017)
+          //console.log(date + " " + (new Date()))
+          //console.log(date.toString() + " " + today.toString())
+          if (date.getDay() === today.getDay() && date.getMonth() === today.getMonth() && date.getDate() === today.getDate()) {
+            // console.log("\n"+today)
+            // console.log("NEW")
+            // console.log(date)
+            // console.log(entry)
+            yearEnergyData[0].push({x: date.getHours(), y: entry.ACPrimaryLoad})
+            yearEnergyData[1].push({x: date.getHours(), y: entry.PVPowerOutput})
+          }
+        })
+        console.log(yearEnergyData)
+    }).catch((error) => {
+      console.log(`Error... ${error}`);
+      });
+    */
   }
   render() {
     /*const profitData = [
@@ -501,7 +505,7 @@ export default class GraphPage extends Component {
       }]
     ];
 
-    const profitOptions = {
+    const profitOptions = { // 228B22
       width: 300,
       height: 150,
       color: '#228B22',
@@ -526,21 +530,22 @@ export default class GraphPage extends Component {
           fontFamily: 'Arial',
           fontSize: 14,
           fontWeight: true,
-          fill: '#34495E'
+          fill: '#647282'
         }
       },
       axisY: {
         showAxis: true,
         showLines: true,
+        // color: '#4e5865',
         showLabels: true,
         showTicks: true,
         zeroAxis: false,
         orient: 'left',
         label: {
           fontFamily: 'Arial',
-          fontSize: 14,
+          fontSize: 13,
           fontWeight: true,
-          fill: '#34495E'
+          fill: '#647282'
         }
       }
     };*/
@@ -570,27 +575,27 @@ export default class GraphPage extends Component {
           fontFamily: 'Arial',
           fontSize: 14,
           fontWeight: true,
-          fill: '#34495E'
+          fill: '#647282'
         }
       },
       axisY: {
         showAxis: true,
         showLines: true,
+        // color: '#4e5865',
         showLabels: true,
         showTicks: true,
         zeroAxis: false,
         orient: 'left',
         label: {
           fontFamily: 'Arial',
-          fontSize: 14,
+          fontSize: 13,
           fontWeight: true,
-          fill: '#34495E'
+          fill: '#647282'
         }
       }
     };
 
-/*
-    const waterOptions = {
+    const waterOptions = { //59bbda
       width: 300,
       height: 150,
       color: '#59bbda',
@@ -615,39 +620,40 @@ export default class GraphPage extends Component {
           fontFamily: 'Arial',
           fontSize: 14,
           fontWeight: true,
-          fill: '#34495E'
+          fill: '#647282'
         }
       },
       axisY: {
         showAxis: true,
         showLines: true,
+        // color: '#4e5865',
         showLabels: true,
         showTicks: true,
         zeroAxis: false,
         orient: 'left',
         label: {
           fontFamily: 'Arial',
-          fontSize: 14,
+          fontSize: 13,
           fontWeight: true,
-          fill: '#34495E'
+          fill: '#647282'
         }
       }
     };
 
-    return (
-      <ScrollView>
-        <Chart
-          title={'Cash Flow'}
-          units={'Dollars'}
-          data={profitData}
-          options={profitOptions}
-        />
-        <View style={styles.divider} />
+    /*return (
+      <ScrollView style={styles.graphPage}>
         <Chart
           title={'Energy Consumption vs Production'}
           units={'kW/h'}
           data={energyData}
           options={energyOptions}
+        />
+        <View style={styles.divider} />
+        <Chart
+          title={'Cash Flow'}
+          units={'Dollars'}
+          data={profitData}
+          options={profitOptions}
         />
         <View style={styles.divider} />
         <Chart
@@ -661,13 +667,12 @@ export default class GraphPage extends Component {
 
     return (
       <ScrollView>
-        {/*<Chart
+        <Chart
           title={'Day Energy Consumption vs Production'}
           units={'kW/h'}
           data={dayEnergyData}
           options={energyOptions}
-        />*/}
-        <View style={styles.divider} />
+        />
         <Chart
           title={'Week Energy Consumption vs Production'}
           units={'kW/h'}
@@ -675,12 +680,13 @@ export default class GraphPage extends Component {
           options={energyOptions}
         />
         <View style={styles.divider} />
-        {/*<Chart
+        <View style={styles.divider} />
+        <Chart
           title={'Year Energy Consumption vs Production'}
           units={'kW/h'}
           data={yearEnergyData}
           options={energyOptions}
-        />  */}
+        />  
       </ScrollView>
     );
   }

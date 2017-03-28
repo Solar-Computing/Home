@@ -55,7 +55,7 @@ const allSwitches = [];
 class SettingsPage extends Component {
   render() {
     return (
-      <ListOfRooms data={{}} />
+      <ListOfRooms data={{}} style={styles.pageOptions} />
     );
   }
 }
@@ -89,6 +89,7 @@ class ListOfRooms extends Component {
         dataSource={this.state.dataSource}
         renderRow={this.renderCollapsibleRow}
         enableEmptySections={true}
+        style={styles.pageOptions}
       />
     );
   }
@@ -109,22 +110,34 @@ class MyAccordion extends Component {
   }
 
   render() {
+    // title = '▼' {this.state.name};
+
     const header = (
       <View style={styles.headerView}>
-        <Text style={styles.headerText}>{this.state.name}</Text>
+        <Text style={styles.headerText}>▼ {this.state.name}</Text>
         <RoomSwitch state={this.state} update={(value) => this.updateSwitches(value)} />
       </View>
     );
     const content = (
       <RoomOptions data={this.state} />
     );
+    
     return (
       <Accordion
         header={header}
         content={content}
+        //onPress={() => this.handleTitle()}
       />
     );
   }
+
+  // handleTitle() {
+  //   if (title.startsWith('▼')) {
+  //     title = '▼ {this.state.name}';
+  //   } else {
+  //     title = '▶ {this.state.name}';
+  //   }
+  // }
 }
 
 class RoomOptions extends Component {
