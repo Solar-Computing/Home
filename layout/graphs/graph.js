@@ -267,12 +267,13 @@ export default class GraphPage extends Component {
     };
   }
   componentDidMount() {
+    // Get correct dates
     today = new Date()
     today.setYear(2016)
-    console.log(today.getFullYear(), today.getMonth(), today.getDay())
-    dayBefore = new Date(Date.UTC(today.getFullYear(), today.getMonth(), today.getDay()) - 86400000)
+    dayBefore = new Date()
+    dayBefore.setYear(2016)
+    dayBefore.setDate(dayBefore.getDate() - 1)
 
-    console.log(dayBefore)
     fetch('http://lowcost-env.kwjgjsvk34.us-east-1.elasticbeanstalk.com/api/simulations', {
       method: 'POST',
       headers: {
@@ -288,107 +289,19 @@ export default class GraphPage extends Component {
         this.setState({ data: JSON.parse(loadedData._bodyInit) });
         //this.state.dayData = []
         dayEnergyData = [[], []]
+        allData = []
+        hour = 0
         this.state.data.contents.forEach(function(entry) {
-          console.log(entry)
+          // console.log(entry)
           date = new Date(entry.timestamp)
-          /*today = new Date()
-          today.setYear(2016)
-          //date.setYear(2017)
-          //console.log(date + " " + (new Date()))
-          //console.log(date.toString() + " " + today.toString())
-          if (date.getDay() === today.getDay() && date.getMonth() === today.getMonth() && date.getDate() === today.getDate()) {
-            // console.log("\n"+today)
-            // console.log("NEW")
-            // console.log(date)
-            // console.log(entry)
-            dayEnergyData[0].push({x: date.getHours(), y: entry.ACPrimaryLoad})
-            dayEnergyData[1].push({x: date.getHours(), y: entry.PVPowerOutput})
-          }*/
-
+          console.log(date)
           dayEnergyData[0].push({x: date.getHours(), y: entry.ACPrimaryLoad})
           dayEnergyData[1].push({x: date.getHours(), y: entry.PVPowerOutput})
         })
-        //console.log(dayEnergyData)
-        console.log(today)
-        console.log(dayBefore)
-        console.log(Date.UTC(today.getFullYear(), today.getMonth(), today.getDay()))
-        console.log(Date.UTC(dayBefore.getFullYear(), dayBefore.getMonth(), dayBefore.getDay()))
-        console.log(new Date(5000))
+        console.log(dayEnergyData)
     }).catch((error) => {
       console.log(`Error... ${error}`);
     });
-
-    /*fetch('http://lowcost-env.kwjgjsvk34.us-east-1.elasticbeanstalk.com/api/simulations', {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        start: '20160101T00:00:00Z',
-        end: '20170101T00:00:00Z',
-        aggregate: 'daily'
-      })
-    }).then((loadedData) => {
-        this.setState({ data: JSON.parse(loadedData._bodyInit) });
-        //this.state.dayData = []
-        weekEnergyData = [[], []]
-        this.state.data.contents.forEach(function(entry) {
-          date = new Date(entry.timestamp)
-          today = new Date()
-          today.setYear(2016)
-          //date.setYear(2017)
-          //console.log(date + " " + (new Date()))
-          //console.log(date.toString() + " " + today.toString())
-          if (date.getMonth() === today.getMonth() && date.getDate() === today.getDate()) {
-            // console.log("\n"+today)
-            // console.log("NEW")
-            // console.log(date)
-            // console.log(entry)
-            weekEnergyData[0].push({x: date.getHours(), y: entry.ACPrimaryLoad})
-            weekEnergyData[1].push({x: date.getHours(), y: entry.PVPowerOutput})
-          }
-        })
-        console.log(weekEnergyData)
-    }).catch((error) => {
-      console.log(`Error... ${error}`);
-    });
-
-    fetch('http://lowcost-env.kwjgjsvk34.us-east-1.elasticbeanstalk.com/api/simulations', {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        start: '20160101T00:00:00Z',
-        end: '20170101T00:00:00Z',
-        aggregate: 'monthly'
-      })
-    }).then((loadedData) => {
-        this.setState({ data: JSON.parse(loadedData._bodyInit) });
-        //this.state.dayData = []
-        yearEnergyData = [[], []]
-        this.state.data.contents.forEach(function(entry) {
-          date = new Date(entry.timestamp)
-          today = new Date()
-          today.setYear(2016)
-          //date.setYear(2017)
-          //console.log(date + " " + (new Date()))
-          //console.log(date.toString() + " " + today.toString())
-          if (date.getDay() === today.getDay() && date.getMonth() === today.getMonth() && date.getDate() === today.getDate()) {
-            // console.log("\n"+today)
-            // console.log("NEW")
-            // console.log(date)
-            // console.log(entry)
-            yearEnergyData[0].push({x: date.getHours(), y: entry.ACPrimaryLoad})
-            yearEnergyData[1].push({x: date.getHours(), y: entry.PVPowerOutput})
-          }
-        })
-        console.log(yearEnergyData)
-    }).catch((error) => {
-      console.log(`Error... ${error}`);
-    });*/
   }
   render() {
     /*const profitData = [
