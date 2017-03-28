@@ -289,14 +289,20 @@ export default class GraphPage extends Component {
         this.setState({ data: JSON.parse(loadedData._bodyInit) });
         //this.state.dayData = []
         dayEnergyData = [[], []]
-        allData = []
+        this.state.data.contents.sort(function(a,b){
+          // Turn your strings into dates, and then subtract them
+          // to get a value that is either negative, positive, or zero.
+          return new Date(a.timestamp) - new Date(b.timestamp);
+        });
+        console.log(this.state.data.contents)
         hour = 0
         this.state.data.contents.forEach(function(entry) {
           // console.log(entry)
           date = new Date(entry.timestamp)
           console.log(date)
-          dayEnergyData[0].push({x: date.getHours(), y: entry.ACPrimaryLoad})
-          dayEnergyData[1].push({x: date.getHours(), y: entry.PVPowerOutput})
+          dayEnergyData[0].push({x: hour, y: entry.ACPrimaryLoad})
+          dayEnergyData[1].push({x: hour, y: entry.PVPowerOutput})
+          hour++
         })
         console.log(dayEnergyData)
     }).catch((error) => {
