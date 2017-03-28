@@ -303,6 +303,14 @@ export default class GraphPage extends Component {
     //   console.log(`Error... ${error}`);
     // });
 
+//Get date for today (ms) --> subtract ms in a week and then put in graph
+
+   today = new Date();
+   today.setYear(2016);
+   weekBefore = new Date();
+   weekBefore.setYear(2016);
+   weekBefore.setDate(today.getDate() - 6); //6 days backwards because zero indexed
+
     fetch('http://lowcost-env.kwjgjsvk34.us-east-1.elasticbeanstalk.com/api/simulations', {
       method: 'POST',
       headers: {
@@ -310,35 +318,22 @@ export default class GraphPage extends Component {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        start: '20160101T00:00:00Z',
-        end: '20170101T00:00:00Z',
+        start: weekBefore.toUTCString(),
+        end: today.toUTCString(),
         aggregate: 'daily'
       })
     }).then((loadedData) => {
         this.setState({ data: JSON.parse(loadedData._bodyInit) });
         //this.state.dayData = []
-        weekEnergyData = [[], []]
+        weekEnergyData = [[], []];
         this.state.data.contents.forEach(function(entry) {
-          date = new Date(entry.timestamp)
-          today = new Date()
-          today.setYear(2016)
-          //date.setYear(2017)
-          //console.log(date + " " + (new Date()))
-          //console.log(date.toString() + " " + today.toString())
-          weekBefore = new Date(today.getFullYear(), today.getMonth(), today.getDate() - 7);
-          console.log(today + "TODAY");
-          console.log(weekBefore + "WEEKBEFORE");
+          date = new Date(entry.timestamp);
+          console.log(date + "ENTRY DATE");
           //TODO: CHANGE IF CONDITIONS 
-          if (date.getMonth() === today.getMonth() ) {
-            // console.log("\n"+today)
-            // console.log("NEW")
-            // console.log(date)
-            // console.log(entry)
-            weekEnergyData[0].push({x: date.getHours(), y: entry.ACPrimaryLoad})
-            weekEnergyData[1].push({x: date.getHours(), y: entry.PVPowerOutput})
-          }
-        })
-        console.log(weekEnergyData)
+          weekEnergyData[0].push({x: entry.getDate(), y: entry.ACPrimaryLoad})
+          weekEnergyData[1].push({x: entry.getDate(), y: entry.PVPowerOutput})
+        });
+        console.log(weekEnergyData);
     }).catch((error) => {
       console.log(`Error... ${error}`);
     });
