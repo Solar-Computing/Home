@@ -38,24 +38,6 @@ class Navigation extends Component {
   render() {
     return (
       <View >
-        <View style={styles.headerBar}>
-          <Image
-            style={styles.headerLogo}
-            source={require('../img/logo.png')}
-          />
-          
-          
-          <Button
-            onPress={() => this.openControlPanel()}
-            styles={styles.controlPanelBtn}
-          >
-            <Text style={styles.ctrlPanelTitle}>
-              =
-              </Text>  
-          </Button>  
-        </View>
-
-
         <View style={styles.statusbar}>
           <Button
             disabled={this.state.index === 0}

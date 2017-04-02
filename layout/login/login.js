@@ -47,20 +47,9 @@ export default class Login extends Component {
 
   
   render() {
-    if (this.state.loggedIn) { 
-      const drawerStyles = {
-        drawer: { shadowColor: '#000000', shadowOpacity: 0.8, shadowRadius: 3 },
-        main: { paddingLeft: 3 },
-      };
+    if (this.state.loggedIn) {
       return (
-        <Drawer
-            type="static"
-            ref={(ref) => { this.navDrawer = ref; }}
-            content={<View style={{ backgroundColor: 'blue', height: 1000 }} />}
-       
-        >
-            <Text> YOOO </ Text> 
-        </ Drawer>  
+        <App />
       );
     }      
       return (

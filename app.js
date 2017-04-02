@@ -6,6 +6,7 @@ import {
 import Swiper from 'react-native-swiper';
 import DataList from './layout/feed/feed.js';
 import Navigation from './layout/navigation/navigation.js';
+import HeaderBar from './layout/header/headerBar.js';
 import SettingsPage from './layout/settings/settingsPage.js';
 import GraphPage from './layout/graphs/graph.js';
 import styles from './layout/app_styles.js';
@@ -62,6 +63,7 @@ class App extends Component {
   render() {
     return (
       <View style={styles.layout}>
+        <HeaderBar />
         <Navigation
         ref="navigation"
         toFeed={() => this.toFeed()}
