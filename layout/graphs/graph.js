@@ -310,9 +310,12 @@ export default class GraphPage extends Component {
    today = new Date();
    today.setYear(2016);
    weekBefore = new Date();
-   weekBefore.setYear(2016);
-   weekBefore.setDate(today.getDate() - 6); //6 days backwards because zero indexed
+   weekBefore.setYear(2016); 
 
+    weekBefore.setDate(weekBefore.getDate() - today.getDay() + 1); //this is the absolute distance from monday
+    weekBefore.setHours(0);
+    weekBefore.setMinutes(0);
+    weekBefore.setSeconds(0);
     fetch('http://lowcost-env.kwjgjsvk34.us-east-1.elasticbeanstalk.com/api/simulations', {
       method: 'POST',
       headers: {
@@ -325,15 +328,17 @@ export default class GraphPage extends Component {
         aggregate: 'daily'
       })
     }).then((loadedData) => {
+        console.log(loadedData);
+        console.log(today);
+        console.log(weekBefore);
         this.setState({ data: JSON.parse(loadedData._bodyInit) });
         //this.state.dayData = []
         weekEnergyData = [[], []];
         this.state.data.contents.forEach(function(entry) {
           date = new Date(entry.timestamp);
           console.log(date + "ENTRY DATE");
-          //TODO: CHANGE IF CONDITIONS 
-          weekEnergyData[0].push({x: entry.getDate(), y: entry.ACPrimaryLoad})
-          weekEnergyData[1].push({x: entry.getDate(), y: entry.PVPowerOutput})
+          weekEnergyData[0].push({x: date.getDay(), y: entry.ACPrimaryLoad})
+          weekEnergyData[1].push({x: date.getDay(), y: entry.PVPowerOutput})
         });
         console.log(weekEnergyData);
     }).catch((error) => {
