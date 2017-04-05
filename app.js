@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import {
   View,
-  Image
+  Text,
+  Alert,
+  StyleSheet
 } from 'react-native';
 import Swiper from 'react-native-swiper';
 import DataList from './layout/feed/feed.js';
@@ -10,18 +12,20 @@ import HeaderBar from './layout/header/headerBar.js';
 import SettingsPage from './layout/settings/settingsPage.js';
 import GraphPage from './layout/graphs/graph.js';
 import styles from './layout/app_styles.js';
-import 'babel-polyfill'
-//import { Client } from 'bugsnag-react-native';
+
+import Drawer from 'react-native-drawer';
+
+
+import 'babel-polyfill';
 
 let ourSwiper: Swiper;
 
 class App extends Component {
   constructor(props) {
-    console.log('APP');
     super(props);
-    //this.client = new Client('b23af9fb9b2e3d5c144b1772a44c68ab');
     this.state = {
-      index: 0
+      index: 0,
+      drawerOpen: false
     };
   }
 
@@ -59,37 +63,56 @@ class App extends Component {
     }
   }
 
-
   render() {
     return (
       <View style={styles.layout}>
-        <HeaderBar />
+        <HeaderBar openMenu={() => this.props.openMenu()} />
         <Navigation
-        ref="navigation"
-        toFeed={() => this.toFeed()}
-        toData={() => this.toData()}
-        toSettings={() => this.toSettings()}
+          ref="navigation"
+          toFeed={() => this.toFeed()}
+          toData={() => this.toData()}
+          toSettings={() => this.toSettings()}
         />
-        <Swiper
-        ref={(swiper) => { ourSwiper = swiper; }}
-        style={styles.wrapper}
-        onMomentumScrollEnd={() => this.updateIndex()}
-        loop={false}
-        index={this.state.index}
-        >
-          <View style={styles.slide1}>
-            <SettingsPage />
-          </View>
-          <View style={styles.slide2}>
-            <GraphPage />
-          </View>
-          <View style={styles.slide3}>
-            <DataList />
-          </View>
-        </Swiper>
+          <Swiper
+            ref={(swiper) => { ourSwiper = swiper; }}
+            style={styles.wrapper}
+            onMomentumScrollEnd={() => this.updateIndex()}
+            loop={false}
+            index={this.state.index}
+          >
+            <View style={styles.slide1}>
+              <SettingsPage />
+            </View>
+            <View style={styles.slide2}>
+              <GraphPage />
+            </View>
+            <View style={styles.slide3}>
+              <DataList />
+            </View>
+          </Swiper>
+        <Text>After Drawer Statement</Text>
       </View>
     );
   }
 }
+
+const stylez = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#F5FCFF',
+  },
+  welcome: {
+    fontSize: 20,
+    textAlign: 'center',
+    margin: 10,
+  },
+  instructions: {
+    textAlign: 'center',
+    color: '#333333',
+    marginBottom: 5,
+  },
+});
 
 export default App;

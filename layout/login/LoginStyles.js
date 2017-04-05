@@ -50,5 +50,8 @@ export default StyleSheet.create({
     LogoView: {
         // marginTop: 120,
         alignItems: 'center'
+    },
+    app: {
+        flex: 1,
     }
 });
