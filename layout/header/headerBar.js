@@ -17,9 +17,10 @@ export default class HeaderBar extends Component {
           onPress={() => this.props.openMenu()}
           styles={styles.controlPanelBtn}
         >
-          <Text style={styles.ctrlPanelTitle}>
-            |||
-              </Text>
+          <Image
+            style={styles.headerBtn}
+            source={require('../img/menu.png')}
+          />
         </Button>
 
         <Image
@@ -31,12 +32,11 @@ export default class HeaderBar extends Component {
           onPress={() => this.props.openMenu()}
           styles={styles.editBtn}
         >
-          <Text style={styles.editTitle}>
-            E
-              </Text>
+          <Image
+            style={styles.headerBtn}
+            source={require('../img/pen.png')}
+          />
         </Button>
-          
-          
       </View>
       
     );

@@ -94,12 +94,15 @@ class ListOfRooms extends Component {
   render() {
     if (this.state.connected) {
       return (
-        <ListView
-          dataSource={this.state.dataSource}
-          renderRow={this.renderCollapsibleRow}
-          enableEmptySections={true}
-          style={styles.pageOptions}
-        />
+        <View>
+          <Text style={styles.residence}>George's House</Text>
+          <ListView
+            dataSource={this.state.dataSource}
+            renderRow={this.renderCollapsibleRow}
+            enableEmptySections={true}
+            style={styles.pageOptions}
+          />
+        </View>
       );
     } else {
       return (

@@ -4,8 +4,8 @@ import {
 
 export default StyleSheet.create({
     headerBar: {
-        backgroundColor: '#2c3239',
-        padding: 5,
+        backgroundColor: '#263340',
+        padding: 15,
         // paddingBottom: 0,
         flexDirection: 'row',
         justifyContent: 'space-between',
@@ -15,6 +15,13 @@ export default StyleSheet.create({
     headerLogo: {
         width: 50,
         height: 50,
+        // justifyContent: 'center',
+        // alignSelf: 'center'
+    },
+    headerBtn: {
+        width: 30,
+        height: 30,
+        padding: 15,
         justifyContent: 'center',
         alignSelf: 'center'
     },
@@ -35,7 +42,7 @@ export default StyleSheet.create({
         width: 50,
         backgroundColor: '#FFFFFF',
         // alignSelf: 'flex-start',
-        // justifyContent: 'flex-start'
+        justifyContent: 'center'
     },
     editTitle: {
         color: '#FFFFFF',
@@ -52,6 +59,7 @@ export default StyleSheet.create({
         backgroundColor: '#FFFFFF',
         // alignSelf: 'flex-end',
         // justifyContent: 'flex-end',
-        width: 50,
-    }
+        width: 70,
+        justifyContent: 'center'
+    },
 });

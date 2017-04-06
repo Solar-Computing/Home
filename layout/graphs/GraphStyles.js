@@ -36,7 +36,7 @@ export default StyleSheet.create({
         textAlign: 'center'
     },
     graphPage: {
-        backgroundColor: '#2c3239'
+        backgroundColor: '#1b2631'
     },
     divider: {
         height: 20

@@ -5,11 +5,11 @@ import {
 export default StyleSheet.create({
     container: {
     flex: 1,
-    backgroundColor: '#21262b',
+    backgroundColor: '#1b2631',
     
   },
   menuHeader: {
-    backgroundColor: '#2c3239',    
+    backgroundColor: '#263340',    
   },
   TitleText: {
     color: '#4dd2ff',

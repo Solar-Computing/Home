@@ -19,8 +19,8 @@ export default class ControlPanel extends Component {
           </Text>
         </View>
 
-        <Text style={styles.Name}>First Last</Text>
-        <Text style={styles.Email}>first.last@email.com</Text>
+        <Text style={styles.Name}>George Burdell</Text>
+        <Text style={styles.Email}>gburdell@gatech.edu</Text>
 
         <View style={styles.divider} />
 

@@ -10,7 +10,7 @@ export default StyleSheet.create({
         height: 40
     },
     statusbarTitles: {
-        color: '#FFFFFF',
+        color: '#e6e6e6',
         justifyContent: 'center',
         paddingTop: 10,
         //paddingLeft: 40,
@@ -30,7 +30,7 @@ export default StyleSheet.create({
         flex: 1,
         height: 40,
         width: 60,
-        backgroundColor: '#2c3239',
+        backgroundColor: '#1b2631',
         padding: 0
     },
     activebarTitles: {

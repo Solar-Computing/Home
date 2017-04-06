@@ -11,10 +11,10 @@ export default StyleSheet.create({
     headerView: {
         flexDirection: 'row',
         padding: 25,
-        backgroundColor: '#91a2ba', //2c3239
+        backgroundColor: '#91a2ba', //1b2631
         borderStyle: 'solid',
-        borderWidth: 1,
-        borderColor: '#27313f',
+        borderWidth: 5,
+        borderColor: '#1b2631',
     },
     contentText: {
         padding: 30,
@@ -23,7 +23,7 @@ export default StyleSheet.create({
         color: '#d0d7e2'
     },
     contentView: {
-        backgroundColor: '#2c3239', //27313f
+        backgroundColor: '#1b2631', //27313f
         flex: 1,
         flexDirection: 'row',
         height: 100
@@ -45,7 +45,7 @@ export default StyleSheet.create({
         // color: '#'
     },
     pageOptions: {
-        backgroundColor: '#2c3239' //191f28
+        backgroundColor: '#1b2631' //191f28
     },
     decrease: {
         fontSize: 55,
@@ -57,9 +57,17 @@ export default StyleSheet.create({
     },
     offlineMessage: {
         alignSelf: 'center',
-        color: '#FFFFFF',
+        color: '#f2f2f2',
         paddingTop: 50,
         fontSize: 20,
         // fontWeight: 'bold'
+    },
+    residence: {
+        alignSelf: 'center',
+        color: '#f2f2f2',
+        padding: 15,
+        fontSize: 20,
+        // fontWeight: 'bold'
     }
+
 });

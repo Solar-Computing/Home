@@ -4,7 +4,7 @@ import {
 
 export default StyleSheet.create({
   layout: {
-    backgroundColor: '#2c3239',
+    backgroundColor: '#1b2631',
     flexDirection: 'column',
     justifyContent: 'flex-start',
     flex: 1
