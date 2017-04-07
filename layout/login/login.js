@@ -55,10 +55,6 @@ export default class Login extends Component {
   }
 
   render() {
-    const drawerStyles = {
-      drawer: { shadowColor: '#000000', shadowOpacity: 0.8, shadowRadius: 15 }
-    };
-    
     if (this.state.loggedIn) {
       return (
         <Drawer

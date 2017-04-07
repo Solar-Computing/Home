@@ -9,6 +9,7 @@ import {
 import Button from 'react-native-button';
 import styles from './controlStyles';
 import AccInfo from './accountInfo';
+import MenuHeader from './menuHeader.js';
 
 export default class ControlPanel extends Component {
   constructor(props) {
@@ -23,12 +24,10 @@ export default class ControlPanel extends Component {
     if (this.state.editable) {
       this.setState({
         editable: false,
-        icon: '../img/pen.png'
       });
     } else {
       this.setState({
         editable: true,
-        icon: '../img/pen.png'
       });
     }
   }
@@ -36,20 +35,10 @@ export default class ControlPanel extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <View style={styles.menuHeader}>
-          <Text style={styles.TitleText}>
-            User Menu
-          </Text>
-          <Button
-            onPress={() => this.toggleEdit()}
-            styles={styles.editBtn}
-          >
-            <Image
-              style={styles.headerBtn}
-              source={require('../img/pen.png')}
-            />
-          </Button>
-        </View>
+        <MenuHeader
+          toggleEdit={this.toggleEdit.bind(this)}
+          editable={this.state.editable}
+        />
 
         <AccInfo editing={this.state.editable} />
 

@@ -21,15 +21,7 @@ export default StyleSheet.create({
     fontSize: 26,
     paddingLeft: 10
   },
-  Name: {
-    color: 'white',
-    fontSize: 17,
-    fontWeight: 'bold',
-    paddingTop: 10,
-    paddingLeft: 20
-
-  },
-  Email: {
+  Entry: {
     color: 'white',
     fontSize: 15,
     paddingTop: 10,
@@ -75,11 +67,38 @@ export default StyleSheet.create({
     color: '#e6e6e6',
     // width: 100,
     paddingLeft: 15,
+    // fontWeight: 'bold',
+    fontSize: 15
 
 
         // col: '#4dd2ff'
   },
   editAccount: {
     padding: 10
+  },
+  name: {
+    color: '#e6e6e6',
+    fontSize: 15,
+    paddingLeft: 15,
+    paddingTop: 30,
+    fontWeight: 'bold'
+  },
+  email: {
+    color: '#e6e6e6',
+    fontSize: 15,
+    paddingLeft: 15,
+    paddingTop: 30
+  },
+  password: {
+    color: '#e6e6e6',
+    fontSize: 15,
+    paddingLeft: 15,
+    paddingTop: 30 
+  },
+  zip: {
+    color: '#e6e6e6',
+    fontSize: 15,
+    paddingLeft: 15,
+    paddingTop: 30
   }
 });
