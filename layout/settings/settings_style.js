@@ -84,6 +84,12 @@ export default StyleSheet.create({
     houseGraphic: {
         width: 60,
         height: 60
+    },
+    tempControls: {
+        width: 35,
+        height: 35,
+        alignItems: 'center',
+        justifyContent: 'center'
     }
 
 });

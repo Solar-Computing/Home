@@ -3,7 +3,8 @@ import {
   Switch,
   View,
   Text,
-  Slider
+  Slider,
+  Image
 } from 'react-native';
 import Button from 'react-native-button';
 import styles from './settings_style.js';
@@ -77,14 +78,24 @@ export class MySlider extends Component {
                   style={styles.decrease}
                   styleDisabled={{ color: 'red' }}
                   onPress={() => this.handlePress(-1)}
-          > - </Button>
+          >
+            <Image
+              style={styles.tempControls}
+              source={require('../img/cool.png')}
+          />
+          </Button>
           <Text style={styles.contentText}>
           {this.state.value || '000'}</Text>
           <Button 
                   style={styles.increase}
                   styleDisabled={{ color: 'red' }}
                   onPress={() => this.handlePress(1)}
-          > + </Button>
+          >
+          <Image
+              style={styles.tempControls}
+              source={require('../img/heat.png')}
+          />
+          </Button>
         </View>
         <Slider
           style={styles.slider}

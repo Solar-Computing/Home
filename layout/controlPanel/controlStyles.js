@@ -19,6 +19,7 @@ export default StyleSheet.create({
   TitleText: {
     color: '#e6e6e6',
     fontSize: 26,
+    paddingLeft: 10
   },
   Name: {
     color: 'white',
