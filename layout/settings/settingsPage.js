@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import {
   Text,
   View,
-  ListView
+  ListView,
+  Image
 } from 'react-native';
 import Accordion from 'react-native-accordion';
 import styles from './settings_style.js';
@@ -77,11 +78,10 @@ class ListOfRooms extends Component {
         connected: true
       });
     }).catch((error) => {
-      console.log('Error... ' + error);
+      console.log(`Error... ${  error}`);
       this.setState({
         connected: false
       });
-      
     });
   } 
   renderCollapsibleRow(rowData) {
@@ -95,22 +95,29 @@ class ListOfRooms extends Component {
     if (this.state.connected) {
       return (
         <View>
-          <Text style={styles.residence}>George's House</Text>
+          <View style={styles.houseView}>
+            <Image
+                style={styles.houseGraphic}
+                source={require('../img/house3.png')}
+            />
+            <Text style={styles.residence}>George's House</Text>
+          </View>
+          
           <ListView
             dataSource={this.state.dataSource}
             renderRow={this.renderCollapsibleRow}
-            enableEmptySections={true}
+            enableEmptySections
             style={styles.pageOptions}
           />
         </View>
       );
-    } else {
+    } 
       return (
         <View>
           <Text style={styles.offlineMessage}>Unable to retrieve Settings from Internet</Text>
         </View>
       );
-    }
+    
   }
 }
 
@@ -145,6 +152,7 @@ class MyAccordion extends Component {
       <Accordion
         header={header}
         content={content}
+        
         //onPress={() => this.handleTitle()}
       />
     );

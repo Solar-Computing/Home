@@ -559,7 +559,7 @@ export default class GraphPage extends Component {
     const energyOptions = {
       width: 300,
       height: 150,
-      color: '#cccc00',
+      color: '#f2f2f2',
       margin: {
         top: 40,
         left: 40,
@@ -581,7 +581,7 @@ export default class GraphPage extends Component {
           fontFamily: 'Arial',
           fontSize: 14,
           fontWeight: true,
-          fill: '#647282'
+          fill: '#f2f2f2'
         }
       },
       axisY: {
@@ -596,7 +596,7 @@ export default class GraphPage extends Component {
           fontFamily: 'Arial',
           fontSize: 13,
           fontWeight: true,
-          fill: '#647282'
+          fill: '#f2f2f2'
         }
       }
     };
@@ -604,7 +604,7 @@ export default class GraphPage extends Component {
     const waterOptions = { //59bbda
       width: 300,
       height: 150,
-      color: '#59bbda',
+      color: '#f2f2f2',
       margin: {
         top: 40,
         left: 40,
@@ -626,7 +626,7 @@ export default class GraphPage extends Component {
           fontFamily: 'Arial',
           fontSize: 14,
           fontWeight: true,
-          fill: '#647282'
+          fill: '#f2f2f2'
         }
       },
       axisY: {
@@ -641,7 +641,7 @@ export default class GraphPage extends Component {
           fontFamily: 'Arial',
           fontSize: 13,
           fontWeight: true,
-          fill: '#647282'
+          fill: '#f2f2f2'
         }
       }
     };

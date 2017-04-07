@@ -4,7 +4,7 @@ import {
 
 export default StyleSheet.create({
     headerBar: {
-        backgroundColor: '#263340',
+        backgroundColor: '#0d333f',
         padding: 15,
         // paddingBottom: 0,
         flexDirection: 'row',

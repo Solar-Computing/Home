@@ -1,11 +1,38 @@
 import {
-  StyleSheet
+    StyleSheet,
+  Platform  
 } from 'react-native';
 
 export default StyleSheet.create({
+    subtext: {
+        fontSize: 30,
+    },
+    main: {
+        fontSize: 70,
+        color: '#f2f2f2',
+        alignSelf: 'center',
+        paddingBottom: 30,
+        fontWeight: '300',
+        fontFamily: Platform.OS === 'android' ? 'sans-serif-light' : undefined
+    },
     container: {
         flex: 1,
-        backgroundColor: '#59bbda'
+        flexDirection: 'column',
+        // justifyContent: 'center',
+        backgroundColor: '#0d333f',
+        padding: 20
+    },
+    buttonRow: {
+        flexDirection: 'row',
+        flex: 2,
+        justifyContent: 'space-between',
+        padding: 10,
+        paddingLeft: 50,
+        paddingRight: 50
+    },
+    loginCard: {
+        backgroundColor: '#1e7794',
+        padding: 20
     },
     scroll: {
         // backgroundColor: '#191f28',
@@ -14,22 +41,22 @@ export default StyleSheet.create({
         // height: 700
     },
     displayText: {
-        color: '#FFFFFF',
+        color: '#f2f2f2',
         marginLeft: 10,
         marginTop: 5,
         fontSize: 18
     },
     button: {
-        backgroundColor: '#4dd2ff',
+        backgroundColor: '#36A2C8',
         height: 40,
         width: 80,
         alignSelf: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
     },
     buttonText: {
         marginTop: 10,
-        color: '#191f28',
-        fontWeight: 'bold',
+        color: '#f2f2f2',
+        // fontWeight: 'bold',
         fontSize: 15
     },
     textInput: {
@@ -45,7 +72,6 @@ export default StyleSheet.create({
         // // resizeMode: 'stretch'
         flex: 1,
         alignSelf: 'stretch',
-        width: null,
     },
     LogoView: {
         // marginTop: 120,

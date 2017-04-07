@@ -86,13 +86,10 @@ export default class Login extends Component {
       );
     }
       return (
-        <ScrollView>
-          <View style={styles.LogoView}>
-            <Image
-              style={styles.Logo}
-              source={require('../img/homeSplash1.png')}
-            >
-              <View accessible>
+        <ScrollView style={styles.container}>
+          <Text style={styles.subtext}> WELCOME </Text>
+          <Text style={styles.main}> Home </Text>
+          <View accessible style={styles.loginCard}>
                 <Text style={styles.displayText}>Username or Email</Text>
                 <TextInput
                     style={styles.textInput}
@@ -101,17 +98,26 @@ export default class Login extends Component {
                 <TextInput
                     style={styles.textInput}
                 />
-                <Button
+                <View style={styles.buttonRow}>
+                  <Button
                     onPress={() => this.login()}
                     containerStyle={styles.button}
-                >
-                  <Text style={styles.buttonText}>
-                    Login
-                  </Text>
-                </Button>
+                  >
+                    <Text style={styles.buttonText}>
+                      Login
+                    </Text>
+                  </Button>
+                  <Button
+                    onPress={() => this.login()}
+                    containerStyle={styles.button}
+                  >
+                    <Text style={styles.buttonText}>
+                      Register
+                    </Text>
+                  </Button>
               </View>
-              </Image>
           </View>
+              
         </ScrollView>
       );
   }

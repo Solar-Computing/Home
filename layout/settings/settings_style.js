@@ -3,18 +3,21 @@ import {
 } from 'react-native';
 
 export default StyleSheet.create({
+    accordian: {
+        padding: 18
+    },
     headerText: {
         fontSize: 25,
         // fontWeight: 'bold',
-        color: '#191f28'
+        color: '#f2f2f2'
     },
     headerView: {
         flexDirection: 'row',
         padding: 25,
-        backgroundColor: '#91a2ba', //1b2631
+        backgroundColor: '#36A2C8', //1e7794
         borderStyle: 'solid',
         borderWidth: 5,
-        borderColor: '#1b2631',
+        borderColor: '#1e7794',
     },
     contentText: {
         padding: 30,
@@ -23,7 +26,7 @@ export default StyleSheet.create({
         color: '#d0d7e2'
     },
     contentView: {
-        backgroundColor: '#1b2631', //27313f
+        backgroundColor: '#1e7794', //27313f
         flex: 1,
         flexDirection: 'row',
         height: 100
@@ -45,7 +48,9 @@ export default StyleSheet.create({
         // color: '#'
     },
     pageOptions: {
-        backgroundColor: '#1b2631' //191f28
+        backgroundColor: '#1e7794', //191f28
+        paddingLeft: 10,
+        paddingRight: 5
     },
     decrease: {
         fontSize: 55,
@@ -64,10 +69,21 @@ export default StyleSheet.create({
     },
     residence: {
         alignSelf: 'center',
-        color: '#f2f2f2',
+        color: '#e6e6e6',
         padding: 15,
+        paddingTop: 25,
         fontSize: 20,
         // fontWeight: 'bold'
+    },
+    houseView: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        flexDirection: 'row',
+        padding: 15
+    },
+    houseGraphic: {
+        width: 60,
+        height: 60
     }
 
 });

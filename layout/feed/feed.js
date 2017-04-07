@@ -97,7 +97,7 @@ class DataList extends Component {
   render() {
       if (this.state.connected) {
           return (
-              <ScrollView>
+              <ScrollView style={styles.container}>
                   <ListView
                       dataSource={this.state.resultsData}
                       renderRow={this.renderRow}

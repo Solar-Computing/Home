@@ -14,8 +14,9 @@ export default StyleSheet.create({
     cellContainer: {
         flexDirection: 'row',
         alignItems: 'center',
-        backgroundColor: '#91a2ba',
-        margin: 2,
+        backgroundColor: '#36A2C8',
+        margin: 3,
+        marginRight: 6
     },
     cellImage: {
         height: 80,
@@ -25,7 +26,9 @@ export default StyleSheet.create({
         resizeMode: 'contain'
     },
     cellText: {
-        flex: 1
+        flex: 1,
+        fontSize: 15,
+        color: '#f2f2f2',
     },
     offlineMessage: {
         alignSelf: 'center',
@@ -33,5 +36,9 @@ export default StyleSheet.create({
         paddingTop: 50,
         fontSize: 20,
         // fontWeight: 'bold'
+    },
+    container: {
+        margin: 8,
+        marginLeft: 12
     }
 });

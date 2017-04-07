@@ -28,7 +28,7 @@ import styles from './GraphStyles.js';
 class SmoothLineChartBasic extends Component {
   render() {
     return (
-      <View style={{ flexDirection: 'column' }}>
+      <View style={styles.graphWrapper}>
         <Text style={styles.graphTitle}>{this.props.title}</Text>
         <Text style={styles.graphUnits}>({this.props.units})</Text>
         <SmoothLine data={this.props.data} options={this.props.options} xKey='x' yKey='y' />

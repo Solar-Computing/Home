@@ -1,15 +1,38 @@
 import React, { Component } from 'react';
 import {
-  SwitchIOS,
   View,
   Text,
-  StyleSheet,
-  TouchableOpacity
+  TouchableOpacity,
+  Image
 } from 'react-native';
 
+import Button from 'react-native-button';
 import styles from './controlStyles';
+import AccInfo from './accountInfo';
 
 export default class ControlPanel extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      editable: false,
+      icon: '../img/pen.png'
+    };
+  }  
+  
+  toggleEdit() {
+    if (this.state.editable) {
+      this.setState({
+        editable: false,
+        icon: '../img/pen.png'
+      });
+    } else {
+      this.setState({
+        editable: true,
+        icon: '../img/pen.png'
+      });
+    }
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -17,10 +40,18 @@ export default class ControlPanel extends Component {
           <Text style={styles.TitleText}>
             User Menu
           </Text>
+          <Button
+            onPress={() => this.toggleEdit()}
+            styles={styles.editBtn}
+          >
+            <Image
+              style={styles.headerBtn}
+              source={require('../img/pen.png')}
+            />
+          </Button>
         </View>
 
-        <Text style={styles.Name}>George Burdell</Text>
-        <Text style={styles.Email}>gburdell@gatech.edu</Text>
+        <AccInfo editing={this.state.editable} />
 
         <View style={styles.divider} />
 

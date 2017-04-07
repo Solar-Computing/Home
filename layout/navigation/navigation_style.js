@@ -22,7 +22,7 @@ export default StyleSheet.create({
         flex: 1,
         height: 40,
         width: 60,
-        backgroundColor: '#191f28',
+        backgroundColor: '#09222a',
         padding: 0
     },
     activebarButton: {
@@ -30,11 +30,11 @@ export default StyleSheet.create({
         flex: 1,
         height: 40,
         width: 60,
-        backgroundColor: '#1b2631',
+        backgroundColor: '#1e7794',
         padding: 0
     },
     activebarTitles: {
-        color: '#59bbda',
+        color: '#f2f2f2',
         justifyContent: 'center',
         textAlign: 'center'
     }
