@@ -5,12 +5,24 @@ import {
 export default StyleSheet.create({
     graphWrapper: {
         flexDirection: 'column',
-        padding: 10
+        padding: 10,
+        paddingBottom: 15
     },
-    scrubButtons: {
-        backgroundColor: '#36A2C8',
+    scrubButton: {
+      height: 50  
+    },
+    scrubView: {
+        // backgroundColor: '#36A2C8',
         justifyContent: 'center',
-        width: 60
+        alignItems: 'center',
+        flexDirection: 'column',
+        
+        // padding: 10
+        // width: 60
+    },
+    scrubIcon: {
+        width: 35,
+        height: 35,
     },
     scrubTitles: {
         color: '#f2f2f2',
@@ -20,7 +32,7 @@ export default StyleSheet.create({
     scrubBar: {
         // backgroundColor: '#191f28',
         // paddingTop: 10,
-        // paddingBottom: 10,
+        paddingBottom: 10,
         justifyContent: 'center',
         flexDirection: 'row',
         height: 30

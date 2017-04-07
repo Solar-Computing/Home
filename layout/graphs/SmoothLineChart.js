@@ -19,7 +19,7 @@ SPDX-License-Identifier: Apache-2.0
 'use strict';
 
 import React, { Component } from 'react';
-import { View, Text, Navigator, Alert } from 'react-native';
+import { View, Text, Navigator, Alert, Image } from 'react-native';
 
 import { SmoothLine } from 'react-native-pathjs-charts';
 import Button from 'react-native-button';
@@ -34,21 +34,33 @@ class SmoothLineChartBasic extends Component {
         <SmoothLine data={this.props.data} options={this.props.options} xKey='x' yKey='y' />
         <View style={styles.scrubBar}>
           <Button
-            containerStyle={styles.scrubButtons}
             onPress={() => this.handleBack()}
+            containerStyle={styles.scrubButton}
           >
-            <Text style={styles.scrubTitles}>
-              Back
-            </Text>
+            <View style={styles.scrubView} >              
+              <Image
+                  style={styles.scrubIcon}
+                  source={require('../img/past.png')}
+              /> 
+              <Text style={styles.scrubTitles}>
+                Back
+              </Text>
+            </View>
           </Button>
           <View style={styles.spacer} />
           <Button
-            containerStyle={styles.scrubButtons}
             onPress={() => this.handleNext()}
+            containerStyle={styles.scrubButton}
           >
-            <Text style={styles.scrubTitles}>
-              Next
-            </Text>
+            <View style={styles.scrubView} >              
+              <Image
+                  style={styles.scrubIcon}
+                  source={require('../img/future.png')}
+              /> 
+              <Text style={styles.scrubTitles}>
+                Next
+              </Text>
+            </View>
           </Button>
         </View>
       </View>

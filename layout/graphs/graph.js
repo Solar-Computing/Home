@@ -679,6 +679,7 @@ export default class GraphPage extends Component {
           data={dayEnergyData}
           options={energyOptions}
         />
+        <View style={styles.divider} />
         <Chart
           title={'Week Energy Consumption vs Production'}
           units={'kW/h'}
@@ -686,13 +687,13 @@ export default class GraphPage extends Component {
           options={energyOptions}
         />
         <View style={styles.divider} />
-        <View style={styles.divider} />
         <Chart
           title={'Year Energy Consumption vs Production'}
           units={'kW/h'}
           data={yearEnergyData}
           options={energyOptions}
-        />  
+        />
+        <View style={styles.divider} />
       </ScrollView>
     );
   }
