@@ -81,7 +81,7 @@ export class MySlider extends Component {
           >
             <Image
               style={styles.tempControls}
-              source={require('../img/cool.png')}
+              source={require('../img/minus.png')}
           />
           </Button>
           <Text style={styles.contentText}>
@@ -93,7 +93,7 @@ export class MySlider extends Component {
           >
           <Image
               style={styles.tempControls}
-              source={require('../img/heat.png')}
+              source={require('../img/plus.png')}
           />
           </Button>
         </View>
