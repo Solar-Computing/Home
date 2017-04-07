@@ -42,11 +42,11 @@ class Navigation extends Component {
           <Button
             disabled={this.state.index === 0}
             onPress={() => this.handleSettings()}
-            containerStyle={[styles.statusbarButton,
+            containerStyle={[styles.inactivebarButton,
             this.state.index === 0 && styles.activebarButton]}
           >
             <Text
-              style={[styles.statusbarTitles,
+              style={[styles.inactivebarTitles,
               this.state.index === 0 && styles.activebarTitles]}
             >
               Settings
@@ -55,11 +55,11 @@ class Navigation extends Component {
           <Button
             disabled={this.state.index === 1}
             onPress={() => this.handleData()}
-            containerStyle={[styles.statusbarButton,
+            containerStyle={[styles.inactivebarButton,
             this.state.index === 1 && styles.activebarButton]}
           >
             <Text
-              style={[styles.statusbarTitles,
+              style={[styles.inactivebarTitles,
               this.state.index === 1 && styles.activebarTitles]}
             >
               Data
@@ -68,11 +68,11 @@ class Navigation extends Component {
           <Button
             disabled={this.state.index === 2}
             onPress={() => this.handleFeed()}
-            containerStyle={[styles.statusbarButton,
+            containerStyle={[styles.inactivebarButton,
             this.state.index === 2 && styles.activebarButton]}
           >
             <Text
-              style={[styles.statusbarTitles,
+              style={[styles.inactivebarTitles,
               this.state.index === 2 && styles.activebarTitles]}
             >
               Feed

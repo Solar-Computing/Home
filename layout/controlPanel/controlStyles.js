@@ -5,7 +5,7 @@ import {
 export default StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#1e7794',
+    backgroundColor: '#09222a',
     
   },
   menuHeader: {

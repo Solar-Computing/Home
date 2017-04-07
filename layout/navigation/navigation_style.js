@@ -9,7 +9,7 @@ export default StyleSheet.create({
         flexDirection: 'row',
         height: 40
     },
-    statusbarTitles: {
+    inactivebarTitles: {
         color: '#e6e6e6',
         justifyContent: 'center',
         paddingTop: 10,
@@ -17,7 +17,7 @@ export default StyleSheet.create({
         textAlign: 'center',
         flex: 1
     },
-    statusbarButton: {
+    inactivebarButton: {
         justifyContent: 'center',
         flex: 1,
         height: 40,
