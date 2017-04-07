@@ -29,9 +29,18 @@ class SmoothLineChartBasic extends Component {
   render() {
     return (
       <View style={styles.graphWrapper}>
-        <Text style={styles.graphTitle}>{this.props.title}</Text>
-        <Text style={styles.graphUnits}>({this.props.units})</Text>
-        <SmoothLine data={this.props.data} options={this.props.options} xKey='x' yKey='y' />
+        <View>
+          <Text style={styles.graphTitle}>{this.props.title}</Text>
+          <Text style={styles.graphUnits}>({this.props.units})</Text>
+        </View>
+        <View style={styles.chartIndent} >
+          <SmoothLine
+            data={this.props.data}
+            options={this.props.options}
+            xKey='x'
+            yKey='y'
+          />
+        </View>        
         <View style={styles.scrubBar}>
           <Button
             onPress={() => this.handleBack()}

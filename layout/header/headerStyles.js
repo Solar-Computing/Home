@@ -6,7 +6,6 @@ export default StyleSheet.create({
     headerBar: {
         backgroundColor: '#0d333f',
         padding: 15,
-        // paddingBottom: 0,
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
@@ -15,8 +14,6 @@ export default StyleSheet.create({
     headerLogo: {
         width: 50,
         height: 50,
-        // justifyContent: 'center',
-        // alignSelf: 'center'
     },
     headerBtn: {
         width: 30,

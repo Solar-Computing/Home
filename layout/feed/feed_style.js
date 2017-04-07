@@ -6,7 +6,7 @@ export default StyleSheet.create({
     rowSeparator: {
         backgroundColor: 'rgba(0,0,0,0.1)',
         height: 1,
-        marginLeft: 4
+        marginLeft: 5
     },
     rowSeparatorHighlighted: {
         opacity: 0.0
@@ -16,7 +16,7 @@ export default StyleSheet.create({
         alignItems: 'center',
         backgroundColor: '#36A2C8',
         margin: 3,
-        marginRight: 6
+        marginRight: 4
     },
     cellImage: {
         height: 80,

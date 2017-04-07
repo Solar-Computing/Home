@@ -694,6 +694,7 @@ export default class GraphPage extends Component {
           options={energyOptions}
         />
         <View style={styles.divider} />
+
       </ScrollView>
     );
   }

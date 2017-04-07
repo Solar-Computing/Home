@@ -6,10 +6,13 @@ export default StyleSheet.create({
     graphWrapper: {
         flexDirection: 'column',
         padding: 10,
-        paddingBottom: 15
+        paddingBottom: 15,
     },
     scrubButton: {
       height: 50  
+    },
+    chartIndent: {
+        paddingLeft: 10
     },
     scrubView: {
         // backgroundColor: '#36A2C8',

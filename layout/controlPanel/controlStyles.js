@@ -68,7 +68,7 @@ export default StyleSheet.create({
     // width: 100,
     paddingLeft: 15,
     // fontWeight: 'bold',
-    fontSize: 15
+    fontSize: 15,
 
 
         // col: '#4dd2ff'
@@ -87,7 +87,8 @@ export default StyleSheet.create({
     color: '#e6e6e6',
     fontSize: 15,
     paddingLeft: 15,
-    paddingTop: 30
+    paddingTop: 30,
+    paddingBottom: 10
   },
   password: {
     color: '#e6e6e6',
@@ -99,6 +100,6 @@ export default StyleSheet.create({
     color: '#e6e6e6',
     fontSize: 15,
     paddingLeft: 15,
-    paddingTop: 30
+    paddingTop: 10
   }
 });
