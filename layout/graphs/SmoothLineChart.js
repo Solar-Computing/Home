@@ -26,11 +26,18 @@ import Button from 'react-native-button';
 import styles from './GraphStyles.js';
 
 class SmoothLineChartBasic extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      currentDay: this.props.today
+    };
+  }
   render() {
     return (
       <View style={{ flexDirection: 'column' }}>
         <Text style={styles.graphTitle}>{this.props.title}</Text>
         <Text style={styles.graphUnits}>({this.props.units})</Text>
+        <Text style={styles.graphDay}>({this.props.day})</Text>
         <SmoothLine data={this.props.data} options={this.props.options} xKey='x' yKey='y' />
         <View style={styles.scrubBar}>
           <Button
@@ -56,23 +63,19 @@ class SmoothLineChartBasic extends Component {
   }
 
   handleBack() {
-    Alert.alert(
-      'Alert Title',
-      'Reload with data one step back',
-      [
-        { text: 'OK', onPress: () => console.log('OK Pressed!') },
-      ]
-    );
+    let dayBefore = this.state.currentDay
+    dayBefore.setDate(dayBefore.getDate() - 1)
+    dayBefore.setHours(23);
+    this.props.update(dayBefore);
+    this.state.currentDay = new Date(dayBefore)
   }
 
   handleNext() {
-    Alert.alert(
-      'Alert Title',
-      'Reload with data one step forward',
-      [
-        { text: 'OK', onPress: () => console.log('OK Pressed!') },
-      ]
-    );
+    let nextDay = this.state.currentDay
+    nextDay.setDate(nextDay.getDate() + 1)
+    nextDay.setHours(23)
+    this.props.update(nextDay)
+    this.state.currentDay = new Date(nextDay)
   }
 }
 

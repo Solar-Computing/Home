@@ -263,16 +263,27 @@ export default class GraphPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: {}
+      data: {},
+      day: new Date()
     };
   }
+
   componentDidMount() {
     // Get correct dates
-    today = new Date()
-    today.setYear(2016)
-    dayBefore = new Date()
+    this.update(this.state.day)
+  }
+
+  update(currentDay) {
+    
+    this.state.day = new Date(currentDay)
+    currentDay.setYear(2016)
+    currDayMidnight = new Date(currentDay)
+    currDayMidnight.setHours(0)
+    currDayMidnight.setMinutes(0)
+    currDayMidnight.setSeconds(0)
+    /*dayBefore = new Date()
     dayBefore.setYear(2016)
-    dayBefore.setDate(dayBefore.getDate() - 1)
+    dayBefore.setDate(dayBefore.getDate() - 1)*/
 
     fetch('http://lowcost-env.kwjgjsvk34.us-east-1.elasticbeanstalk.com/api/simulations', {
       method: 'POST',
@@ -281,34 +292,47 @@ export default class GraphPage extends Component {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        start: dayBefore.toUTCString(),
-        end: today.toUTCString(),
+        start: currDayMidnight.toUTCString(),
+        end: currentDay.toUTCString(),
         aggregate: 'hourly'
       })
     }).then((loadedData) => {
         this.setState({ data: JSON.parse(loadedData._bodyInit) });
         //this.state.dayData = []
         dayEnergyData = [[], []]
-        this.state.data.contents.sort(function(a,b){
+        /*this.state.data.contents.sort(function(a,b){
           // Turn your strings into dates, and then subtract them
           // to get a value that is either negative, positive, or zero.
           return new Date(a.timestamp) - new Date(b.timestamp);
-        });
-        console.log(this.state.data.contents)
+        });*/
+        //console.log(this.state.data.contents)
         hour = 0
         this.state.data.contents.forEach(function(entry) {
-          // console.log(entry)
+          //console.log(entry)
           date = new Date(entry.timestamp)
-          console.log(date)
-          dayEnergyData[0].push({x: hour, y: entry.ACPrimaryLoad})
-          dayEnergyData[1].push({x: hour, y: entry.PVPowerOutput})
+          console.log(entry)
+          //console.log("\n" + date.getHours() + "\n")
+          //console.log(date)
+          dayEnergyData[0].push({x: date.getHours(), y: entry.ACPrimaryLoad})
+          dayEnergyData[1].push({x: date.getHours(), y: entry.PVPowerOutput})
           hour++
         })
-        console.log(dayEnergyData)
+        // for (; hour < 24; hour++) {
+        //   dayEnergyData[0].push({x: hour, y: 0})
+        //   dayEnergyData[1].push({x: hour, y: 0})
+        //   //console.log(hour)
+        // }
+        console.log(currDayMidnight.toLocaleString())
+        console.log(currentDay.toLocaleString())
+        //console.log("\nSTOP\n"+hour)
+        //console.log(dayEnergyData)
+        //console.log(currentDay)
+        //console.log(currDayMidnight)
     }).catch((error) => {
       console.log(`Error... ${error}`);
     });
   }
+
   render() {
     /*const profitData = [
       [{
@@ -524,7 +548,7 @@ export default class GraphPage extends Component {
       }
     };
 
-/*
+    /*
     const waterOptions = {
       width: 300,
       height: 150,
@@ -597,10 +621,13 @@ export default class GraphPage extends Component {
     return (
       <ScrollView>
         <Chart
-          title={'Day Energy Consumption vs Production'}
-          units={'kW/h'}
+          title={'Day Power Consumption vs Production'}
+          units={'kWh'}
+          day={this.state.day.toLocaleString()}
           data={dayEnergyData}
           options={energyOptions}
+          update={(newDay) => { this.update(newDay); this.forceUpdate(); }}
+          today={new Date()}
         />{/*
         <View style={styles.divider} />
         <Chart

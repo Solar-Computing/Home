@@ -34,6 +34,9 @@ export default StyleSheet.create({
     graphUnits: {
         textAlign: 'center'
     },
+    graphDay: {
+        textAlign: 'center'
+    },
     divider: {
         height: 20
     }
