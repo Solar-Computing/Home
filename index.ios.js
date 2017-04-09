@@ -5,7 +5,6 @@ import {
 } from 'react-native';
 import App from './app.js';
 
-
 class Home extends Component {
   render() {
     return (
