@@ -17,7 +17,7 @@ export default class MenuHeader extends Component {
       return (
         <View style={styles.menuHeader}>
             <Text style={styles.TitleText}>
-              User Menu
+              {this.props.title}
             </Text>
             <Button
               onPress={() => this.props.toggleEdit()}
@@ -34,7 +34,7 @@ export default class MenuHeader extends Component {
       return (
         <View style={styles.menuHeader}>
             <Text style={styles.TitleText}>
-              User Menu
+              {this.props.title}
             </Text>
             <Button
               onPress={() => this.props.toggleEdit()}

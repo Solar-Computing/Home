@@ -5,9 +5,9 @@ import {
 } from 'react-native';
 
 import Chart from './SmoothLineChart.js';
-//import Summary from './BarSummary.js';
 import styles from './GraphStyles.js';
 
+// mock data and styling
 const dayEnergyData = [
       [{
         x: 0,
@@ -92,7 +92,7 @@ const dayEnergyData = [
     ];
 
 
-let weekEnergyData = [
+const weekEnergyData = [
       [{
         x: 0,
         y: 1.2
@@ -259,6 +259,52 @@ const yearEnergyData = [
       }]
     ];
 
+const graphOptions = {
+      width: 300,
+      height: 150,
+      color: '#f2f2f2',
+      margin: {
+        top: 40,
+        left: 40,
+        bottom: 40,
+        right: 40
+      },
+      animate: {
+        type: 'delayed',
+        duration: 200
+      },
+      axisX: {
+        showAxis: true,
+        showLines: false,
+        showLabels: true,
+        showTicks: true,
+        zeroAxis: false,
+        orient: 'bottom',
+        label: {
+          fontFamily: 'Arial',
+          fontSize: 14,
+          fontWeight: true,
+          fill: '#f2f2f2'
+        }
+      },
+      axisY: {
+        showAxis: true,
+        showLines: true,
+        // color: '#4e5865',
+        showLabels: true,
+        showTicks: true,
+        zeroAxis: false,
+        orient: 'left',
+        label: {
+          fontFamily: 'Arial',
+          fontSize: 13,
+          fontWeight: true,
+          fill: '#f2f2f2'
+        }
+      }
+    };
+
+// graph component
 export default class GraphPage extends Component {
   constructor(props) {
     super(props);
@@ -267,47 +313,7 @@ export default class GraphPage extends Component {
     };
   }
   componentDidMount() {
-    /*
-    fetch('http://lowcost-env.kwjgjsvk34.us-east-1.elasticbeanstalk.com/api/simulations', {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        start: '20160101T00:00:00Z',
-        end: '20170101T00:00:00Z',
-        aggregate: 'hourly'
-      })
-    }).then((loadedData) => {
-        this.setState({ data: JSON.parse(loadedData._bodyInit) });
-        //this.state.dayData = []
-        dayEnergyData = [[], []]
-        this.state.data.contents.forEach(function(entry) {
-          date = new Date(entry.timestamp)
-          today = new Date()
-          today.setYear(2016)
-          //date.setYear(2017)
-          //console.log(date + " " + (new Date()))
-          //console.log(date.toString() + " " + today.toString())
-          if (date.getDay() === today.getDay() && date.getMonth() === today.getMonth() && date.getDate() === today.getDate()) {
-            // console.log("\n"+today)
-            // console.log("NEW")
-            // console.log(date)
-            // console.log(entry)
-            dayEnergyData[0].push({x: date.getHours(), y: entry.ACPrimaryLoad})
-            dayEnergyData[1].push({x: date.getHours(), y: entry.PVPowerOutput})
-          }
-        })
-        console.log(dayEnergyData)
-    }).catch((error) => {
-      console.log(`Error... ${error}`);
-    });
-    */
-
-
-//Get date for today (ms) --> subtract ms in a week and then put in graph
-
+  //Get date for today (ms) --> subtract ms in a week and then put in graph
     fetch('http://lowcost-env.kwjgjsvk34.us-east-1.elasticbeanstalk.com/api/simulations', {
       method: 'POST',
       headers: {
@@ -345,353 +351,29 @@ export default class GraphPage extends Component {
     }).catch((error) => {
       console.log(`Error... ${error}`);
     });
-    
-    /*
-    fetch('http://lowcost-env.kwjgjsvk34.us-east-1.elasticbeanstalk.com/api/simulations', {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        start: '20160101T00:00:00Z',
-        end: '20170101T00:00:00Z',
-        aggregate: 'monthly'
-      })
-    }).then((loadedData) => {
-        this.setState({ data: JSON.parse(loadedData._bodyInit) });
-        //this.state.dayData = []
-        yearEnergyData = [[], []]
-        this.state.data.contents.forEach(function(entry) {
-          date = new Date(entry.timestamp)
-          today = new Date()
-          today.setYear(2016)
-          //date.setYear(2017)
-          //console.log(date + " " + (new Date()))
-          //console.log(date.toString() + " " + today.toString())
-          if (date.getDay() === today.getDay() && date.getMonth() === today.getMonth() && date.getDate() === today.getDate()) {
-            // console.log("\n"+today)
-            // console.log("NEW")
-            // console.log(date)
-            // console.log(entry)
-            yearEnergyData[0].push({x: date.getHours(), y: entry.ACPrimaryLoad})
-            yearEnergyData[1].push({x: date.getHours(), y: entry.PVPowerOutput})
-          }
-        })
-        console.log(yearEnergyData)
-    }).catch((error) => {
-      console.log(`Error... ${error}`);
-      });
-    */
   }
   render() {
-    /*const profitData = [
-      [{
-        x: 0,
-        y: -5
-      }, {
-        x: 2,
-        y: -20
-      }, {
-        x: 4,
-        y: -25
-      }, {
-        x: 6,
-        y: -20
-      }, {
-        x: 8,
-        y: -10
-      }, {
-        x: 10,
-        y: -5
-      }, {
-        x: 12,
-        y: -10
-      }, {
-        x: 14,
-        y: 20
-      }, {
-        x: 16,
-        y: 15
-      }, {
-        x: 18,
-        y: 10
-      }, {
-        x: 20,
-        y: -8
-      }, {
-        x: 22,
-        y: -15
-      }, {
-        x: 24,
-        y: -5
-      }]
-    ];
-
-    const waterData = [
-      [{
-        x: 0,
-        y: 10
-      }, {
-        x: 2,
-        y: 10
-      }, {
-        x: 4,
-        y: 12
-      }, {
-        x: 6,
-        y: 10
-      }, {
-        x: 8,
-        y: 15
-      }, {
-        x: 10,
-        y: 40
-      }, {
-        x: 12,
-        y: 35
-      }, {
-        x: 14,
-        y: 25
-      }, {
-        x: 16,
-        y: 10
-      }, {
-        x: 18,
-        y: 8
-      }, {
-        x: 20,
-        y: 36
-      }, {
-        x: 22,
-        y: 15
-      }, {
-        x: 24,
-        y: 5
-      }],
-      [{
-        x: 0,
-        y: 4
-      }, {
-        x: 2,
-        y: 4
-      }, {
-        x: 4,
-        y: 5
-      }, {
-        x: 6,
-        y: 4
-      }, {
-        x: 8,
-        y: 6
-      }, {
-        x: 10,
-        y: 26
-      }, {
-        x: 12,
-        y: 19
-      }, {
-        x: 14,
-        y: 10
-      }, {
-        x: 16,
-        y: 6
-      }, {
-        x: 18,
-        y: 5
-      }, {
-        x: 20,
-        y: 20
-      }, {
-        x: 22,
-        y: 8
-      }, {
-        x: 24,
-        y: 2
-      }]
-    ];
-
-    const profitOptions = { // 228B22
-      width: 300,
-      height: 150,
-      color: '#228B22',
-      margin: {
-        top: 40,
-        left: 40,
-        bottom: 40,
-        right: 40
-      },
-      animate: {
-        type: 'delayed',
-        duration: 200
-      },
-      axisX: {
-        showAxis: true,
-        showLines: false,
-        showLabels: true,
-        showTicks: true,
-        zeroAxis: false,
-        orient: 'bottom',
-        label: {
-          fontFamily: 'Arial',
-          fontSize: 14,
-          fontWeight: true,
-          fill: '#647282'
-        }
-      },
-      axisY: {
-        showAxis: true,
-        showLines: true,
-        // color: '#4e5865',
-        showLabels: true,
-        showTicks: true,
-        zeroAxis: false,
-        orient: 'left',
-        label: {
-          fontFamily: 'Arial',
-          fontSize: 13,
-          fontWeight: true,
-          fill: '#647282'
-        }
-      }
-    };*/
-
-    const energyOptions = {
-      width: 300,
-      height: 150,
-      color: '#f2f2f2',
-      margin: {
-        top: 40,
-        left: 40,
-        bottom: 40,
-        right: 40
-      },
-      animate: {
-        type: 'delayed',
-        duration: 200
-      },
-      axisX: {
-        showAxis: true,
-        showLines: false,
-        showLabels: true,
-        showTicks: true,
-        zeroAxis: false,
-        orient: 'bottom',
-        label: {
-          fontFamily: 'Arial',
-          fontSize: 14,
-          fontWeight: true,
-          fill: '#f2f2f2'
-        }
-      },
-      axisY: {
-        showAxis: true,
-        showLines: true,
-        // color: '#4e5865',
-        showLabels: true,
-        showTicks: true,
-        zeroAxis: false,
-        orient: 'left',
-        label: {
-          fontFamily: 'Arial',
-          fontSize: 13,
-          fontWeight: true,
-          fill: '#f2f2f2'
-        }
-      }
-    };
-
-    const waterOptions = { //59bbda
-      width: 300,
-      height: 150,
-      color: '#f2f2f2',
-      margin: {
-        top: 40,
-        left: 40,
-        bottom: 40,
-        right: 40
-      },
-      animate: {
-        type: 'delayed',
-        duration: 200
-      },
-      axisX: {
-        showAxis: true,
-        showLines: false,
-        showLabels: true,
-        showTicks: true,
-        zeroAxis: false,
-        orient: 'bottom',
-        label: {
-          fontFamily: 'Arial',
-          fontSize: 14,
-          fontWeight: true,
-          fill: '#f2f2f2'
-        }
-      },
-      axisY: {
-        showAxis: true,
-        showLines: true,
-        // color: '#4e5865',
-        showLabels: true,
-        showTicks: true,
-        zeroAxis: false,
-        orient: 'left',
-        label: {
-          fontFamily: 'Arial',
-          fontSize: 13,
-          fontWeight: true,
-          fill: '#f2f2f2'
-        }
-      }
-    };
-
-    /*return (
-      <ScrollView style={styles.graphPage}>
-        <Chart
-          title={'Energy Consumption vs Production'}
-          units={'kW/h'}
-          data={energyData}
-          options={energyOptions}
-        />
-        <View style={styles.divider} />
-        <Chart
-          title={'Cash Flow'}
-          units={'Dollars'}
-          data={profitData}
-          options={profitOptions}
-        />
-        <View style={styles.divider} />
-        <Chart
-          title={'Water Use vs Filtration'}
-          units={'Gal'}
-          data={waterData}
-          options={waterOptions}
-        />        
-      </ScrollView>
-    );*/
-
     return (
       <ScrollView>
         <Chart
           title={'Day Energy Consumption vs Production'}
           units={'kW/h'}
           data={dayEnergyData}
-          options={energyOptions}
+          options={graphOptions}
         />
         <View style={styles.divider} />
         <Chart
           title={'Week Energy Consumption vs Production'}
           units={'kW/h'}
           data={weekEnergyData}
-          options={energyOptions}
+          options={graphOptions}
         />
         <View style={styles.divider} />
         <Chart
           title={'Year Energy Consumption vs Production'}
           units={'kW/h'}
           data={yearEnergyData}
-          options={energyOptions}
+          options={graphOptions}
         />
         <View style={styles.divider} />
 

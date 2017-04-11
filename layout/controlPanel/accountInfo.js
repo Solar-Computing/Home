@@ -37,9 +37,9 @@ export default class AccountInfo extends Component {
   }
   
   render() {
-    if (this.props.editing) {
+    if (this.props.editable) {
       return (
-        <View style={styles.editAccount}>
+        <View style={styles.editSection}>
           <TextInput
             style={styles.textInput}
             placeholder={this.state.name}
@@ -80,7 +80,7 @@ export default class AccountInfo extends Component {
      );
     } 
       return (
-        <View style={styles.editAccount}>
+        <View style={styles.editSection}>
           <Text
             style={styles.name}
           >

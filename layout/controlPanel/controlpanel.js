@@ -8,26 +8,39 @@ import {
 
 import Button from 'react-native-button';
 import styles from './controlStyles';
+import SectionHeader from './menuHeader.js';
 import AccInfo from './accountInfo';
-import MenuHeader from './menuHeader.js';
+import Residents from './residents';
 
 export default class ControlPanel extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      editable: false,
-      icon: '../img/pen.png'
+      accInfoEditable: false,
+      resInfoEditable: false
     };
   }  
   
-  toggleEdit() {
-    if (this.state.editable) {
+  toggleAccInfoEdit() {
+    if (this.state.accInfoEditable) {
       this.setState({
-        editable: false,
+        accInfoEditable: false,
       });
     } else {
       this.setState({
-        editable: true,
+        accInfoEditable: true,
+      });
+    }
+  }
+
+  toggleResInfoEdit() {
+    if (this.state.resInfoEditable) {
+      this.setState({
+        resInfoEditable: false,
+      });
+    } else {
+      this.setState({
+        resInfoEditable: true,
       });
     }
   }
@@ -35,14 +48,23 @@ export default class ControlPanel extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <MenuHeader
-          toggleEdit={this.toggleEdit.bind(this)}
-          editable={this.state.editable}
+        <SectionHeader
+          toggleEdit={this.toggleAccInfoEdit.bind(this)}
+          editable={this.state.accInfoEditable}
+          title={'Account Info'}
         />
 
-        <AccInfo editing={this.state.editable} />
+        <AccInfo editable={this.state.accInfoEditable} />
 
         <View style={styles.divider} />
+
+        <SectionHeader
+          toggleEdit={this.toggleResInfoEdit.bind(this)}
+          editable={this.state.resInfoEditable}
+          title={'Residents'}
+        />
+
+        <Residents editable={this.state.resInfoEditable} />
 
         <View style={styles.navBtns} >
             <TouchableOpacity

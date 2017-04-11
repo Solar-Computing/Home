@@ -73,8 +73,8 @@ export default StyleSheet.create({
 
         // col: '#4dd2ff'
   },
-  editAccount: {
-    padding: 10
+  editSection: {
+    paddingLeft: 10
   },
   name: {
     color: '#e6e6e6',
@@ -100,6 +100,7 @@ export default StyleSheet.create({
     color: '#e6e6e6',
     fontSize: 15,
     paddingLeft: 15,
-    paddingTop: 10
+    paddingTop: 10,
+    paddingBottom: 10
   }
 });
