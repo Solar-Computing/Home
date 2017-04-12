@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import {
   View,
   Text,
-  TextInput
+  TextInput,
+  Image
 } from 'react-native';
 
 import Button from 'react-native-button';
@@ -24,21 +25,51 @@ export default class Residents extends Component {
     if (this.props.editable) {
       return (
         <View style={styles.editSection}>
-          <Text> {this.state.name1} </Text>
-          <Text> {this.state.name2} </Text>
-          <Text> {this.state.name3} </Text>
-          <Text> {this.state.name4} </Text>
+          <View style={styles.residentEdit}>
+            <Image
+              style={styles.deleteIcon}
+              source={require('../img/fillminus.png')}
+            />
+            <Text style={styles.residentNames}> {this.state.name1} </Text>
+          </View>
+          <View style={styles.residentEdit}>
+            <Image
+              style={styles.deleteIcon}
+              source={require('../img/fillminus.png')}
+            />
+            <Text style={styles.residentNames}> {this.state.name2} </Text>
+          </View>
+          <View style={styles.residentEdit}>
+            <Image
+              style={styles.deleteIcon}
+              source={require('../img/fillminus.png')}
+            />
+            <Text style={styles.residentNames}> {this.state.name3} </Text>
+          </View>
+          <View style={styles.residentEdit}>
+            <Image
+              style={styles.deleteIcon}
+              source={require('../img/fillminus.png')}
+            />
+            <Text style={styles.residentNames}> {this.state.name4} </Text>
+          </View>
+          <View style={styles.residentEdit}>
+            <Image
+              style={styles.deleteIcon}
+              source={require('../img/fillplus.png')}
+            />
+            <Text style={styles.residentNames}> Add Resident </Text>
+          </View>
         </View>
-     );
+      );
     } 
       return (
         <View style={styles.editSection}>
-          <Text> Test Edit </Text>
-          <Text> {this.state.name1} </Text>
-          <Text> {this.state.name2} </Text>
-          <Text> {this.state.name3} </Text>
-          <Text> {this.state.name4} </Text>
+          <Text style={styles.residentNames}> {this.state.name1} </Text>
+          <Text style={styles.residentNames}> {this.state.name2} </Text>
+          <Text style={styles.residentNames}> {this.state.name3} </Text>
+          <Text style={styles.residentNames}> {this.state.name4} </Text>
         </View>
-      );
+     );
   }
 }

@@ -102,5 +102,34 @@ export default StyleSheet.create({
     paddingLeft: 15,
     paddingTop: 10,
     paddingBottom: 10
-  }
+  },
+  residentNames: {
+    color: '#e6e6e6',
+    fontSize: 15,
+    paddingLeft: 15,
+    paddingTop: 10,
+    paddingBottom: 10
+  },
+  residentEdit: {
+    flexDirection: 'row',
+    // justifyContent: 'space-between',
+    paddingLeft: 15,
+    width: 150,
+  },
+  deleteIcon: {
+    width: 30,
+    height: 30,
+    padding: 15,
+    justifyContent: 'center',
+    alignSelf: 'center'
+  },
+  residentAdd: {
+    color: '#e6e6e6',
+    fontSize: 15,
+    paddingLeft: 15,
+    paddingTop: 10,
+    paddingBottom: 10,
+    // justifyContent: 'flex-start'
+  },
+
 });
