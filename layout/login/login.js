@@ -7,6 +7,7 @@ import { Text,
           Alert
 } from 'react-native';
 import Button from 'react-native-button';
+import firebase from 'firebase';
 import styles from './LoginStyles.js';
 import App from '../../app.js';
 import Drawer from 'react-native-drawer';
@@ -17,20 +18,45 @@ export default class Login extends Component {
     super(props);
     this.state = {
       loggedIn: false,
+      email: '', 
+      password: '', 
+      loading: false
     };
   }
 
-  login() {
-    this.setState({
-        loggedIn: true
-    });
-  }
+  onButtonPress() {
+		const { email, password } = this.state;
+
+		this.setState({ loading: true });
+
+		firebase.auth().signInWithEmailAndPassword(email, password).then(
+				this.onLoginSuccess.bind(this))
+			.catch(
+				this.onLoginFail.bind(this));
+		}
   
-  logout() {
-    this.setState({
-      loggedIn: false
-    });
-  }
+  onLoginFail() {
+      this.setState({
+        loading: false,
+        loggedIn: false
+      });
+      Alert.alert(
+        'Incorrect Email/Password',
+        'Please Try Again.',
+        [
+          { text: 'OK', onPress: () => console.log('OK Pressed!') },
+        ]
+      );
+    }
+
+    onLoginSuccess() {
+      this.setState({
+        email: '',
+        password: '',
+        loading: false,
+        loggedIn: true
+      });
+    }
 
   toggleMenu() {
     if (this.state.drawerOpen) {
@@ -89,26 +115,27 @@ export default class Login extends Component {
                 <Text style={styles.displayText}>Username or Email</Text>
                 <TextInput
                     style={styles.textInput}
+                    placeholder='user@email.com'
+                    label='Email'
+                    value={this.state.email}
+                    onChangeText={email => this.setState({ email })}
                 />
                 <Text style={styles.displayText}>Password</Text>
                 <TextInput
                     style={styles.textInput}
+                    secureTextEntry
+                    placeholder='password'
+                    label='Password'
+                    value={this.state.password}
+                    onChangeText={password => this.setState({ password })}
                 />
                 <View style={styles.buttonRow}>
                   <Button
-                    onPress={() => this.login()}
+                    onPress={() => this.onButtonPress()}
                     containerStyle={styles.button}
                   >
                     <Text style={styles.buttonText}>
                       Login
-                    </Text>
-                  </Button>
-                  <Button
-                    onPress={() => this.login()}
-                    containerStyle={styles.button}
-                  >
-                    <Text style={styles.buttonText}>
-                      Register
                     </Text>
                   </Button>
               </View>

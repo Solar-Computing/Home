@@ -5,6 +5,7 @@ import {
   Alert,
   StyleSheet
 } from 'react-native';
+import firebase from 'firebase';
 import Swiper from 'react-native-swiper';
 import DataList from './layout/feed/feed2.js';
 import Navigation from './layout/navigation/navigation.js';
@@ -12,6 +13,7 @@ import HeaderBar from './layout/header/headerBar.js';
 import SettingsPage from './layout/settings/settingsPage.js';
 import GraphPage from './layout/graphs/graph.js';
 import styles from './layout/app_styles.js';
+
 
 import Drawer from 'react-native-drawer';
 
@@ -27,6 +29,27 @@ class App extends Component {
       index: 0,
       drawerOpen: false
     };
+  }
+
+  componentWillMount() {
+    console.log('STARTING FIREBASE AUTHORIZATION.');
+    firebase.initializeApp({
+      apiKey: 'AIzaSyBDFIwygLphnXFyAfJBVBk17G9SqEa4R3w',
+      authDomain: 'home-7748b.firebaseapp.com',
+      databaseURL: 'https://home-7748b.firebaseio.com',
+      projectId: 'home-7748b',
+      storageBucket: 'home-7748b.appspot.com',
+      messagingSenderId: '803538838637'
+    });
+
+    // firebase.auth().onAuthStateChanged((user) => {
+		// 	if (user) {
+		// 		this.setState({ loggedIn: true });
+		// 	} else {
+		// 		this.setState({ loggedIn: false });
+		// 	}
+		// });
+    console.log('FINISHED FIREBASE AUTHORIZATION.');
   }
 
   toSettings() {
@@ -90,29 +113,9 @@ class App extends Component {
               <DataList />
             </View>
           </Swiper>
-        <Text>After Drawer Statement</Text>
       </View>
     );
   }
 }
-
-const stylez = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
 
 export default App;
