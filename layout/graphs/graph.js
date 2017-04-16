@@ -270,7 +270,7 @@ export default class GraphPage extends Component {
       day: dayStatic,
       loaded: false
     };
-    this.state.day.setYear(2016)
+    //this.state.day.setYear(2016)
   }
 
   componentDidMount() {
@@ -297,7 +297,7 @@ export default class GraphPage extends Component {
     this.state.loaded = false
     this.forceUpdate()
 
-    currentDay.setYear(2016)    
+    //currentDay.setYear(2016)    
     this.state.day = new Date(currentDay)
     dayStatic = new Date(currentDay)
     currDayMidnight = new Date(currentDay)
@@ -308,7 +308,7 @@ export default class GraphPage extends Component {
     console.log(this.state.day)
 
     // Timeout function whose callback in case of error is a recursive call to update() (basically it tries until it gets connection and succeeds)
-    this.timeout(5000, fetch('http://lowcost-env.kwjgjsvk34.us-east-1.elasticbeanstalk.com/api/simulations', {
+    this.timeout(5000, fetch('http://lowcost-env.kwjgjsvk34.us-east-1.elasticbeanstalk.com/api/neurioData', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -321,13 +321,13 @@ export default class GraphPage extends Component {
       })
     })).then((loadedData) => {
         this.setState({ data: JSON.parse(loadedData._bodyInit) });
-        dayPowerData = [[], [], []]
         hour = 0
-        dayPowerData[2].push({x: 0, y: 10})
+        dayPowerData = [[], [], []]
+        dayPowerData[2].push({x: 0, y: 3})
         this.state.data.contents.forEach(function(entry) {
           date = new Date(entry.timestamp)
           //console.log(entry)
-          dayPowerData[0].push({x: date.getHours(), y: entry.ACPrimaryLoad})
+          dayPowerData[0].push({x: date.getHours(), y: entry.ACPrimaryLoad / 1000.0})
           dayPowerData[1].push({x: date.getHours(), y: entry.PVPowerOutput})
           hour++
         })
@@ -341,6 +341,7 @@ export default class GraphPage extends Component {
         // Load component once it's been populated
         this.state.loaded = true
         this.forceUpdate()
+        //console.log("NEW DAY\n")
 
     }).catch((error) => {
       console.log(`Connection error... ${error}`);
