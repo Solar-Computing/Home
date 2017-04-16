@@ -19,7 +19,7 @@ SPDX-License-Identifier: Apache-2.0
 'use strict';
 
 import React, { Component } from 'react';
-import { View, Text, Navigator, Alert } from 'react-native';
+import { View, Text, ActivityIndicator } from 'react-native';
 
 import { SmoothLine } from 'react-native-pathjs-charts';
 import Button from 'react-native-button';
@@ -33,37 +33,48 @@ class SmoothLineChartBasic extends Component {
     };
   }
   render() {
-    return (
-      <View style={{ flexDirection: 'column' }}>
-        <Text style={styles.graphTitle}>{this.props.title}</Text>
-        <Text style={styles.graphUnits}>({this.props.units})</Text>
-        <Text style={styles.graphDay}>({this.props.day})</Text>
-        <SmoothLine data={this.props.data} options={this.props.options} xKey='x' yKey='y' />
-        <View style={styles.scrubBar}>
-          <Button
-            containerStyle={styles.scrubButtons}
-            onPress={() => this.handleBack()}
-          >
-            <Text style={styles.scrubTitles}>
-              Back
-            </Text>
-          </Button>
-          <View style={styles.spacer} />
-          <Button
-            containerStyle={styles.scrubButtons}
-            onPress={() => this.handleNext()}
-          >
-            <Text style={styles.scrubTitles}>
-              Next
-            </Text>
-          </Button>
+    if (this.props.loaded) {
+      return (
+        <View style={{ flexDirection: 'column' }}>
+          <Text style={styles.graphTitle}>{this.props.title}</Text>
+          <Text style={styles.graphUnits}>({this.props.units})</Text>
+          <Text style={styles.graphDay}>({this.props.day})</Text>
+          <SmoothLine data={this.props.data} options={this.props.options} xKey='x' yKey='y' />
+          <View style={styles.scrubBar}>
+            <Button
+              containerStyle={styles.scrubButtons}
+              onPress={() => this.handleBack()}
+            >
+              <Text style={styles.scrubTitles}>
+                Back
+              </Text>
+            </Button>
+            <View style={styles.spacer} />
+            <Button
+              containerStyle={styles.scrubButtons}
+              onPress={() => this.handleNext()}
+            >
+              <Text style={styles.scrubTitles}>
+                Next
+              </Text>
+            </Button>
+          </View>
         </View>
-      </View>
+      );
+    }
+
+    // Loads waiting animation if component hasn't been populated yet
+    return (
+      <ActivityIndicator
+        animating={this.state.animating}
+        style={styles.activityIndicator}
+        size="large"
+      />
     );
   }
 
   handleBack() {
-    let dayBefore = this.state.currentDay
+    const dayBefore = this.state.currentDay
     dayBefore.setDate(dayBefore.getDate() - 1)
     dayBefore.setHours(23);
     this.props.update(dayBefore);
@@ -71,7 +82,7 @@ class SmoothLineChartBasic extends Component {
   }
 
   handleNext() {
-    let nextDay = this.state.currentDay
+    const nextDay = this.state.currentDay
     nextDay.setDate(nextDay.getDate() + 1)
     nextDay.setHours(23)
     this.props.update(nextDay)

@@ -39,5 +39,11 @@ export default StyleSheet.create({
     },
     divider: {
         height: 20
+    },
+    activityIndicator: {
+        height: 80,
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: 8
     }
 });

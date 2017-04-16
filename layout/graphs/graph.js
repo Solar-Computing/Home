@@ -1,14 +1,17 @@
 import React, { Component } from 'react';
 import {
   ScrollView,
-  View
+  View,
+  ActivityIndicator
 } from 'react-native';
 
 import Chart from './SmoothLineChart.js';
 //import Summary from './BarSummary.js';
 import styles from './GraphStyles.js';
 
-let dayEnergyData = [
+let dayStatic = new Date();
+
+let dayPowerData = [
       [{
         x: 0,
         y: 1.2
@@ -264,8 +267,10 @@ export default class GraphPage extends Component {
     super(props);
     this.state = {
       data: {},
-      day: new Date()
+      day: dayStatic,
+      loaded: false
     };
+    this.state.day.setYear(2016)
   }
 
   componentDidMount() {
@@ -273,19 +278,37 @@ export default class GraphPage extends Component {
     this.update(this.state.day)
   }
 
+  componentWillUnmount() {
+    console.log("UNMOUNTING!")
+  }
+
+  timeout(ms, promise) {
+    return new Promise(function(resolve, reject) {
+      setTimeout(function() {
+        reject(new Error("Request timed out"))
+      }, ms);
+      promise.then(resolve, reject);
+    });
+  }
+
   update(currentDay) {
-    
+
+    // Load activity indicator (loading symbol)
+    this.state.loaded = false
+    this.forceUpdate()
+
+    currentDay.setYear(2016)    
     this.state.day = new Date(currentDay)
-    currentDay.setYear(2016)
+    dayStatic = new Date(currentDay)
     currDayMidnight = new Date(currentDay)
     currDayMidnight.setHours(0)
     currDayMidnight.setMinutes(0)
     currDayMidnight.setSeconds(0)
-    /*dayBefore = new Date()
-    dayBefore.setYear(2016)
-    dayBefore.setDate(dayBefore.getDate() - 1)*/
 
-    fetch('http://lowcost-env.kwjgjsvk34.us-east-1.elasticbeanstalk.com/api/simulations', {
+    console.log(this.state.day)
+
+    // Timeout function whose callback in case of error is a recursive call to update() (basically it tries until it gets connection and succeeds)
+    this.timeout(5000, fetch('http://lowcost-env.kwjgjsvk34.us-east-1.elasticbeanstalk.com/api/simulations', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -296,40 +319,32 @@ export default class GraphPage extends Component {
         end: currentDay.toUTCString(),
         aggregate: 'hourly'
       })
-    }).then((loadedData) => {
+    })).then((loadedData) => {
         this.setState({ data: JSON.parse(loadedData._bodyInit) });
-        //this.state.dayData = []
-        dayEnergyData = [[], []]
-        /*this.state.data.contents.sort(function(a,b){
-          // Turn your strings into dates, and then subtract them
-          // to get a value that is either negative, positive, or zero.
-          return new Date(a.timestamp) - new Date(b.timestamp);
-        });*/
-        //console.log(this.state.data.contents)
+        dayPowerData = [[], [], []]
         hour = 0
+        dayPowerData[2].push({x: 0, y: 10})
         this.state.data.contents.forEach(function(entry) {
-          //console.log(entry)
           date = new Date(entry.timestamp)
-          console.log(entry)
-          //console.log("\n" + date.getHours() + "\n")
-          //console.log(date)
-          dayEnergyData[0].push({x: date.getHours(), y: entry.ACPrimaryLoad})
-          dayEnergyData[1].push({x: date.getHours(), y: entry.PVPowerOutput})
+          //console.log(entry)
+          dayPowerData[0].push({x: date.getHours(), y: entry.ACPrimaryLoad})
+          dayPowerData[1].push({x: date.getHours(), y: entry.PVPowerOutput})
           hour++
         })
-        // for (; hour < 24; hour++) {
-        //   dayEnergyData[0].push({x: hour, y: 0})
-        //   dayEnergyData[1].push({x: hour, y: 0})
-        //   //console.log(hour)
-        // }
-        console.log(currDayMidnight.toLocaleString())
-        console.log(currentDay.toLocaleString())
-        //console.log("\nSTOP\n"+hour)
-        //console.log(dayEnergyData)
-        //console.log(currentDay)
-        //console.log(currDayMidnight)
+        for (; hour < 24; hour++) {
+          dayPowerData[0].push({x: hour, y: 0})
+          dayPowerData[1].push({x: hour, y: 0})
+        }
+        //console.log(currDayMidnight.toLocaleString())
+        //console.log(currentDay.toLocaleString())
+
+        // Load component once it's been populated
+        this.state.loaded = true
+        this.forceUpdate()
+
     }).catch((error) => {
-      console.log(`Error... ${error}`);
+      console.log(`Connection error... ${error}`);
+      this.update(this.state.day)
     });
   }
 
@@ -617,17 +632,19 @@ export default class GraphPage extends Component {
         />        
       </ScrollView>
     );*/
-
+    x = this.state.day.toLocaleString().split(' ')
+    dayTitle = x[0] + " " + x[1] + " " + x[2] + ", " + x[4]
     return (
       <ScrollView>
         <Chart
           title={'Day Power Consumption vs Production'}
           units={'kWh'}
-          day={this.state.day.toLocaleString()}
-          data={dayEnergyData}
+          day={dayTitle}
+          data={dayPowerData}
           options={energyOptions}
-          update={(newDay) => { this.update(newDay); this.forceUpdate(); }}
+          update={(newDay) => { this.update(newDay); }}
           today={new Date()}
+          loaded={this.state.loaded}
         />{/*
         <View style={styles.divider} />
         <Chart
