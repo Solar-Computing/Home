@@ -274,6 +274,7 @@ export default class GraphPage extends Component {
 
   componentDidMount() {
     // Get correct dates
+    this.state.day.setHours(this.state.day.getHours() - 1)
     this.update(this.state.day);
   }
 
@@ -306,7 +307,7 @@ export default class GraphPage extends Component {
     console.log(this.state.day);
 
     // Timeout function whose callback in case of error is a recursive call to update() (basically it tries until it gets connection and succeeds)
-    this.timeout(5000, fetch('http://lowcost-env.kwjgjsvk34.us-east-1.elasticbeanstalk.com/api/neurioData', {
+    this.timeout(3000, fetch('http://lowcost-env.kwjgjsvk34.us-east-1.elasticbeanstalk.com/api/neurioData', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -318,6 +319,7 @@ export default class GraphPage extends Component {
         aggregate: 'hourly'
       })
     })).then((loadedData) => {
+        //console.log(loadedData)
         this.setState({ data: JSON.parse(loadedData._bodyInit) });
         hour = 0;
         dayPowerData = [[], [], []];
