@@ -6,7 +6,7 @@ import {
   StyleSheet
 } from 'react-native';
 import Swiper from 'react-native-swiper';
-import DataList from './layout/feed/feed.js';
+import DataList from './layout/feed/feed2.js';
 import Navigation from './layout/navigation/navigation.js';
 import HeaderBar from './layout/header/headerBar.js';
 import SettingsPage from './layout/settings/settingsPage.js';

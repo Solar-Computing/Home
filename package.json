@@ -4,7 +4,9 @@
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
-    "test": "jest"
+    "test": "jest",
+    "build": "(cd android/ && ./gradlew assembleDebug)",
+    "bundle-android": "react-native bundle --platform android --dev false --entry-file index.android.js --bundle-output android/app/src/main/assets/index.android.bundle --sourcemap-output android/app/src/main/assets/index.android.map --assets-dest android/app/src/main/res/"
   },
   "dependencies": {
     "art": "^0.10.1",
@@ -21,7 +23,8 @@
     "react-native-pathjs-charts": "0.0.26",
     "react-native-slider": "^0.9.1",
     "react-native-svg": "4.5.0",
-    "react-native-swiper": "^1.5.2"
+    "react-native-swiper": "^1.5.2",
+    "react-native-timeline-listview": "^0.2.0"
   },
   "devDependencies": {
     "babel-jest": "18.0.0",

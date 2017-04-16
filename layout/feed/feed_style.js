@@ -40,5 +40,47 @@ export default StyleSheet.create({
     container: {
         margin: 8,
         marginLeft: 12
+    },
+    container2: {
+      flex: 1,
+      padding: 20,
+      paddingTop: 65,
+      backgroundColor: '#1e7794'
+    },
+    list2: {
+      flex: 1,
+      marginTop: 20,
+    },
+    description: {
+        color: '#f2f2f2'
+    },
+    title: {
+        fontSize: 25,
+        color: '#36A2C8'
+
+    },
+    separator: {
+        color: '#0d4659'
+    },
+    time: {
+        color: '#0d4659',
+        fontWeight: 'bold',
+        textAlign: 'center',
+        backgroundColor: '#36A2C8',
+        // color: 'white',
+        padding: 5,
+        borderRadius: 13
+    },
+    timeContainer: {
+        minWidth: 52,
+        marginTop: -5
+    },
+    detailContainer: {
+        marginBottom: 20,
+        paddingLeft: 5,
+        paddingRight: 5,
+        backgroundColor: "#0d4659",
+        borderRadius: 10
+
     }
 });
