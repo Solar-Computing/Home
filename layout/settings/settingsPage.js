@@ -120,6 +120,7 @@ class MyAccordion extends Component {
     );
     return (
       <Accordion
+        style={{overflow: 'scroll'}}
         header={header}
         content={content}
       />

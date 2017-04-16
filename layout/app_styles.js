@@ -4,7 +4,6 @@ import {
 
 export default StyleSheet.create({
     wrapper: {
-      flex: 1,
     },
     slide1: {
       flex: 1,
