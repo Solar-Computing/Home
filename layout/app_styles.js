@@ -10,8 +10,6 @@ export default StyleSheet.create({
     flex: 1
   }, 
   wrapper: {
-    flex: 1,
-    flexDirection: 'column'
   },
   slide1: {
     flex: 1,

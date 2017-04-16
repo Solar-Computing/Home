@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
 import {
   ScrollView,
-  View
+  View,
+  ActivityIndicator
 } from 'react-native';
 
 import Chart from './SmoothLineChart.js';
 import styles from './GraphStyles.js';
 
-// mock data and styling
-const dayEnergyData = [
+let dayStatic = new Date();
+
+let dayPowerData = [
       [{
         x: 0,
         y: 1.2
@@ -259,7 +261,219 @@ const yearEnergyData = [
       }]
     ];
 
-const graphOptions = {
+export default class GraphPage extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      data: {},
+      day: dayStatic,
+      loaded: false
+    };
+    //this.state.day.setYear(2016)
+  }
+
+  componentDidMount() {
+    // Get correct dates
+    this.update(this.state.day);
+  }
+
+  componentWillUnmount() {
+    console.log('UNMOUNTING!');
+  }
+
+  timeout(ms, promise) {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        reject(new Error('Request timed out'));
+      }, ms);
+      promise.then(resolve, reject);
+    });
+  }
+
+  update(currentDay) {
+    // Load activity indicator (loading symbol)
+    this.state.loaded = false;
+    this.forceUpdate();
+
+    //currentDay.setYear(2016)    
+    this.state.day = new Date(currentDay);
+    dayStatic = new Date(currentDay);
+    currDayMidnight = new Date(currentDay);
+    currDayMidnight.setHours(0);
+    currDayMidnight.setMinutes(0);
+    currDayMidnight.setSeconds(0);
+
+    console.log(this.state.day);
+
+    // Timeout function whose callback in case of error is a recursive call to update() (basically it tries until it gets connection and succeeds)
+    this.timeout(5000, fetch('http://lowcost-env.kwjgjsvk34.us-east-1.elasticbeanstalk.com/api/neurioData', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        start: currDayMidnight.toUTCString(),
+        end: currentDay.toUTCString(),
+        aggregate: 'hourly'
+      })
+    })).then((loadedData) => {
+        this.setState({ data: JSON.parse(loadedData._bodyInit) });
+        hour = 0;
+        dayPowerData = [[], [], []];
+        dayPowerData[2].push({ x: 0, y: 3 });
+        this.state.data.contents.forEach((entry) => {
+          date = new Date(entry.timestamp);
+          //console.log(entry)
+          dayPowerData[0].push({ x: date.getHours(), y: entry.ACPrimaryLoad / 1000.0 });
+          dayPowerData[1].push({ x: date.getHours(), y: entry.PVPowerOutput });
+          hour++;
+        });
+        for (; hour < 24; hour++) {
+          dayPowerData[0].push({ x: hour, y: 0 });
+          dayPowerData[1].push({ x: hour, y: 0 });
+        }
+        //console.log(currDayMidnight.toLocaleString())
+        //console.log(currentDay.toLocaleString())
+
+        // Load component once it's been populated
+        this.state.loaded = true;
+        this.forceUpdate();
+        //console.log("NEW DAY\n")
+    }).catch((error) => {
+      console.log(`Connection error... ${error}`);
+      this.update(this.state.day);
+    });
+  }
+
+  render() {
+    /*const profitData = [
+      [{
+        x: 0,
+        y: -5
+      }, {
+        x: 2,
+        y: -20
+      }, {
+        x: 4,
+        y: -25
+      }, {
+        x: 6,
+        y: -20
+      }, {
+        x: 8,
+        y: -10
+      }, {
+        x: 10,
+        y: -5
+      }, {
+        x: 12,
+        y: -10
+      }, {
+        x: 14,
+        y: 20
+      }, {
+        x: 16,
+        y: 15
+      }, {
+        x: 18,
+        y: 10
+      }, {
+        x: 20,
+        y: -8
+      }, {
+        x: 22,
+        y: -15
+      }, {
+        x: 24,
+        y: -5
+      }]
+    ];
+
+    const waterData = [
+      [{
+        x: 0,
+        y: 10
+      }, {
+        x: 2,
+        y: 10
+      }, {
+        x: 4,
+        y: 12
+      }, {
+        x: 6,
+        y: 10
+      }, {
+        x: 8,
+        y: 15
+      }, {
+        x: 10,
+        y: 40
+      }, {
+        x: 12,
+        y: 35
+      }, {
+        x: 14,
+        y: 25
+      }, {
+        x: 16,
+        y: 10
+      }, {
+        x: 18,
+        y: 8
+      }, {
+        x: 20,
+        y: 36
+      }, {
+        x: 22,
+        y: 15
+      }, {
+        x: 24,
+        y: 5
+      }],
+      [{
+        x: 0,
+        y: 4
+      }, {
+        x: 2,
+        y: 4
+      }, {
+        x: 4,
+        y: 5
+      }, {
+        x: 6,
+        y: 4
+      }, {
+        x: 8,
+        y: 6
+      }, {
+        x: 10,
+        y: 26
+      }, {
+        x: 12,
+        y: 19
+      }, {
+        x: 14,
+        y: 10
+      }, {
+        x: 16,
+        y: 6
+      }, {
+        x: 18,
+        y: 5
+      }, {
+        x: 20,
+        y: 20
+      }, {
+        x: 22,
+        y: 8
+      }, {
+        x: 24,
+        y: 2
+      }]
+    ];
+
+    const profitOptions = {
       width: 300,
       height: 150,
       color: '#f2f2f2',
@@ -304,63 +518,89 @@ const graphOptions = {
       }
     };
 
-// graph component
-export default class GraphPage extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      data: {}
-    };
-  }
-  componentDidMount() {
-  //Get date for today (ms) --> subtract ms in a week and then put in graph
-    fetch('http://lowcost-env.kwjgjsvk34.us-east-1.elasticbeanstalk.com/api/simulations', {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
+    /*
+    const waterOptions = {
+      width: 300,
+      height: 150,
+      color: '#59bbda',
+      margin: {
+        top: 40,
+        left: 40,
+        bottom: 40,
+        right: 40
       },
-      body: JSON.stringify({
-        start: '20160101T00:00:00Z',
-        end: '20170101T00:00:00Z',
-        aggregate: 'daily'
-      })
-    }).then((loadedData) => {
-        this.setState({ data: JSON.parse(loadedData._bodyInit) });
-        //this.state.dayData = []
-        weekEnergyData = [[], []];
-        this.state.data.contents.forEach((entry) => {
-          date = new Date(entry.timestamp);
-          today = new Date();
-          today.setYear(2016);
-          //console.log(today.getFullYear(), today.getMonth(), today.getDay())
-          weekBefore = new Date(today.getFullYear(), today.getMonth(), today.getDate() - 7);
-          //date.setYear(2017)
-          //console.log(date + " " + today)
-          //console.log(date.toString() + " " + today.toString())
-          if (date.getMonth() === today.getMonth()) {
-            // console.log("\n"+today)
-            // console.log("NEW")
-            // console.log(date)
-            // console.log(entry)
-            weekEnergyData[0].push({ x: date.getMonth(), y: entry.ACPrimaryLoad });
-            weekEnergyData[1].push({ x: date.getMonth(), y: entry.PVPowerOutput });
-          }
-        });
-        console.log(weekEnergyData);
-    }).catch((error) => {
-      console.log(`Error... ${error}`);
-    });
-  }
-  render() {
+      animate: {
+        type: 'delayed',
+        duration: 200
+      },
+      axisX: {
+        showAxis: true,
+        showLines: false,
+        showLabels: true,
+        showTicks: true,
+        zeroAxis: false,
+        orient: 'bottom',
+        label: {
+          fontFamily: 'Arial',
+          fontSize: 14,
+          fontWeight: true,
+          fill: '#34495E'
+        }
+      },
+      axisY: {
+        showAxis: true,
+        showLines: true,
+        showLabels: true,
+        showTicks: true,
+        zeroAxis: false,
+        orient: 'left',
+        label: {
+          fontFamily: 'Arial',
+          fontSize: 14,
+          fontWeight: true,
+          fill: '#34495E'
+        }
+      }
+    };
+
     return (
       <ScrollView>
         <Chart
-          title={'Day Energy Consumption vs Production'}
-          units={'kW/h'}
-          data={dayEnergyData}
-          options={graphOptions}
+          title={'Cash Flow'}
+          units={'Dollars'}
+          data={profitData}
+          options={profitOptions}
         />
+        <View style={styles.divider} />
+        <Chart
+          title={'Energy Consumption vs Production'}
+          units={'kW/h'}
+          data={energyData}
+          options={energyOptions}
+        />
+        <View style={styles.divider} />
+        <Chart
+          title={'Water Use vs Filtration'}
+          units={'Gal'}
+          data={waterData}
+          options={waterOptions}
+        />        
+      </ScrollView>
+    );*/
+    x = this.state.day.toLocaleString().split(' ');
+    dayTitle = `${x[0]  } ${  x[1]  } ${  x[2]  }, ${  x[4]}`;
+    return (
+      <ScrollView>
+        <Chart
+          title={'Day Power Consumption vs Production'}
+          units={'kWh'}
+          day={dayTitle}
+          data={dayPowerData}
+          options={energyOptions}
+          update={(newDay) => { this.update(newDay); }}
+          today={new Date()}
+          loaded={this.state.loaded}
+        />{/*
         <View style={styles.divider} />
         <Chart
           title={'Week Energy Consumption vs Production'}
@@ -373,10 +613,8 @@ export default class GraphPage extends Component {
           title={'Year Energy Consumption vs Production'}
           units={'kW/h'}
           data={yearEnergyData}
-          options={graphOptions}
-        />
-        <View style={styles.divider} />
-
+          options={energyOptions}
+        />  */}
       </ScrollView>
     );
   }

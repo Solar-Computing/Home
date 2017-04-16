@@ -17,7 +17,7 @@ const optionComponents = {
 let mySwitch: SubSwitch;
 const allSwitches = [];
 
-// myData = [
+/* myData = [
 //   {"name": "General", "state": {"switchIsOn": false}, "options": [
 //     {"name": "Temperature", "optionType": "slider", "state": {"minimum": "20", "maximum":"120"}},
 //     {"name": "Microwave", "optionType": "switch", "state": {"switchIsOn": false}},
@@ -50,7 +50,7 @@ const allSwitches = [];
 //     {"name": "Lights", "optionType": "switch", "state": {"switchIsOn": false}}
 //     ]
 //   }
-// ]
+// ]*/
 
 
 class SettingsPage extends Component {
@@ -150,6 +150,7 @@ class MyAccordion extends Component {
     
     return (
       <Accordion
+        style={{overflow: 'scroll'}}
         header={header}
         content={content}
         

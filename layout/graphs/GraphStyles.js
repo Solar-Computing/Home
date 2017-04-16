@@ -57,7 +57,16 @@ export default StyleSheet.create({
     graphPage: {
         backgroundColor: '#1e7794'
     },
+    graphDay: {
+        textAlign: 'center'
+    },
     divider: {
         height: 20
+    },
+    activityIndicator: {
+        height: 80,
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: 8
     }
 });
