@@ -59,21 +59,33 @@ class SmoothLineChartBasic extends Component {
           <SmoothLine data={this.props.data} options={this.props.options} xKey='x' yKey='y' />
           <View style={styles.scrubBar}>
             <Button
-              containerStyle={styles.scrubButtons}
               onPress={() => this.handleBack()}
+              containerStyle={styles.scrubButton}
             >
-              <Text style={styles.scrubTitles}>
-                Back
-              </Text>
+              <View style={styles.scrubView} >              
+                <Image
+                    style={styles.scrubIcon}
+                    source={require('../img/past.png')}
+                /> 
+                <Text style={styles.scrubTitles}>
+                  Back
+                </Text>
+              </View>
             </Button>
             <View style={styles.spacer} />
             <Button
-              containerStyle={styles.scrubButtons}
               onPress={() => this.handleNext()}
+              containerStyle={styles.scrubButton}
             >
-              <Text style={styles.scrubTitles}>
-                Next
-              </Text>
+              <View style={styles.scrubView} >              
+                <Image
+                    style={styles.scrubIcon}
+                    source={require('../img/future.png')}
+                /> 
+                <Text style={styles.scrubTitles}>
+                  Next
+                </Text>
+              </View>
             </Button>
           </View>
         </View>
