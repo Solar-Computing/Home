@@ -273,12 +273,13 @@ export default class GraphPage extends Component {
   }
 
   componentDidMount() {
-    // Get correct dates
+    // First mount
     //this.state.day.setHours(this.state.day.getHours() - 1)
     this.update(this.state.day);
   }
 
   componentWillUnmount() {
+    // On destroy
     console.log('UNMOUNTING!');
   }
 
@@ -295,16 +296,13 @@ export default class GraphPage extends Component {
     // Load activity indicator (loading symbol)
     this.state.loaded = false;
     this.forceUpdate();
-
-    //currentDay.setYear(2016)    
+    
     this.state.day = new Date(currentDay);
     dayStatic = new Date(currentDay);
     currDayMidnight = new Date(currentDay);
     currDayMidnight.setHours(0);
     currDayMidnight.setMinutes(0);
     currDayMidnight.setSeconds(0);
-
-    console.log(this.state.day);
 
     // Timeout function whose callback in case of error is a recursive call to update() (basically it tries until it gets connection and succeeds)
     this.timeout(5000, fetch('http://lowcost-env.kwjgjsvk34.us-east-1.elasticbeanstalk.com/api/neurioData', {
@@ -319,29 +317,33 @@ export default class GraphPage extends Component {
         aggregate: 'hourly'
       })
     })).then((loadedData) => {
-        console.log(loadedData)
-        this.setState({ data: JSON.parse(loadedData._bodyInit) });
-        hour = 0;
-        dayPowerData = [[], [], []];
-        dayPowerData[2].push({ x: 0, y: 3 });
-        this.state.data.contents.forEach((entry) => {
-          date = new Date(entry.timestamp);
-          //console.log(entry)
-          dayPowerData[0].push({ x: date.getHours(), y: entry.ACPrimaryLoad / 1000.0 });
-          dayPowerData[1].push({ x: date.getHours(), y: entry.PVPowerOutput });
-          hour++;
-        });
-        for (; hour < 24; hour++) {
-          dayPowerData[0].push({ x: hour, y: 0 });
-          dayPowerData[1].push({ x: hour, y: 0 });
-        }
-        //console.log(currDayMidnight.toLocaleString())
-        //console.log(currentDay.toLocaleString())
+      // Parse data
+      this.setState({ data: JSON.parse(loadedData._bodyInit) });
 
-        // Load component once it's been populated
-        this.state.loaded = true;
-        this.forceUpdate();
-        //console.log("NEW DAY\n")
+      // Set up data pools
+      hour = 0;
+      dayPowerData = [[], [], []];
+      dayPowerData[2].push({ x: 0, y: 3 });
+      
+      this.state.data.contents.forEach((entry) => {
+        
+        // Push data to curve data pools
+        date = new Date(entry.timestamp);
+        dayPowerData[0].push({ x: date.getHours(), y: entry.ACPrimaryLoad / 1000.0 });
+        dayPowerData[1].push({ x: date.getHours(), y: entry.PVPowerOutput });
+        hour++;
+      });
+
+      // Finish filling up data pools with 0 values
+      for (; hour < 24; hour++) {
+        dayPowerData[0].push({ x: hour, y: 0 });
+        dayPowerData[1].push({ x: hour, y: 0 });
+      }
+
+      // Load component once it's been populated
+      this.state.loaded = true;
+      this.forceUpdate();
+
     }).catch((error) => {
       console.log(`Connection error... ${error}`);
       this.update(this.state.day);
