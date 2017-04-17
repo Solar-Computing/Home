@@ -15,7 +15,7 @@ export default StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         backgroundColor: '#36A2C8',
-        margin: 3,
+        //margin: 3,
         marginRight: 4
     },
     cellImage: {
@@ -38,7 +38,7 @@ export default StyleSheet.create({
         // fontWeight: 'bold'
     },
     container: {
-        margin: 8,
+        //margin: 8,
         marginLeft: 12
     },
     container2: {
@@ -69,7 +69,7 @@ export default StyleSheet.create({
         textAlign: 'center',
         backgroundColor: '#36A2C8',
         // color: 'white',
-        padding: 5,
+        paddingTop: 5,
         borderRadius: 13
     },
     timeContainer: {
