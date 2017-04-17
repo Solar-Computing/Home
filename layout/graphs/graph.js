@@ -22,7 +22,7 @@ export default class GraphPage extends Component {
 
   componentDidMount() {
     // First mount
-    //this.state.day.setHours(this.state.day.getHours() - 1)
+    this.state.day.setHours(this.state.day.getHours() - 1)
     this.update(this.state.day);
   }
 
@@ -66,34 +66,37 @@ export default class GraphPage extends Component {
         aggregate: 'hourly'
       })
     })).then((loadedData) => {
+      console.log(loadedData)
+
       // Parse data
       this.setState({ data: JSON.parse(loadedData._bodyInit) });
+      if (this.state.data.contents.length !== 0) {
+        // Set up data pools
+        let hour = 0;
+        dayPowerData = [[], [], []];
+        dayPowerData[2].push({ x: 0, y: 3 });
 
-      // Set up data pools
-      let hour = 0;
-      dayPowerData = [[], [], []];
-      dayPowerData[2].push({ x: 0, y: 3 });
+        this.state.data.contents.forEach((entry) => {
+          // Push data to curve data pools
+          const date = new Date(entry.timestamp);
+          dayPowerData[0].push({ x: date.getHours(), y: entry.ACPrimaryLoad / 1000.0 });
+          dayPowerData[1].push({ x: date.getHours(), y: entry.PVPowerOutput });
+          hour++;
+        });
 
-      this.state.data.contents.forEach((entry) => {
-        // Push data to curve data pools
-        const date = new Date(entry.timestamp);
-        dayPowerData[0].push({ x: date.getHours(), y: entry.ACPrimaryLoad / 1000.0 });
-        dayPowerData[1].push({ x: date.getHours(), y: entry.PVPowerOutput });
-        hour++;
-      });
+        // Finish filling up data pools with 0 values
+        for (; hour < 24; hour++) {
+          dayPowerData[0].push({ x: hour, y: 0 });
+          dayPowerData[1].push({ x: hour, y: 0 });
+        }
 
-      // Finish filling up data pools with 0 values
-      for (; hour < 24; hour++) {
-        dayPowerData[0].push({ x: hour, y: 0 });
-        dayPowerData[1].push({ x: hour, y: 0 });
+        // Load component once it's been populated
+        this.state.loaded = true;
+        this.forceUpdate();
       }
-
-      // Load component once it's been populated
-      this.state.loaded = true;
-      this.forceUpdate();
     }).catch((error) => {
       console.log(`Error loading graph data... ${error}`);
-      this.update(this.state.day);
+      //this.update(this.state.day);
     });
   }
 

@@ -90,6 +90,12 @@ export default StyleSheet.create({
         height: 30,
         alignItems: 'center',
         justifyContent: 'center'
+    },
+    activityIndicator: {
+        height: 80,
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: 8
     }
 
 });

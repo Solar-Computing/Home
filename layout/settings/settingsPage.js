@@ -3,7 +3,8 @@ import {
   Text,
   View,
   ListView,
-  Image
+  Image,
+  ActivityIndicator
 } from 'react-native';
 import Accordion from 'react-native-accordion';
 import styles from './settings_style.js';
@@ -113,9 +114,11 @@ class ListOfRooms extends Component {
       );
     } 
       return (
-        <View>
-          <Text style={styles.offlineMessage}>Unable to retrieve Settings from Internet</Text>
-        </View>
+        <ActivityIndicator
+          animating={this.state.animating}
+          style={styles.activityIndicator}
+          size="large"
+        />
       );
     
   }
