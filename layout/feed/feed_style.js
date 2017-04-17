@@ -43,13 +43,14 @@ export default StyleSheet.create({
     },
     container2: {
       flex: 1,
-      padding: 20,
-      paddingTop: 65,
+      paddingRight: 20,
+      paddingLeft: 20,
+      //paddingTop: 65,
       backgroundColor: '#1e7794'
     },
     list2: {
       flex: 1,
-      marginTop: 20,
+      marginTop: 20
     },
     description: {
         color: '#f2f2f2'
@@ -73,7 +74,7 @@ export default StyleSheet.create({
     },
     timeContainer: {
         minWidth: 52,
-        marginTop: -5
+        //marginTop: -5
     },
     detailContainer: {
         marginBottom: 20,
