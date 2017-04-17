@@ -12,46 +12,83 @@ export default class Example extends Component {
   constructor() {
     super();
     this.state = {
-      connected: true
+      connected: false
     };
-    this.data = [
-      {
-        time: 'Jan 04',
-        title: 'Milestone',
-        description: 'You used 10% less water this week!',
-        lineColor: '#009688',
-        icon: require('../img/goal.png')
-      },
-      {
-        time: 'Feb 12',
-        title: 'Update',
-        description: 'The GT Solar Home Team is at the Tiny House Fextival in Decatur this week',
-        lineColor: '#0066ff',
-        icon: require('../img/logo.png')
 
-      },
-      {
-        time: 'Feb 26',
-        title: 'Reminder',
-        description: 'Don\'t forget to turn off the light in the kitchen.',
-        lineColor: '#114555',
-        icon: require('../img/light-bulb.png')
-      },
-      {
-        time: 'Mar 17',
-        title: 'Alert',
-        description: 'Team sport played between two teams of eleven players with a spherical ball. ',
-        lineColor: '#ff3300',
-        icon: require('../img/megaphone.png')
-      },
-      {
-        time: 'Apr 01',
-        title: 'Achievement',
-        description: 'Great job! You hit a target energy consumption this month!',
-        lineColor: '#ff9933',
-        icon: require('../img/target.png')
-      }
-    ];
+    this.data = [];
+  }
+
+  componentDidMount() {
+    this.searchApi({
+      time: 'Apr 01',
+      title: 'Achievement',
+      description: 'Great job! You hit a target energy consumption this month!',
+      lineColor: '#ff9933',
+      icon: require('../img/target.png')
+    });
+  }
+
+
+  searchApi() {
+      fetch('http://lowcost-env.kwjgjsvk34.us-east-1.elasticbeanstalk.com/api/feedData').then((loadedData) => {
+          this.setState({
+              resultsData: JSON.parse(loadedData._bodyInit),
+              connected: false
+          });
+          console.log(this.state.resultsData);
+
+          this.setState({ resultsData: JSON.parse(loadedData._bodyInit) });
+
+          const imgGoal = require('../img/goal.png');
+          const imgLogo = require('../img/logo.png');
+          const imgLightBulb = require('../img/light-bulb.png');
+          const imgMegaphone = require('../img/megaphone.png');
+          const imgTarget = require('../img/target.png');
+          const imgTrophy = require('../img/trophy.png');
+          let showImage = imgLogo;
+
+          this.state.resultsData.forEach((entry) => {
+             //feedData.push({ message: entry.message, category: entry.category, timestamp: entry.timestamp });
+
+             if (entry.category == 'logo') {
+                 showImage = imgLogo;
+             }
+             if (entry.category == 'goal') {
+                 showImage = imgGoal;
+             }
+             if (entry.category == 'trophy') {
+                 showImage = imgTrophy;
+             }
+             if (entry.category == 'target') {
+                 showImage = imgTarget;
+             }
+             if (entry.category == 'light-bulb') {
+                 showImage = imgLightBulb;
+             }
+             if (entry.category == 'announcement') {
+                 showImage = imgMegaphone;
+             }
+
+            this.data.push(
+                 {
+                     time: entry.timestamp.substring(0, 5),
+                     title: entry.category,
+                     description: entry.message,
+                     lineColor: 'white',
+                 }
+             );
+          });
+
+          this.state = {
+            connected: true
+          };
+
+      }).catch((error) => {
+          console.log(`Error when fetching update data: ${error}`);
+            this.setState({
+                connected: false
+            });
+      });
   }
 
   render() {
@@ -61,7 +98,7 @@ export default class Example extends Component {
           <Timeline
             style={styles.list2}
             data={this.data}
-            innerCircle={'icon'}
+            innerCircle={'dot'}
             circleSize={35}
             descriptionStyle={styles.description}
             titleStyle={styles.title}
@@ -70,6 +107,8 @@ export default class Example extends Component {
             separator={false}
             timeContainerStyle={styles.timeContainer}
             detailContainerStyle={styles.detailContainer}
+            circleColor={'transparent'}
+            dotColor={'white'}
           />
         </View>
       );
