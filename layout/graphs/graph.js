@@ -1,265 +1,13 @@
 import React, { Component } from 'react';
 import {
   ScrollView,
-  View,
-  ActivityIndicator
 } from 'react-native';
 
 import Chart from './SmoothLineChart.js';
-import styles from './GraphStyles.js';
 
 let dayStatic = new Date();
 
-let dayPowerData = [
-      [{
-        x: 0,
-        y: 1.2
-      }, {
-        x: 2,
-        y: 1
-      }, {
-        x: 4,
-        y: 1.1
-      }, {
-        x: 6,
-        y: 1
-      }, {
-        x: 8,
-        y: 1.5
-      }, {
-        x: 10,
-        y: 2
-      }, {
-        x: 12,
-        y: 3
-      }, {
-        x: 14,
-        y: 3.2
-      }, {
-        x: 16,
-        y: 3.5
-      }, {
-        x: 18,
-        y: 4
-      }, {
-        x: 20,
-        y: 5
-      }, {
-        x: 22,
-        y: 2.5
-      }, {
-        x: 24,
-        y: 1
-      }],
-      [{
-        x: 0,
-        y: 0
-      }, {
-        x: 2,
-        y: 0
-      }, {
-        x: 4,
-        y: 0
-      }, {
-        x: 6,
-        y: 0.5
-      }, {
-        x: 8,
-        y: 1
-      }, {
-        x: 10,
-        y: 3
-      }, {
-        x: 12,
-        y: 4
-      }, {
-        x: 14,
-        y: 3.5
-      }, {
-        x: 16,
-        y: 2
-      }, {
-        x: 18,
-        y: 0.6
-      }, {
-        x: 20,
-        y: 0.2
-      }, {
-        x: 22,
-        y: 0
-      }, {
-        x: 24,
-        y: 0
-      }]
-    ];
-
-
-const weekEnergyData = [
-      [{
-        x: 0,
-        y: 1.2
-      }, {
-        x: 2,
-        y: 1
-      }, {
-        x: 4,
-        y: 1.1
-      }, {
-        x: 6,
-        y: 1
-      }, {
-        x: 8,
-        y: 1.5
-      }, {
-        x: 10,
-        y: 2
-      }, {
-        x: 12,
-        y: 3
-      }, {
-        x: 14,
-        y: 3.2
-      }, {
-        x: 16,
-        y: 3.5
-      }, {
-        x: 18,
-        y: 4
-      }, {
-        x: 20,
-        y: 5
-      }, {
-        x: 22,
-        y: 2.5
-      }, {
-        x: 24,
-        y: 1
-      }],
-      [{
-        x: 0,
-        y: 0
-      }, {
-        x: 2,
-        y: 0
-      }, {
-        x: 4,
-        y: 0
-      }, {
-        x: 6,
-        y: 0.5
-      }, {
-        x: 8,
-        y: 1
-      }, {
-        x: 10,
-        y: 3
-      }, {
-        x: 12,
-        y: 4
-      }, {
-        x: 14,
-        y: 3.5
-      }, {
-        x: 16,
-        y: 2
-      }, {
-        x: 18,
-        y: 0.6
-      }, {
-        x: 20,
-        y: 0.2
-      }, {
-        x: 22,
-        y: 0
-      }, {
-        x: 24,
-        y: 0
-      }]
-    ];
-
-
-const yearEnergyData = [
-      [{
-        x: 0,
-        y: 1.2
-      }, {
-        x: 2,
-        y: 1
-      }, {
-        x: 4,
-        y: 1.1
-      }, {
-        x: 6,
-        y: 1
-      }, {
-        x: 8,
-        y: 1.5
-      }, {
-        x: 10,
-        y: 2
-      }, {
-        x: 12,
-        y: 3
-      }, {
-        x: 14,
-        y: 3.2
-      }, {
-        x: 16,
-        y: 3.5
-      }, {
-        x: 18,
-        y: 4
-      }, {
-        x: 20,
-        y: 5
-      }, {
-        x: 22,
-        y: 2.5
-      }, {
-        x: 24,
-        y: 1
-      }],
-      [{
-        x: 0,
-        y: 0
-      }, {
-        x: 2,
-        y: 0
-      }, {
-        x: 4,
-        y: 0
-      }, {
-        x: 6,
-        y: 0.5
-      }, {
-        x: 8,
-        y: 1
-      }, {
-        x: 10,
-        y: 3
-      }, {
-        x: 12,
-        y: 4
-      }, {
-        x: 14,
-        y: 3.5
-      }, {
-        x: 16,
-        y: 2
-      }, {
-        x: 18,
-        y: 0.6
-      }, {
-        x: 20,
-        y: 0.2
-      }, {
-        x: 22,
-        y: 0
-      }, {
-        x: 24,
-        y: 0
-      }]
-    ];
+let dayPowerData = [[], [], []];
 
 export default class GraphPage extends Component {
   constructor(props) {
@@ -299,12 +47,13 @@ export default class GraphPage extends Component {
     
     this.state.day = new Date(currentDay);
     dayStatic = new Date(currentDay);
-    currDayMidnight = new Date(currentDay);
+    const currDayMidnight = new Date(currentDay);
     currDayMidnight.setHours(0);
     currDayMidnight.setMinutes(0);
     currDayMidnight.setSeconds(0);
 
-    // Timeout function whose callback in case of error is a recursive call to update() (basically it tries until it gets connection and succeeds)
+    // Timeout function whose callback in case of error is a recursive call to update()
+    // (basically it tries until it gets connection and succeeds)
     this.timeout(5000, fetch('http://lowcost-env.kwjgjsvk34.us-east-1.elasticbeanstalk.com/api/neurioData', {
       method: 'POST',
       headers: {
@@ -321,14 +70,13 @@ export default class GraphPage extends Component {
       this.setState({ data: JSON.parse(loadedData._bodyInit) });
 
       // Set up data pools
-      hour = 0;
+      let hour = 0;
       dayPowerData = [[], [], []];
       dayPowerData[2].push({ x: 0, y: 3 });
 
       this.state.data.contents.forEach((entry) => {
-        
         // Push data to curve data pools
-        date = new Date(entry.timestamp);
+        const date = new Date(entry.timestamp);
         dayPowerData[0].push({ x: date.getHours(), y: entry.ACPrimaryLoad / 1000.0 });
         dayPowerData[1].push({ x: date.getHours(), y: entry.PVPowerOutput });
         hour++;
@@ -343,9 +91,8 @@ export default class GraphPage extends Component {
       // Load component once it's been populated
       this.state.loaded = true;
       this.forceUpdate();
-
     }).catch((error) => {
-      console.log(`Connection error... ${error}`);
+      console.log(`Error loading graph data... ${error}`);
       this.update(this.state.day);
     });
   }
@@ -397,8 +144,8 @@ export default class GraphPage extends Component {
         }
     };
     
-    x = this.state.day.toLocaleString().split(' ');
-    dayTitle = `${x[0]  } ${  x[1]  } ${  x[2]  }, ${  x[4]}`;
+    const x = this.state.day.toLocaleString().split(' ');
+    const dayTitle = `${x[0]} ${x[1]} ${x[2]}, ${x[4]}`;
     return (
       <ScrollView>
         <Chart
