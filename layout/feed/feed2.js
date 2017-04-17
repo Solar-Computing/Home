@@ -23,7 +23,7 @@ class DataList extends Component {
   }
 
   searchApi() {
-      fetch('http://jarvis.jarvisnet.ga:8165/test_leonie.php', {
+      fetch('http://lowcost-env.kwjgjsvk34.us-east-1.elasticbeanstalk.com/api/feedData', {
           headers: {
             Accept: 'application/json',
             'Content-Type': 'application/json',
