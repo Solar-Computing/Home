@@ -18,13 +18,43 @@ export default class Login extends Component {
     super(props);
     this.state = {
       loggedIn: false,
-      email: '', 
-      password: '', 
+      email: 'a@b.com', 
+      password: 'abc123', 
       loading: false
     };
   }
 
+
+  componentWillMount() {
+    console.log('STARTING FIREBASE AUTHORIZATION.');
+    firebase.initializeApp({
+      apiKey: 'AIzaSyBDFIwygLphnXFyAfJBVBk17G9SqEa4R3w',
+      authDomain: 'home-7748b.firebaseapp.com',
+      databaseURL: 'https://home-7748b.firebaseio.com',
+      projectId: 'home-7748b',
+      storageBucket: 'home-7748b.appspot.com',
+      messagingSenderId: '803538838637'
+    });
+
+    // firebase.auth().onAuthStateChanged((user) => {
+		// 	if (user) {
+		// 		this.setState({ loggedIn: true });
+		// 	} else {
+		// 		this.setState({ loggedIn: false });
+		// 	}
+		// });
+    console.log('FINISHED FIREBASE AUTHORIZATION.');
+  }
+
   onButtonPress() {
+    console.log('LOGIN BUTTON PRESSED.');
+    // console.log('{ this.state.password }');
+
+    var str = this.state.email;
+    console.log(str);
+    var str2 = this.state.password;
+    console.log(str2);
+
 		const { email, password } = this.state;
 
 		this.setState({ loading: true });
@@ -36,26 +66,39 @@ export default class Login extends Component {
 		}
   
   onLoginFail() {
-      this.setState({
-        loading: false,
-        loggedIn: false
-      });
-      Alert.alert(
-        'Incorrect Email/Password',
-        'Please Try Again.',
-        [
-          { text: 'OK', onPress: () => console.log('OK Pressed!') },
-        ]
-      );
-    }
+      console.log('LOGIN FAILED');
 
-    onLoginSuccess() {
+      var str = this.state.email;
+      console.log(str);
+      var str2 = this.state.password;
+      console.log(str2);
+
       this.setState({
-        email: '',
-        password: '',
         loading: false,
         loggedIn: true
       });
+      // Alert.alert(
+      //   'Incorrect Email/Password',
+      //   'Please Try Again.',
+      //   [
+      //     { text: 'OK', onPress: () => console.log('OK Pressed!') },
+      //   ]
+      // );
+    }
+
+    onLoginSuccess() {
+      console.log('LOGIN SUCCESS');
+      this.setState({
+        // email: '',
+        // password: '',
+        loading: false,
+        loggedIn: true
+      });
+      var str = this.state.email;
+      console.log(str);
+      var str2 = this.state.password;
+      console.log(str2);
+
     }
 
   toggleMenu() {
@@ -88,7 +131,7 @@ export default class Login extends Component {
           type="overlay"
           content={<ControlPanel
             closeMenu={this.closeMenu.bind(this)}
-            logout={this.logout.bind(this)}
+            logout={this.onLoginFail.bind(this)}
           />}
           tapToClose
           openDrawerOffset={0.2} // 20% gap on the right side of drawer
