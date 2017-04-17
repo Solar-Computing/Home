@@ -274,7 +274,7 @@ export default class GraphPage extends Component {
 
   componentDidMount() {
     // Get correct dates
-    this.state.day.setHours(this.state.day.getHours() - 1)
+    //this.state.day.setHours(this.state.day.getHours() - 1)
     this.update(this.state.day);
   }
 
