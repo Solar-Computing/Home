@@ -33,7 +33,9 @@ class DataList extends Component {
               resultsData: JSON.parse(loadedData._bodyInit),
               connected: false
           });
+
           this.state.resultsData.forEach((entry) => {
+
             this.data.push(
                  {
                      time: entry.timestamp.substring(0, 5),
