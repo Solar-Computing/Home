@@ -324,7 +324,7 @@ export default class GraphPage extends Component {
       hour = 0;
       dayPowerData = [[], [], []];
       dayPowerData[2].push({ x: 0, y: 3 });
-      
+
       this.state.data.contents.forEach((entry) => {
         
         // Push data to curve data pools

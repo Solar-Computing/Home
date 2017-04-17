@@ -43,6 +43,7 @@ export default class Example extends Component {
 
           this.setState({ resultsData: JSON.parse(loadedData._bodyInit) });
 
+          /*
           const imgGoal = require('../img/goal.png');
           const imgLogo = require('../img/logo.png');
           const imgLightBulb = require('../img/light-bulb.png');
@@ -50,10 +51,12 @@ export default class Example extends Component {
           const imgTarget = require('../img/target.png');
           const imgTrophy = require('../img/trophy.png');
           let showImage = imgLogo;
+          */
 
           this.state.resultsData.forEach((entry) => {
              //feedData.push({ message: entry.message, category: entry.category, timestamp: entry.timestamp });
 
+             /*
              if (entry.category == 'logo') {
                  showImage = imgLogo;
              }
@@ -71,7 +74,7 @@ export default class Example extends Component {
              }
              if (entry.category == 'announcement') {
                  showImage = imgMegaphone;
-             }
+             }*/
 
             this.data.push(
                  {
