@@ -30,7 +30,11 @@ export default class Example extends Component {
 
 
   searchApi() {
-      fetch('http://lowcost-env.kwjgjsvk34.us-east-1.elasticbeanstalk.com/api/feedData').then((loadedData) => {
+      fetch('http://lowcost-env.kwjgjsvk34.us-east-1.elasticbeanstalk.com/api/feedData', {
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      } }).then((loadedData) => {
           this.setState({
               resultsData: JSON.parse(loadedData._bodyInit),
               connected: false
@@ -71,7 +75,7 @@ export default class Example extends Component {
 
             this.data.push(
                  {
-                     time: entry.timestamp.substring(0, 5),
+                     time: entry.timestamp.substring(6, 12),
                      title: entry.category,
                      description: entry.message,
                      lineColor: 'white',
