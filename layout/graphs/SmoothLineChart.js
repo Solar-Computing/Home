@@ -19,7 +19,7 @@ SPDX-License-Identifier: Apache-2.0
 'use strict';
 
 import React, { Component } from 'react';
-import { View, Text, ActivityIndicator } from 'react-native';
+import { View, Text, ActivityIndicator, Image } from 'react-native';
 
 import { SmoothLine } from 'react-native-pathjs-charts';
 import Button from 'react-native-button';

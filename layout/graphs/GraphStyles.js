@@ -19,6 +19,7 @@ export default StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         flexDirection: 'column',
+        height: 50
         
         // padding: 10
         // width: 60
@@ -38,7 +39,7 @@ export default StyleSheet.create({
         paddingBottom: 10,
         justifyContent: 'center',
         flexDirection: 'row',
-        height: 30
+        height: 50
     },
     spacer: {
         width: 60
