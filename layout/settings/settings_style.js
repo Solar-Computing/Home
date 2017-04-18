@@ -3,7 +3,12 @@ import {
 } from 'react-native';
 
 export default StyleSheet.create({
-    accordian: {
+    sliderText: {
+        padding: 10,
+        fontSize: 20,
+        color: '#d0d7e2'
+    },
+    accordion: {
         padding: 18
     },
     headerText: {
@@ -20,7 +25,7 @@ export default StyleSheet.create({
         borderColor: '#1e7794',
     },
     contentText: {
-        padding: 30,
+        padding: 10,
         paddingLeft: 50,
         fontSize: 20,
         color: '#d0d7e2'
@@ -44,7 +49,7 @@ export default StyleSheet.create({
     MySlider: {
         width: 200,
         justifyContent: 'center',
-        paddingRight: 10,
+        paddingRight: 20,
         // color: '#'
     },
     pageOptions: {

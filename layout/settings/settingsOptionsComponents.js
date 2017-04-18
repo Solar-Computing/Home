@@ -84,7 +84,7 @@ export class MySlider extends Component {
               source={require('../img/minus.png')}
           />
           </Button>
-          <Text style={styles.contentText}>
+          <Text style={styles.sliderText}>
           {this.state.value || '000'}</Text>
           <Button 
                   style={styles.increase}

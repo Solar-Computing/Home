@@ -79,7 +79,7 @@ class ListOfRooms extends Component {
         connected: true
       });
     }).catch((error) => {
-      console.log(`Error... ${  error}`);
+      console.log(`Error... ${error}`);
       this.setState({
         connected: false
       });
@@ -101,7 +101,7 @@ class ListOfRooms extends Component {
                 style={styles.houseGraphic}
                 source={require('../img/house3.png')}
             />
-            <Text style={styles.residence}>George's House</Text>
+            <Text style={styles.residence}>George P. Burdell's House</Text>
           </View>
           
           <ListView
