@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
 import {
   View,
-  Text,
-  Image,
-  ListView,
-  ScrollView
+  ActivityIndicator
 } from 'react-native';
 import Timeline from 'react-native-timeline-listview';
 import styles from './feed_style.js';
@@ -35,10 +32,9 @@ class DataList extends Component {
           });
 
           this.state.resultsData.forEach((entry) => {
-
             this.data.push(
                  {
-                     time: entry.timestamp.substring(0, 5),
+                     time: entry.timestamp.substring(0, 16),
                      title: entry.category,
                      description: entry.message,
                      lineColor: 'white',
@@ -79,9 +75,11 @@ class DataList extends Component {
         );
       }
       return (
-          <View>
-              <Text style={styles.offlineMessage}>Unable to retrieve Feed from Internet</Text>
-          </View>
+        <ActivityIndicator
+          animating={this.state.animating}
+          style={styles.activityIndicator}
+          size="large"
+        />
       );
     }
   }

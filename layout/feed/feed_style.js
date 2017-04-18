@@ -80,8 +80,14 @@ export default StyleSheet.create({
         marginBottom: 20,
         paddingLeft: 5,
         paddingRight: 5,
-        backgroundColor: "#0d4659",
+        backgroundColor: '#0d4659',
         borderRadius: 10
 
+    },
+    activityIndicator: {
+        height: 80,
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: 8
     }
 });

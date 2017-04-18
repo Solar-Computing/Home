@@ -22,7 +22,6 @@ export default class GraphPage extends Component {
 
   componentDidMount() {
     // First mount
-    this.state.day.setHours(this.state.day.getHours() - 1)
     this.update(this.state.day);
   }
 
@@ -51,6 +50,8 @@ export default class GraphPage extends Component {
     currDayMidnight.setHours(0);
     currDayMidnight.setMinutes(0);
     currDayMidnight.setSeconds(0);
+    //console.log(currentDay)
+    //console.log(currDayMidnight)
 
     // Timeout function whose callback in case of error is a recursive call to update()
     // (basically it tries until it gets connection and succeeds)
@@ -66,7 +67,7 @@ export default class GraphPage extends Component {
         aggregate: 'hourly'
       })
     })).then((loadedData) => {
-      console.log(loadedData)
+      //console.log(loadedData)
 
       // Parse data
       this.setState({ data: JSON.parse(loadedData._bodyInit) });
